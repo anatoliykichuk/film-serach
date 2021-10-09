@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">FilmSerach</string>
+    <string name="title_list">Список</string>
+    <string name="title_favorites">Избранное</string>
+    <string name="title_search">Поиск</string>
 </resources>
