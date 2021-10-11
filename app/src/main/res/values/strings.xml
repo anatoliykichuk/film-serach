@@ -3,4 +3,6 @@
     <string name="title_list">Список</string>
     <string name="title_favorites">Избранное</string>
     <string name="title_search">Поиск</string>
+    <string name="title_text">Название</string>
+    <string name="original_title_text">Оригинальное название</string>
 </resources>
