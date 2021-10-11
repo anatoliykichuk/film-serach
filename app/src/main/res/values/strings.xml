@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">FilmSerach</string>
-    <string name="title_list">Список</string>
+    <string name="title_list">Каталог</string>
     <string name="title_favorites">Избранное</string>
     <string name="title_search">Поиск</string>
     <string name="title_text">Название</string>
     <string name="original_title_text">Оригинальное название</string>
+    <string name="genre_text">Жанр</string>
+    <string name="popularity_text">Рейтинг</string>
+    <string name="budget_text">Бюджет</string>
+    <string name="revenue">Сборы</string>
+    <string name="release_date">Дата релиза</string>
+    <string name="description_text">Описание</string>
+    <string name="director_text">Режисер</string>
+    <string name="cast_text">В ролях</string>
+    <string name="adult_date">Возрастной ценз</string>
 </resources>
