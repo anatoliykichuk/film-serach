@@ -4,7 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/list_item"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/margin_out"
+    android:layout_marginEnd="@dimen/margin_out"
+    android:layout_marginTop="@dimen/margin_out"
+    android:layout_marginBottom="@dimen/margin_out">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -23,7 +27,7 @@
             android:layout_height="wrap_content"
             android:text="@string/title_text"
             android:gravity="start"
-            android:textSize="@dimen/title_h1_text_size"/>
+            android:textSize="@dimen/title_h3_text_size"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/original_title"
@@ -31,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="@string/original_title_text"
             android:gravity="start"
-            android:textSize="@dimen/title_h2_text_size"/>
+            android:textSize="@dimen/title_h4_text_size"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -42,7 +46,8 @@
                 android:id="@+id/release_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/release_date"/>
+                android:text="@string/release_date"
+                android:textSize="@dimen/title_h3_text_size"/>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
@@ -52,13 +57,14 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/favorites"/>
+                    android:src="@drawable/popularity_16"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/popularity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/popularity_text"/>
+                    android:text="@string/popularity_text"
+                    android:textSize="@dimen/title_h3_text_size"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

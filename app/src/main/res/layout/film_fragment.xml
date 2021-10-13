@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/list_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -52,12 +51,13 @@
                         android:id="@+id/popularity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/popularity_text"/>
+                        android:text="@string/popularity_text"
+                        android:textSize="@dimen/title_h3_text_size"/>
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/favorites"/>
+                        android:src="@drawable/popularity_16"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -65,43 +65,50 @@
                     android:id="@+id/genre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/genre_text"/>
+                    android:text="@string/genre_text"
+                    android:textSize="@dimen/title_h3_text_size"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/director"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/director_text"/>
+                    android:text="@string/director_text"
+                    android:textSize="@dimen/title_h3_text_size"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/cast"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cast_text"/>
+                    android:text="@string/cast_text"
+                    android:textSize="@dimen/title_h3_text_size"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/budget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/budget_text"/>
+                    android:text="@string/budget_text"
+                    android:textSize="@dimen/title_h3_text_size"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/revenue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/revenue"/>
+                    android:text="@string/revenue"
+                    android:textSize="@dimen/title_h3_text_size"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/release_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/release_date"/>
+                    android:text="@string/release_date"
+                    android:textSize="@dimen/title_h3_text_size"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/adult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/adult_date"/>
+                    android:text="@string/adult_date"
+                    android:textSize="@dimen/title_h3_text_size"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -111,7 +118,8 @@
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/description_text"/>
+            android:text="@string/description_text"
+            android:textSize="@dimen/title_h3_text_size"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

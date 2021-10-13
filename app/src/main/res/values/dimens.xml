@@ -2,4 +2,7 @@
 <resources>
     <dimen name="title_h1_text_size">30sp</dimen>
     <dimen name="title_h2_text_size">20sp</dimen>
+    <dimen name="title_h3_text_size">15sp</dimen>
+    <dimen name="title_h4_text_size">10sp</dimen>
+    <dimen name="margin_out">10dp</dimen>
 </resources>

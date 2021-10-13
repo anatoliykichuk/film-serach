@@ -5,13 +5,13 @@
 
     <item
         android:id="@+id/menu_list"
-        android:icon="@drawable/list"
+        android:icon="@drawable/list_48"
         android:orderInCategory="10"
         android:title="@string/title_list"/>
 
     <item
         android:id="@+id/menu_favorites"
-        android:icon="@drawable/favorites"
+        android:icon="@drawable/favorites_48"
         android:orderInCategory="20"
         android:title="@string/title_favorites"/>
 
