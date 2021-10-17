@@ -5,4 +5,5 @@
     <dimen name="title_h3_text_size">15sp</dimen>
     <dimen name="title_h4_text_size">10sp</dimen>
     <dimen name="padding_out">10dp</dimen>
+    <dimen name="alignment_under_poster">45dp</dimen>
 </resources>

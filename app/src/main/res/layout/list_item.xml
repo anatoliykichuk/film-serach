@@ -24,60 +24,70 @@
             android:scaleType="centerInside"
             android:layout_gravity="center_horizontal"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/title_text"
-            android:textSize="@dimen/title_h3_text_size" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/original_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/original_title_text"
-            android:gravity="start"
-            android:textSize="@dimen/title_h4_text_size"/>
-
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/alignment_under_poster"
+            android:layout_marginEnd="@dimen/alignment_under_poster">
 
-            <RelativeLayout
-                android:id="@+id/background"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:text="@string/title_text"
+                android:textSize="@dimen/title_h3_text_size" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/release_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/release_date"
-                    android:textSize="@dimen/title_h3_text_size" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/original_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/original_title_text"
+                android:gravity="start"
+                android:textSize="@dimen/title_h4_text_size"/>
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_alignParentEnd="true">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/popularity_ico"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/popularity_16" />
+                <RelativeLayout
+                    android:id="@+id/background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/popularity"
+                        android:id="@+id/release_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/popularity_text"
+                        android:text="@string/release_date"
                         android:textSize="@dimen/title_h3_text_size" />
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:orientation="horizontal">
 
-            </RelativeLayout>
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/popularity_ico"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/popularity_16"
+                            android:layout_gravity="center"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/popularity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/popularity_text"
+                            android:textSize="@dimen/title_h3_text_size" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </RelativeLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
