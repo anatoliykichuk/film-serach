@@ -1,7 +1,6 @@
 package ru.geekbrains.filmserach.model.entities
 
 data class Film(
-    val id: Int = 0,
     val title: String,
     val originalTitle: String = "",
     val originalLanguage: String = "",

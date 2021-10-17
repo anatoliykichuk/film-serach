@@ -55,10 +55,10 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/release_date"
+                        style="@style/Text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/release_date"
-                        style="@style/Text"/>
+                        android:text="@string/release_date" />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"
@@ -71,14 +71,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/popularity_16"/>
+                            android:src="@drawable/popularity_16" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/popularity"
                             style="@style/Text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/popularity_text"/>
+                            android:text="@string/popularity_text" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
