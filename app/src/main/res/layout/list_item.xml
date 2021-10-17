@@ -4,30 +4,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/list_item"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginStart="@dimen/margin_out"
-    android:layout_marginEnd="@dimen/margin_out"
-    android:layout_marginTop="@dimen/margin_out"
-    android:layout_marginBottom="@dimen/margin_out">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:paddingStart="@dimen/padding_out"
+        android:paddingEnd="@dimen/padding_out"
+        android:paddingTop="@dimen/padding_out"
+        android:paddingBottom="@dimen/padding_out">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/poster"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/poster01"/>
+            android:src="@drawable/poster01"
+            android:scaleType="centerInside"
+            android:layout_gravity="center_horizontal"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/title_text"
-            android:gravity="start"
-            android:textSize="@dimen/title_h3_text_size"/>
+            android:textSize="@dimen/title_h3_text_size" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/original_title"
@@ -42,31 +44,40 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/release_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/release_date"
-                android:textSize="@dimen/title_h3_text_size"/>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/popularity_16"/>
+            <RelativeLayout
+                android:id="@+id/background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/popularity"
+                    android:id="@+id/release_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/popularity_text"
-                    android:textSize="@dimen/title_h3_text_size"/>
+                    android:text="@string/release_date"
+                    android:textSize="@dimen/title_h3_text_size" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentEnd="true">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/popularity_ico"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/popularity_16" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/popularity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/popularity_text"
+                        android:textSize="@dimen/title_h3_text_size" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </RelativeLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
