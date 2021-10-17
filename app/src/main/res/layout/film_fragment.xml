@@ -17,8 +17,7 @@
             android:layout_height="wrap_content"
             android:text="@string/title_text"
             android:gravity="start"
-            android:textSize="@dimen/title_h1_text_size"
-            style="@style/CommonElement"/>
+            style="@style/H1"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/original_title"
@@ -26,8 +25,7 @@
             android:layout_height="wrap_content"
             android:text="@string/original_title_text"
             android:gravity="start"
-            android:textSize="@dimen/title_h2_text_size"
-            style="@style/CommonElement"/>
+            style="@style/H2"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -50,14 +48,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    style="@style/CommonElement">
+                    style="@style/Text">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/popularity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/popularity_text"
-                        style="@style/CommonElement"/>
+                        style="@style/Text"/>
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="wrap_content"
@@ -72,49 +70,49 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/genre_text"
-                    style="@style/CommonElement"/>
+                    style="@style/Text"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/director"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/director_text"
-                    style="@style/CommonElement"/>
+                    style="@style/Text"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/cast"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cast_text"
-                    style="@style/CommonElement"/>
+                    style="@style/Text"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/budget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/budget_text"
-                    style="@style/CommonElement"/>
+                    style="@style/Text"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/revenue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/revenue"
-                    style="@style/CommonElement"/>
+                    style="@style/Text"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/release_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/release_date"
-                    style="@style/CommonElement"/>
+                    style="@style/Text"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/adult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/adult_date"
-                    style="@style/CommonElement"/>
+                    style="@style/Text"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -125,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/description_text"
-            style="@style/CommonElement"/>
+            style="@style/Text"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

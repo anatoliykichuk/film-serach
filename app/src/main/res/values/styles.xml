@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="CommonElement" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="H1" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:layout_marginTop">@dimen/layout_margin</item>
+        <item name="android:layout_marginEnd">@dimen/layout_margin</item>
+        <item name="android:textSize">@dimen/title_h1_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="H2" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:layout_marginTop">@dimen/layout_margin</item>
+        <item name="android:layout_marginEnd">@dimen/layout_margin</item>
+        <item name="android:textSize">@dimen/title_h2_text_size</item>
+    </style>
+
+    <style name="H3" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:layout_marginTop">@dimen/layout_margin</item>
+        <item name="android:layout_marginEnd">@dimen/layout_margin</item>
+        <item name="android:textSize">@dimen/title_h3_text_size</item>
+    </style>
+
+    <style name="Text" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:layout_marginTop">@dimen/layout_margin</item>
         <item name="android:layout_marginEnd">@dimen/layout_margin</item>
         <item name="android:textSize">@dimen/title_h3_text_size</item>
