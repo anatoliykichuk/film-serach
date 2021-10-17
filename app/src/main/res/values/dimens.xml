@@ -6,4 +6,5 @@
     <dimen name="title_h4_text_size">10sp</dimen>
     <dimen name="padding_out">10dp</dimen>
     <dimen name="alignment_under_poster">45dp</dimen>
+    <dimen name="layout_margin">5dp</dimen>
 </resources>

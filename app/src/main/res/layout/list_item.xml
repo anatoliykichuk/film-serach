@@ -11,10 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_gravity="center_horizontal"
-        android:paddingStart="@dimen/padding_out"
-        android:paddingEnd="@dimen/padding_out"
-        android:paddingTop="@dimen/padding_out"
-        android:paddingBottom="@dimen/padding_out">
+        style="@style/LayoutPadding">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/poster"
@@ -73,8 +70,8 @@
                             android:id="@+id/popularity_ico"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/popularity_16"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:src="@drawable/popularity_16" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/popularity"
