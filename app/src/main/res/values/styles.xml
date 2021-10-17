@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="LayoutMargin" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="CommonElement" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:layout_marginTop">@dimen/layout_margin</item>
         <item name="android:layout_marginEnd">@dimen/layout_margin</item>
+        <item name="android:textSize">@dimen/title_h3_text_size</item>
     </style>
 
     <style name="LayoutMarginStart" parent="Theme.MaterialComponents.DayNight.DarkActionBar">

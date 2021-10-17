@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/title_text"
-                android:textSize="@dimen/title_h3_text_size" />
+                style="@style/CommonElement"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/original_title"
@@ -41,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/original_title_text"
                 android:gravity="start"
-                android:textSize="@dimen/title_h4_text_size"/>
+                android:textSize="@dimen/title_h4_text_size"
+                style="@style/CommonElement"/>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -58,7 +59,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/release_date"
-                        android:textSize="@dimen/title_h3_text_size" />
+                        style="@style/CommonElement"/>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"
@@ -71,14 +72,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/popularity_16" />
+                            android:src="@drawable/popularity_16"/>
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/popularity"
+                            style="@style/CommonElement"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/popularity_text"
-                            android:textSize="@dimen/title_h3_text_size" />
+                            android:text="@string/popularity_text"/>
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
