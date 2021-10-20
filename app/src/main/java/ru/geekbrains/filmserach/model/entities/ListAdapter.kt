@@ -30,6 +30,8 @@ class ListAdapter(private val list: List<Film>) :
     override fun onBindViewHolder(holder: ListAdapter.ListViewHolder, position: Int) {
         val item = list[position]
 
+        // TODO: Добавить инициализацию постера.
+
         holder.titleView.text = item.title
         holder.originalTitleView.text = item.originalTitle
         holder.releaseDateView.text = item.releaseDate

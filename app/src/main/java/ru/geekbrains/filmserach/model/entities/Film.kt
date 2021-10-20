@@ -4,7 +4,7 @@ data class Film(
     val title: String,
     val originalTitle: String = "",
     val originalLanguage: String = "",
-    val genreIds: List<Int> = listOf<Int>(),
+    val genreIds: List<Int>,
     val releaseDate: String = "",
     val adult: Boolean = false,
     val overview: String = "",
