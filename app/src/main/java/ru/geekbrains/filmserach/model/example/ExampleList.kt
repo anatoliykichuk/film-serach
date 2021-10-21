@@ -42,7 +42,23 @@ object ExampleList {
                     8.6F, 458000, 0.0F, R.drawable.poster06.toString())
             )
 
+            list.add(
+                Film("Главный герой", "Free Guy", "en",
+                    listOf(16),"2021-01-01", false, "", false,
+                    7.3F, 728000, 0.0F, R.drawable.poster07.toString())
+            )
 
+            list.add(
+                Film("Друзья: Воссоединение", "Friends: The Reunion", "en",
+                    listOf(16),"2021-01-01", false, "", false,
+                    8.6F, 40000, 0.0F, R.drawable.poster08.toString())
+            )
+
+            list.add(
+                Film("Зеленая книга", "Green Book", "en",
+                    listOf(16),"2018-01-01", false, "", false,
+                    8.4F, 522000, 0.0F, R.drawable.poster09.toString())
+            )
 
             return list
         }
