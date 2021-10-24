@@ -12,6 +12,7 @@ data class Film(
     val popularity: Float = 0.0F,
     val voteCount: Int = 0,
     val voteAverage: Float = 0.0F,
+    val poster: Int = 0,
     val posterPath: String? = "",
     val backdropPath: String? = "") {
 }

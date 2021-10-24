@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -44,7 +45,8 @@ class MainFragment : Fragment() {
         val list = ExampleList.list
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = GridLayoutManager(activity, 3,
+            LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = FilmListAdapter(list)
     }
 
