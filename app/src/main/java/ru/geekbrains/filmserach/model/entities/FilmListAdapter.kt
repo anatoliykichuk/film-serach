@@ -8,10 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.filmserach.R
 
-class ListAdapter(private val list: List<Film>) :
-    RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
+class FilmListAdapter(private val list: List<Film>) :
+    RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder>() {
 
-    class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class FilmListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val posterView: ImageView = itemView.findViewById(R.id.poster)
         val titleView: TextView = itemView.findViewById(R.id.title)
         val originalTitleView: TextView = itemView.findViewById(R.id.original_title)
@@ -19,15 +19,15 @@ class ListAdapter(private val list: List<Film>) :
         val popularityView: TextView = itemView.findViewById(R.id.popularity)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListAdapter.ListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmListAdapter.FilmListViewHolder {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.list_item, parent, false)
 
-        return ListViewHolder(view)
+        return FilmListViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ListAdapter.ListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FilmListAdapter.FilmListViewHolder, position: Int) {
         val item = list[position]
 
         // TODO: Добавить инициализацию постера.
