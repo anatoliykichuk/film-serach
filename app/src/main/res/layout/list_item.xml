@@ -2,36 +2,33 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/list_item"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center_horizontal"
         style="@style/LayoutPadding">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/poster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/poster01"
-            android:scaleType="centerInside"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_width="@dimen/poster_width"
+            android:layout_height="@dimen/poster_height"
+            android:src="@drawable/poster01"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="@dimen/alignment_under_poster"
-            android:layout_marginEnd="@dimen/alignment_under_poster">
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/title_text"
+                android:textSize="@dimen/title_text_size"
                 style="@style/H1"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -40,24 +37,25 @@
                 android:layout_height="wrap_content"
                 android:text="@string/original_title_text"
                 android:gravity="start"
-                android:textSize="@dimen/title_h4_text_size"
+                android:textSize="@dimen/title_small_text_size"
                 style="@style/Text"/>
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/release_date"
+                        style="@style/Text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/release_date"
-                        style="@style/Text"/>
+                        android:textSize="@dimen/title_small_text_size" />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"
@@ -67,17 +65,18 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/popularity_ico"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="bottom"
                             android:src="@drawable/popularity_16" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/popularity"
+                            style="@style/Text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/popularity_text"
-                            style="@style/Text"/>
+                            android:textSize="@dimen/title_small_text_size" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
