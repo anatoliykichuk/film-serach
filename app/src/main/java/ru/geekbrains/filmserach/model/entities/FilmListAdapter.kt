@@ -22,7 +22,7 @@ class FilmListAdapter(private val list: List<Film>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmListAdapter.FilmListViewHolder {
         val view = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.list_item, parent, false)
+            .inflate(R.layout.film_list_item, parent, false)
 
         return FilmListViewHolder(view)
     }
