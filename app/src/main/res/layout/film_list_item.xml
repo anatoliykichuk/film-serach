@@ -9,8 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="center_horizontal"
-        style="@style/LayoutPadding">
+        android:layout_gravity="center_horizontal">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/poster"

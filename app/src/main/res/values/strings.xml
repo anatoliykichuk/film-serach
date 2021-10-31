@@ -14,4 +14,5 @@
     <string name="director_text">Режисер</string>
     <string name="cast_text">В ролях</string>
     <string name="adult_date">Возрастной ценз</string>
+    <string name="category_name">Категория</string>
 </resources>

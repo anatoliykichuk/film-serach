@@ -19,7 +19,8 @@ class FilmListAdapter(private val list: List<Film>) :
         val popularityView: TextView = itemView.findViewById(R.id.popularity)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmListAdapter.FilmListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) :
+            FilmListAdapter.FilmListViewHolder {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.film_list_item, parent, false)
@@ -27,7 +28,8 @@ class FilmListAdapter(private val list: List<Film>) :
         return FilmListViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FilmListAdapter.FilmListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FilmListAdapter.FilmListViewHolder,
+            position: Int) {
         val item = list[position]
 
         holder.posterView.setImageResource(item.poster)
