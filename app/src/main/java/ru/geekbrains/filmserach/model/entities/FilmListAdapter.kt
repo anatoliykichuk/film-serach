@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.filmserach.R
 
-class FilmListAdapter(private val list: List<Film>) :
+class FilmListAdapter(private val list: List<Film>):
     RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder>() {
 
     class FilmListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -19,7 +19,8 @@ class FilmListAdapter(private val list: List<Film>) :
         val popularityView: TextView = itemView.findViewById(R.id.popularity)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmListAdapter.FilmListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
+            FilmListAdapter.FilmListViewHolder {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.film_list_item, parent, false)

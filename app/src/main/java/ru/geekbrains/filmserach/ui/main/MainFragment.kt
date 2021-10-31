@@ -45,8 +45,6 @@ class MainFragment : Fragment() {
         val list = ExampleList.list
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.layoutManager = GridLayoutManager(activity, 3,
-            LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = FilmListAdapter(list)
     }
 
