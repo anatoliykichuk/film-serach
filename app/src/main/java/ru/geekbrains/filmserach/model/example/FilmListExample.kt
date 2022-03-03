@@ -4,7 +4,7 @@ import org.koin.core.component.getScopeId
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.model.entities.Film
 
-object ExampleList {
+object FilmListExample {
     var list: ArrayList<Film> = arrayListOf()
 
     init {
