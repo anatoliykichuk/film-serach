@@ -16,11 +16,11 @@ class CategoryListAdapter(private val list: List<Category>):
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryListViewHolder {
-        val view = LayoutInflater
+        val itemView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.film_list, parent, false)
 
-        return CategoryListViewHolder(view)
+        return CategoryListViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: CategoryListViewHolder, position: Int) {
