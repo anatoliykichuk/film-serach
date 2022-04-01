@@ -45,5 +45,4 @@ class MainFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = CategoryListAdapter(list)
     }
-
 }
