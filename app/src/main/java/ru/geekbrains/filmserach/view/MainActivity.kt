@@ -1,8 +1,8 @@
-package ru.geekbrains.filmserach
+package ru.geekbrains.filmserach.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ru.geekbrains.filmserach.ui.main.MainFragment
+import ru.geekbrains.filmserach.R
 
 class MainActivity : AppCompatActivity() {
 

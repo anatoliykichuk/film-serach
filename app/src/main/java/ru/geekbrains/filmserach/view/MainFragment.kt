@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.ui.main
+package ru.geekbrains.filmserach.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +10,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.model.entities.CategoryListAdapter
 import ru.geekbrains.filmserach.model.example.CategoryListExample
+import ru.geekbrains.filmserach.viewmodel.MainViewModel
 
 class MainFragment : Fragment() {
 
@@ -20,7 +21,8 @@ class MainFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val root = inflater.inflate(R.layout.main_fragment, container, false)

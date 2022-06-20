@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.ui.main
+package ru.geekbrains.filmserach.viewmodel
 
 import androidx.lifecycle.ViewModel
 

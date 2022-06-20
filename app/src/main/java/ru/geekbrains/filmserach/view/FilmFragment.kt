@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.ui.main
+package ru.geekbrains.filmserach.view
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ru.geekbrains.filmserach.R
+import ru.geekbrains.filmserach.viewmodel.FilmViewModel
 
 class FilmFragment : Fragment() {
 

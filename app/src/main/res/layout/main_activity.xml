@@ -6,7 +6,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/fragment_container"
-        android:name="ru.geekbrains.filmserach.ui.main.MainFragment"
+        android:name="ru.geekbrains.filmserach.view.MainFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@id/main_navigation_view"
