@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/film_list_item"
+            tools:listitem="@layout/fragment_film_list_item"
             tools:itemCount="3"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

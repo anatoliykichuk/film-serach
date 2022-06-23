@@ -18,7 +18,7 @@ class CategoryListAdapter(private val list: List<Category>):
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryListViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.film_list, parent, false)
+            .inflate(R.layout.fragment_film_list, parent, false)
 
         return CategoryListViewHolder(itemView)
     }

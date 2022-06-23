@@ -25,7 +25,7 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val root = inflater.inflate(R.layout.main_fragment, container, false)
+        val root = inflater.inflate(R.layout.fragment_main, container, false)
 
         val recyclerView = root.findViewById<RecyclerView>(R.id.category_list)
         setCategoryList(recyclerView)

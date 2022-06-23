@@ -23,7 +23,7 @@ class FilmListAdapter(private val list: List<Film>):
             FilmListAdapter.FilmListViewHolder {
         val view = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.film_list_item, parent, false)
+            .inflate(R.layout.fragment_film_list_item, parent, false)
 
         return FilmListViewHolder(view)
     }
