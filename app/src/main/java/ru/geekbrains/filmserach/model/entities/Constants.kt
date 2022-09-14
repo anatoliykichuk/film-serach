@@ -1,5 +1,7 @@
 package ru.geekbrains.filmserach.model.entities
 
+const val TOKEN = "AF2F5V2-SGRM6NN-JDNY2ZC-K6Z71K7"
+
 fun getAllGenres(): Map<String, String> {
     return mapOf(
             "boevik" to "боевик",
