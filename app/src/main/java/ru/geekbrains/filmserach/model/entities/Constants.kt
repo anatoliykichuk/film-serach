@@ -1,5 +1,7 @@
 package ru.geekbrains.filmserach.model.entities
 
+const val PATH = "https://api.kinopoisk.dev"
+const val END_POINT = "movie"
 const val TOKEN = "AF2F5V2-SGRM6NN-JDNY2ZC-K6Z71K7"
 
 fun getAllGenres(): Map<String, String> {

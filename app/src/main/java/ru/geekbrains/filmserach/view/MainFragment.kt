@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import okhttp3.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
-import ru.geekbrains.filmserach.model.entities.CategoryListAdapter
+import ru.geekbrains.filmserach.model.entities.*
 import ru.geekbrains.filmserach.model.example.CategoryListExample
 import ru.geekbrains.filmserach.viewmodel.MainViewModel
+import java.io.IOException
 
 class MainFragment : Fragment() {
 
@@ -29,6 +31,8 @@ class MainFragment : Fragment() {
 
         val recyclerView = root.findViewById<RecyclerView>(R.id.category_list)
         setCategoryList(recyclerView)
+
+        viewModel.getFilms()
 
         return root
     }
