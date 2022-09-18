@@ -2,13 +2,13 @@ package ru.geekbrains.filmserach.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import okhttp3.*
 import ru.geekbrains.filmserach.model.entities.END_POINT
 import ru.geekbrains.filmserach.model.entities.PATH
 import ru.geekbrains.filmserach.model.entities.TOKEN
 import ru.geekbrains.filmserach.model.entities.getAllGenres
 import java.io.IOException
-import kotlin.math.log
 
 class MainViewModel : ViewModel() {
     // TODO: Implement the ViewModel
@@ -20,19 +20,14 @@ class MainViewModel : ViewModel() {
 
         call?.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                val j = 0
+                Log.e("CALL", e.toString())
             }
-
-            var dataByJSON = ""
 
             override fun onResponse(call: Call, response: Response) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        dataByJSON = it.toString()
-
-                        Log.i("AAA", dataByJSON)
-                        val i = 0
-
+                        val filmJson = it.string()
+                        setFilmDto(filmJson)
                     }
                 }
             }
@@ -43,5 +38,13 @@ class MainViewModel : ViewModel() {
         val genres = getAllGenres().toList()
         val url = "$PATH/$END_POINT?token=$TOKEN&field=genres.name&search=${genres[0].second}"
         return url
+    }
+
+    private fun setFilmDto(filmJson: String) {
+        if (filmJson.isEmpty() || filmJson.toList()[0].toString() != "{") {
+            return
+        }
+
+        val filmDto = Gson().fromJson(filmJson, Total::class.java)
     }
 }
