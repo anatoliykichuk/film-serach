@@ -2,6 +2,7 @@ package ru.geekbrains.filmserach.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.example.FilmDto
 import com.google.gson.Gson
 import okhttp3.*
 import ru.geekbrains.filmserach.model.entities.END_POINT
@@ -45,6 +46,7 @@ class MainViewModel : ViewModel() {
             return
         }
 
-        val filmDto = Gson().fromJson(filmJson, Total::class.java)
+        val filmDto = Gson().fromJson(filmJson, FilmDto::class.java)
+        val i = 0
     }
 }
