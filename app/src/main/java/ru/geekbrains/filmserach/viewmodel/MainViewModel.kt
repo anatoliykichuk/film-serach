@@ -47,5 +47,6 @@ class MainViewModel : ViewModel() {
         }
 
         val filmDto = Gson().fromJson(filmJson, FilmDto::class.java)
+        val i = 0
     }
 }

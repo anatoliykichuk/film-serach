@@ -9,6 +9,6 @@ data class Rating (
   @SerializedName("imdb"               ) var imdb               : Double? = null,
   @SerializedName("filmCritics"        ) var filmCritics        : Double? = null,
   @SerializedName("russianFilmCritics" ) var russianFilmCritics : Double? = null,
-  @SerializedName("await"              ) var await              : Int?    = null
+  @SerializedName("await"              ) var await              : Double? = null
 
 )
