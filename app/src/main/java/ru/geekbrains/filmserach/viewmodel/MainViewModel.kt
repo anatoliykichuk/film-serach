@@ -9,44 +9,21 @@ import ru.geekbrains.filmserach.model.entities.END_POINT
 import ru.geekbrains.filmserach.model.entities.PATH
 import ru.geekbrains.filmserach.model.entities.TOKEN
 import ru.geekbrains.filmserach.model.entities.getAllGenres
+import ru.geekbrains.filmserach.model.repository.Loader
 import java.io.IOException
 
 class MainViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 
     fun getFilms() {
-        val client = OkHttpClient()
-        val request = Request.Builder().url(url()).build()
-        val call = client?.newCall(request)
+        val loader = Loader
+        loader.field = "genres.name"
+        loader.search = getAllGenres()
+        val loaded = loader.load()
 
-        call?.enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                Log.e("CALL", e.toString())
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        val filmJson = it.string()
-                        setFilmDto(filmJson)
-                    }
-                }
-            }
-        })
-    }
-
-    private fun url(): String {
-        val genres = getAllGenres().toList()
-        val url = "$PATH/$END_POINT?token=$TOKEN&field=genres.name&search=${genres[0].second}"
-        return url
-    }
-
-    private fun setFilmDto(filmJson: String) {
-        if (filmJson.isEmpty() || filmJson.toList()[0].toString() != "{") {
-            return
-        }
-
-        val filmDto = Gson().fromJson(filmJson, FilmDto::class.java)
         val i = 0
     }
+
+
+
 }
