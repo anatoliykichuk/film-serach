@@ -8,7 +8,7 @@
     tools:context=".view.MainFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/category_list"
+        android:id="@+id/genres_list"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:orientation="vertical"

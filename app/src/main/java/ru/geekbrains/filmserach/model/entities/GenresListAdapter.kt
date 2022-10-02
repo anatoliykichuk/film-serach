@@ -7,29 +7,29 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.filmserach.R
 
-class CategoryListAdapter(private val list: List<Category>):
-    RecyclerView.Adapter<CategoryListAdapter.CategoryListViewHolder>() {
+class GenresListAdapter(private val list: List<String>):
+    RecyclerView.Adapter<GenresListAdapter.GenresListViewHolder>() {
 
-    class CategoryListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val categoryNameView: TextView = itemView.findViewById(R.id.category_name)
+    class GenresListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val genresNameView: TextView = itemView.findViewById(R.id.genre_name)
         val filmListView: RecyclerView = itemView.findViewById(R.id.film_list)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenresListViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.fragment_film_list, parent, false)
 
-        return CategoryListViewHolder(itemView)
+        return GenresListViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: CategoryListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GenresListViewHolder, position: Int) {
         val item = list[position]
 
-        holder.categoryNameView.text = item.name
+        holder.genresNameView.text = item
 
         holder.filmListView.setHasFixedSize(true);
-        holder.filmListView.adapter = FilmListAdapter(item.filmList)
+        //holder.filmListView.adapter = FilmListAdapter(item.filmList)
     }
 
     override fun getItemCount(): Int {

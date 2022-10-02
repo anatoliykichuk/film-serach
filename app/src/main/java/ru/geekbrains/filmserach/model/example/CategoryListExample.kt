@@ -1,14 +1,13 @@
 package ru.geekbrains.filmserach.model.example
 
-import ru.geekbrains.filmserach.model.entities.Category
-import ru.geekbrains.filmserach.model.entities.Film
+import ru.geekbrains.filmserach.model.entities.Genres
 
 object CategoryListExample {
-    val list: ArrayList<Category> = arrayListOf()
+    val list: ArrayList<Genres> = arrayListOf()
     private val filmList = FilmListExample.list
 
     init {
-        list.add(Category("Actions", filmList.toList()))
-        list.add(Category("Fantastic", filmList.toList()))
+        list.add(Genres("Actions", filmList.toList()))
+        list.add(Genres("Fantastic", filmList.toList()))
     }
 }

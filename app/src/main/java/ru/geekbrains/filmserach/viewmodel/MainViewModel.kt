@@ -1,29 +1,18 @@
 package ru.geekbrains.filmserach.viewmodel
 
-import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.example.FilmDto
-import com.google.gson.Gson
-import okhttp3.*
-import ru.geekbrains.filmserach.model.entities.END_POINT
-import ru.geekbrains.filmserach.model.entities.PATH
-import ru.geekbrains.filmserach.model.entities.TOKEN
+import com.example.example.Docs
 import ru.geekbrains.filmserach.model.entities.getAllGenres
-import ru.geekbrains.filmserach.model.repository.Loader
-import java.io.IOException
+import ru.geekbrains.filmserach.model.repository.FilmLoader
 
-class MainViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class MainViewModel(
+    private val liveData: MutableLiveData<Map<String, List<Docs>>> = MutableLiveData()
+) : ViewModel() {
+
+    fun getLiveData() = liveData
 
     fun getFilms() {
-        val loader = Loader
-        loader.field = "genres.name"
-        loader.search = getAllGenres()
-        val loaded = loader.load()
-
-        val i = 0
+        FilmLoader("genres.name", getAllGenres(), liveData).load()
     }
-
-
-
 }
