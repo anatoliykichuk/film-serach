@@ -7,13 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
-import com.example.example.Docs
-import okhttp3.*
+import com.example.example.FilmDto
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.model.entities.*
-import ru.geekbrains.filmserach.model.example.CategoryListExample
-import ru.geekbrains.filmserach.viewmodel.DownloadState
 import ru.geekbrains.filmserach.viewmodel.MainViewModel
 
 class MainFragment : Fragment() {
@@ -42,10 +39,8 @@ class MainFragment : Fragment() {
 
         viewModel.getLiveData().observe(
             viewLifecycleOwner,
-            Observer<Map<String, List<Docs>>> { renderFilms(it) }
-
+            Observer<Map<String, List<FilmDto>>> { renderFilms(it) }
         )
-        viewModel.getFilms()
     }
 
     override fun onDestroyView() {
@@ -57,7 +52,7 @@ class MainFragment : Fragment() {
         recyclerView.adapter = GenresListAdapter(getAllGenres())
     }
 
-    private fun renderFilms(films: Map<String, List<Docs>>) {
-        viewModel.getFilms()
+    private fun renderFilms(films: Map<String, List<FilmDto>>) {
+        //TODO("онвертировать DTO в обычный класс")
     }
 }
