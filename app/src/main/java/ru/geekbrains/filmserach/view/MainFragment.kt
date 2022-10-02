@@ -55,5 +55,6 @@ class MainFragment : Fragment() {
 
     private fun renderFilms(films: Map<String, List<FilmDto>>) {
         //TODO("онвертировать DTO в обычный класс")
+        val i = 0
     }
 }

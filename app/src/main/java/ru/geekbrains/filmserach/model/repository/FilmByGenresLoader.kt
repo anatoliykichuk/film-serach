@@ -45,7 +45,7 @@ class FilmByGenresLoader(
                         val filmJson = it?.string()
                         val filmDto = Gson().fromJson(filmJson, FilmsDto::class.java)
 
-                        filmsLoaded.put(genre, filmDto.docs)
+                        filmsLoaded.put(genre, filmDto.films)
                         liveData.postValue(filmsLoaded)
                     }
                 }
