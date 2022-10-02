@@ -41,6 +41,7 @@ class MainFragment : Fragment() {
             viewLifecycleOwner,
             Observer<Map<String, List<FilmDto>>> { renderFilms(it) }
         )
+        viewModel.getFilmsByGenre()
     }
 
     override fun onDestroyView() {
