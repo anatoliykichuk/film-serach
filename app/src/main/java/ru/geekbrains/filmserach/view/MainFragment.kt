@@ -1,6 +1,7 @@
 package ru.geekbrains.filmserach.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +13,12 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.model.entities.*
 import ru.geekbrains.filmserach.viewmodel.MainViewModel
+import kotlin.math.log
 
 class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModel()
+    private lateinit var recyclerView: RecyclerView
 
     companion object {
         fun newInstance() = MainFragment()
@@ -27,9 +30,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val root = inflater.inflate(R.layout.fragment_main, container, false)
-
-        val recyclerView = root.findViewById<RecyclerView>(R.id.genres_list)
-        setGenresList(recyclerView)
+        recyclerView = root.findViewById<RecyclerView>(R.id.genres_list)
 
         return root
     }
@@ -39,7 +40,7 @@ class MainFragment : Fragment() {
 
         viewModel.getLiveData().observe(
             viewLifecycleOwner,
-            Observer<Map<String, List<FilmDto>>> { renderFilms(it) }
+            Observer<Map<String, List<Film>>> { renderFilms(it) }
         )
         viewModel.getFilmsByGenre()
     }
@@ -48,13 +49,12 @@ class MainFragment : Fragment() {
         super.onDestroyView()
     }
 
-    private fun setGenresList(recyclerView: RecyclerView) {
-        recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = GenresListAdapter(getAllGenres())
+    private fun renderFilms(films: Map<String, List<Film>>) {
+        setGenresList(recyclerView)
     }
 
-    private fun renderFilms(films: Map<String, List<FilmDto>>) {
-        //TODO("онвертировать DTO в обычный класс")
-        val i = 0
+    private fun setGenresList(recyclerView: RecyclerView) {
+        //recyclerView.setHasFixedSize(true)
+        //recyclerView.adapter = GenresListAdapter(getAllGenres())
     }
 }

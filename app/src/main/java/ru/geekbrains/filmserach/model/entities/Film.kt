@@ -9,9 +9,9 @@ data class Film(
     val adult: Boolean = false,
     val overview: String = "",
     val video: Boolean = false,
-    val popularity: Float = 0.0F,
+    val popularity: Double = 0.0,
     val voteCount: Int = 0,
-    val voteAverage: Float = 0.0F,
+    val voteAverage: Int = 0,
     val poster: Int = 0,
     val posterPath: String? = "",
     val backdropPath: String? = "") {
