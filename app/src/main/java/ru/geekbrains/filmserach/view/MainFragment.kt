@@ -50,11 +50,7 @@ class MainFragment : Fragment() {
     }
 
     private fun renderFilms(films: Map<String, List<Film>>) {
-        setGenresList(recyclerView)
-    }
-
-    private fun setGenresList(recyclerView: RecyclerView) {
-        //recyclerView.setHasFixedSize(true)
-        //recyclerView.adapter = GenresListAdapter(getAllGenres())
+        recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = GenresListAdapter(getAllGenres(), films)
     }
 }

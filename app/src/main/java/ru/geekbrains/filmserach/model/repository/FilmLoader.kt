@@ -15,7 +15,7 @@ class FilmLoader(
     private var search: List<String> = listOf(),
     private val liveData: MutableLiveData<Map<String, List<FilmDto>>> = MutableLiveData()
 ) {
-    private val films = mutableMapOf<String, List<FilmDto>>()
+    private val filmsLoaded = mutableMapOf<String, List<FilmDto>>()
 
     fun load() {
         val client = OkHttpClient()
@@ -45,8 +45,8 @@ class FilmLoader(
                         val filmJson = it?.string()
                         val filmDto = Gson().fromJson(filmJson, FilmsDto::class.java)
 
-                        films.put(searchValue, filmDto.films)
-                        liveData.postValue(films)
+                        filmsLoaded.put(searchValue, filmDto.films)
+                        liveData.postValue(filmsLoaded)
                     }
                 }
             }

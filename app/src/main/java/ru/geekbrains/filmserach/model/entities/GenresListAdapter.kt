@@ -7,8 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.filmserach.R
 
-class GenresListAdapter(private val list: List<String>):
-    RecyclerView.Adapter<GenresListAdapter.GenresListViewHolder>() {
+class GenresListAdapter(
+    private val list: List<String>,
+    private val films: Map<String, List<Film>>
+    ): RecyclerView.Adapter<GenresListAdapter.GenresListViewHolder>() {
 
     class GenresListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val genresNameView: TextView = itemView.findViewById(R.id.genre_name)
@@ -29,7 +31,7 @@ class GenresListAdapter(private val list: List<String>):
         holder.genresNameView.text = item
 
         holder.filmListView.setHasFixedSize(true);
-        //holder.filmListView.adapter = FilmListAdapter(item.filmList)
+        holder.filmListView.adapter = films[item]?.let { FilmListAdapter(it.toList()) }
     }
 
     override fun getItemCount(): Int {
