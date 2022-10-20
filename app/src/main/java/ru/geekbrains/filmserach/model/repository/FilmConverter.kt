@@ -1,8 +1,9 @@
 package ru.geekbrains.filmserach.model.repository
 
+import android.graphics.Bitmap
+import android.net.Uri
 import android.util.Log
 import com.example.example.FilmDto
-import com.example.example.FilmsDto
 import ru.geekbrains.filmserach.model.entities.Film
 
 object FilmConverter {
@@ -20,7 +21,7 @@ object FilmConverter {
             popularity = popularity(filmDto),
             voteCount = voteCount(filmDto),
             voteAverage = voteAverage(filmDto),
-            poster = 0, //filmDto.poster!!.url!!,
+            poster = poster(filmDto),
             posterPath = posterPath(filmDto),
             backdropPath = ""
         )
@@ -72,6 +73,10 @@ object FilmConverter {
 
     private fun voteAverage(filmDto: FilmDto): Int {
         return filmDto?.votes?.filmCritics ?: 0
+    }
+
+    private fun poster(filmDto: FilmDto): Bitmap? {
+        return filmDto?.poster?.url?.let { PosterLoader().load(it) }
     }
 
     private fun posterPath(filmDto: FilmDto): String {

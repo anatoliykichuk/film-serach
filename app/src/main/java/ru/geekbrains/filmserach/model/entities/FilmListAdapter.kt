@@ -31,7 +31,7 @@ class FilmListAdapter(private val list: List<Film>):
     override fun onBindViewHolder(holder: FilmListAdapter.FilmListViewHolder, position: Int) {
         val item = list[position]
 
-        holder.posterView.setImageResource(item.poster)
+        holder.posterView.setImageBitmap(item.poster)
         holder.titleView.text = item.title
         holder.originalTitleView.text = item.originalTitle
         holder.releaseDateView.text = item.releaseDate

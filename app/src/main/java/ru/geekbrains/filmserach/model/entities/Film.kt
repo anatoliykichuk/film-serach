@@ -1,5 +1,9 @@
 package ru.geekbrains.filmserach.model.entities
 
+import android.graphics.Bitmap
+import android.net.Uri
+import java.net.URI
+
 data class Film(
     val title: String,
     val originalTitle: String = "",
@@ -12,7 +16,7 @@ data class Film(
     val popularity: Double = 0.0,
     val voteCount: Int = 0,
     val voteAverage: Int = 0,
-    val poster: Int = 0,
+    val poster: Bitmap? = null,
     val posterPath: String? = "",
     val backdropPath: String? = "") {
 }
