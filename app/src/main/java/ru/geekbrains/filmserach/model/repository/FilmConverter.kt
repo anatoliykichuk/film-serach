@@ -1,9 +1,10 @@
 package ru.geekbrains.filmserach.model.repository
 
 import android.graphics.Bitmap
-import android.net.Uri
+import android.graphics.BitmapFactory
 import android.util.Log
 import com.example.example.FilmDto
+import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.model.entities.Film
 
 object FilmConverter {

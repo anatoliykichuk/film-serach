@@ -41,5 +41,4 @@ class FilmListAdapter(private val list: List<Film>):
     override fun getItemCount(): Int {
         return list.size
     }
-
 }
