@@ -36,7 +36,7 @@
                 android:id="@+id/poster"
                 android:layout_width="200dp"
                 android:layout_height="300dp"
-                android:src="@drawable/poster01"/>
+                android:src="@drawable/no_poster"/>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"

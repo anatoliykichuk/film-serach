@@ -16,7 +16,7 @@
             android:id="@+id/poster"
             android:layout_width="@dimen/poster_width"
             android:layout_height="@dimen/poster_height"
-            android:src="@drawable/poster01"/>
+            android:src="@drawable/no_poster"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
