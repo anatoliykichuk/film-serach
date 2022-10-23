@@ -3,10 +3,13 @@ package ru.geekbrains.filmserach.model.entities
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.filmserach.R
+import ru.geekbrains.filmserach.view.FilmFragment
 
 class FilmListAdapter(private val list: List<Film>):
     RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder>() {
@@ -36,6 +39,16 @@ class FilmListAdapter(private val list: List<Film>):
         holder.originalTitleView.text = item.originalTitle
         holder.releaseDateView.text = item.releaseDate
         holder.popularityView.text = item.popularity.toString()
+
+        holder.itemView.setOnClickListener(View.OnClickListener {
+            val activity = it.context as AppCompatActivity
+
+            activity.supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container, FilmFragment.newInstance())
+                .addToBackStack(null)
+                .commit()
+        })
     }
 
     override fun getItemCount(): Int {

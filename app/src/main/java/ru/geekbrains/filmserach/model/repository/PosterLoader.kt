@@ -8,10 +8,11 @@ import okhttp3.Request
 import ru.geekbrains.filmserach.R
 
 class PosterLoader {
-    private var poster: Bitmap? = BitmapFactory.decodeResource(
-        Resources.getSystem(), R.drawable.no_poster)
-
     fun load(url: String): Bitmap? {
+        var poster: Bitmap? = BitmapFactory.decodeResource(
+            Resources.getSystem(), R.drawable.no_poster
+        )
+
         val client = OkHttpClient()
         val request = Request.Builder().url(url).build()
         val call = client.newCall(request)
