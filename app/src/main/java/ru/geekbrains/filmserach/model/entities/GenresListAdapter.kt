@@ -2,15 +2,13 @@ package ru.geekbrains.filmserach.model.entities
 
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.filmserach.R
 
 class GenresListAdapter(
-    private val films: Map<String, List<Film>>,
+    private val filmsByGenres: Map<String, List<Film>>,
     private val genres: List<String> = getAllGenres()
     ): RecyclerView.Adapter<GenresListAdapter.GenresListViewHolder>() {
 
@@ -28,12 +26,11 @@ class GenresListAdapter(
     }
 
     override fun onBindViewHolder(holder: GenresListViewHolder, position: Int) {
-        val item = genres[position]
-
-        holder.genresNameView.text = item
+        val genre = genres[position]
 
         holder.filmListView.setHasFixedSize(true);
-        holder.filmListView.adapter = films[item]?.let { FilmListAdapter(it.toList()) }
+        holder.genresNameView.text = genre
+        holder.filmListView.adapter = filmsByGenres[genre]?.let { FilmListAdapter(it.toList()) }
     }
 
     override fun getItemCount(): Int {

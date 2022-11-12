@@ -1,18 +1,19 @@
 package ru.geekbrains.filmserach.model.entities
 
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.filmserach.R
-import ru.geekbrains.filmserach.view.FilmFragment
 
-class FilmListAdapter(private val list: List<Film>):
-    RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder>() {
+class FilmListAdapter(
+    private val films: List<Film>
+    ): RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder>() {
+
+    private var film = Film()
 
     class FilmListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val posterView: ImageView = itemView.findViewById(R.id.poster)
@@ -32,26 +33,30 @@ class FilmListAdapter(private val list: List<Film>):
     }
 
     override fun onBindViewHolder(holder: FilmListAdapter.FilmListViewHolder, position: Int) {
-        val item = list[position]
+        film = films[position]
 
-        holder.posterView.setImageBitmap(item.poster)
-        holder.titleView.text = item.title
-        holder.originalTitleView.text = item.originalTitle
-        holder.releaseDateView.text = item.releaseDate
-        holder.popularityView.text = item.popularity.toString()
+        holder.titleView.text = film.title
+        holder.originalTitleView.text = film.originalTitle
+        holder.releaseDateView.text = film.releaseDate
+        holder.popularityView.text = film.popularity.toString()
 
-        holder.itemView.setOnClickListener(View.OnClickListener {
-            val activity = it.context as AppCompatActivity
+        setPoster(holder.posterView, film.poster)
 
-            activity.supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_container, FilmFragment.newInstance())
-                .addToBackStack(null)
-                .commit()
-        })
+        holder.itemView.setOnClickListener {
+            val activity = it.context as OnFilmClickListener
+            activity.onFilmClick(film)
+        }
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return films.size
+    }
+
+    private fun setPoster(posterView: ImageView, poster: Bitmap?) {
+        if (poster == null) {
+            posterView.setImageResource(R.drawable.no_poster)
+        } else {
+            posterView.setImageBitmap(poster)
+        }
     }
 }

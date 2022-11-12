@@ -11,7 +11,7 @@ class MainViewModel(
 
     fun getLiveData() = liveData
 
-    fun getFilmsByGenre() {
+    fun getFilmsByGenres() {
         FilmByGenresLoader(liveData).load()
     }
 }

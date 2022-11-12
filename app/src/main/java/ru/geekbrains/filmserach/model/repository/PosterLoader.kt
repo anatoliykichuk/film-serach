@@ -1,17 +1,13 @@
 package ru.geekbrains.filmserach.model.repository
 
-import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import ru.geekbrains.filmserach.R
 
 class PosterLoader {
     fun load(url: String): Bitmap? {
-        var poster: Bitmap? = BitmapFactory.decodeResource(
-            Resources.getSystem(), R.drawable.no_poster
-        )
+        var poster: Bitmap? = null
 
         val client = OkHttpClient()
         val request = Request.Builder().url(url).build()

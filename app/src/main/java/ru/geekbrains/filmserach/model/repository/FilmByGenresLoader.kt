@@ -16,7 +16,6 @@ class FilmByGenresLoader(
 
     fun load() {
         val client = OkHttpClient()
-
         doRequest(client)
     }
 

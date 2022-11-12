@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
@@ -14,7 +15,7 @@ import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.model.entities.*
 import ru.geekbrains.filmserach.viewmodel.MainViewModel
 
-class MainFragment : Fragment() {
+class MainFragment: Fragment() {
 
     private val viewModel: MainViewModel by viewModel()
     private lateinit var recyclerView: RecyclerView
@@ -41,15 +42,15 @@ class MainFragment : Fragment() {
             viewLifecycleOwner,
             Observer<Map<String, List<Film>>> { renderFilms(it) }
         )
-        viewModel.getFilmsByGenre()
+        viewModel.getFilmsByGenres()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
     }
 
-    private fun renderFilms(films: Map<String, List<Film>>) {
+    private fun renderFilms(filmsByGenres: Map<String, List<Film>>) {
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = GenresListAdapter(films)
+        recyclerView.adapter = GenresListAdapter(filmsByGenres)
     }
 }
