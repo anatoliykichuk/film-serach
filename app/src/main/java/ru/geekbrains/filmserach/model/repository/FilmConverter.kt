@@ -14,7 +14,7 @@ object FilmConverter {
             title = title(filmDto),
             originalTitle = originalTitle(filmDto),
             originalLanguage = originalLanguage(filmDto),
-            genreIds = listOf<Int>(),
+            genres = listOf<String>(),
             releaseDate = releaseDate(filmDto),
             adult = false,
             overview = overview(filmDto),

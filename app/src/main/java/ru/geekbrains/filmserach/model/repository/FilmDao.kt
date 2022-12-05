@@ -9,10 +9,10 @@ import ru.geekbrains.filmserach.model.entities.Film
 
 @Dao
 interface FilmDao {
-    @Query("SELECT * FROM film")
+    @Query("SELECT * FROM films")
     fun getAll(): List<Film>
 
-    @Query("SELECT * FROM film WHERE id = :id")
+    @Query("SELECT * FROM films WHERE id = :id")
     fun getById(id: Long): Film
 
     @Insert

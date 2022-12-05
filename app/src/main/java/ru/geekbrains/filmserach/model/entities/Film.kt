@@ -3,13 +3,15 @@ package ru.geekbrains.filmserach.model.entities
 import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 
-@Entity
+@Entity(tableName = "films")
 data class Film(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val title: String = "",
     val originalTitle: String = "",
     val originalLanguage: String = "",
-    val genreIds: List<Int> = listOf<Int>(),
+    @TypeConverters(GenresConverter::class) val genres: List<String> = listOf<String>(),
     val releaseDate: String = "",
     val adult: Boolean = false,
     val overview: String = "",
@@ -17,10 +19,9 @@ data class Film(
     val popularity: Double = 0.0,
     val voteCount: Int = 0,
     val voteAverage: Int = 0,
-    val poster: Bitmap? = null,
+    @TypeConverters(PosterConverter::class) val poster: Bitmap? = null,
     val posterPath: String? = "",
-    val backdropPath: String? = "",
-    @PrimaryKey
-    val id: Long = 0
+    val backdropPath: String? = ""
 ) {
+
 }
