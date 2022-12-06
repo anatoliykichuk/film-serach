@@ -18,6 +18,7 @@ class App : Application() {
             modules(appModule)
         }
     }
+
     companion object {
         private var filmDatabase: FilmDatabase? = null
 

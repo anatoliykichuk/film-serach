@@ -11,7 +11,7 @@ class GenresConverter {
     }
 
     @TypeConverter
-    fun toGenres(genres: String): MutableList<List<String>> {
-        return Arrays.asList(genres.split(","))
+    fun toGenres(genres: String): List<String> {
+        return genres.split(",")
     }
 }
