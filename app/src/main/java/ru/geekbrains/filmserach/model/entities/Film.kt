@@ -1,18 +1,27 @@
 package ru.geekbrains.filmserach.model.entities
 
+import android.graphics.Bitmap
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+
+@Entity(tableName = "films")
 data class Film(
-    val title: String,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val title: String = "",
     val originalTitle: String = "",
     val originalLanguage: String = "",
-    val genreIds: List<Int>,
+    @TypeConverters(GenresConverter::class) val genres: List<String> = listOf<String>(),
     val releaseDate: String = "",
     val adult: Boolean = false,
     val overview: String = "",
     val video: Boolean = false,
-    val popularity: Float = 0.0F,
+    val popularity: Double = 0.0,
     val voteCount: Int = 0,
-    val voteAverage: Float = 0.0F,
-    val poster: Int = 0,
+    val voteAverage: Int = 0,
+    @TypeConverters(PosterConverter::class) val poster: Bitmap? = null,
     val posterPath: String? = "",
-    val backdropPath: String? = "") {
+    val backdropPath: String? = ""
+) {
+
 }

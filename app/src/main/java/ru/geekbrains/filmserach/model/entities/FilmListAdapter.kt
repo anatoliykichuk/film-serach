@@ -1,5 +1,6 @@
 package ru.geekbrains.filmserach.model.entities
 
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,13 +9,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.filmserach.R
 
-class FilmListAdapter(private val list: List<Film>):
-    RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder>() {
+class FilmListAdapter(
+    private val films: List<Film>
+    ): RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder>() {
+
+    private var film = Film()
 
     class FilmListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val posterView: ImageView = itemView.findViewById(R.id.poster)
         val titleView: TextView = itemView.findViewById(R.id.title)
         val originalTitleView: TextView = itemView.findViewById(R.id.original_title)
+        val genre: TextView = itemView.findViewById(R.id.genre)
         val releaseDateView: TextView = itemView.findViewById(R.id.release_date)
         val popularityView: TextView = itemView.findViewById(R.id.popularity)
     }
@@ -23,23 +28,37 @@ class FilmListAdapter(private val list: List<Film>):
             FilmListAdapter.FilmListViewHolder {
         val view = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.film_list_item, parent, false)
+            .inflate(R.layout.fragment_film_list_item, parent, false)
 
         return FilmListViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: FilmListAdapter.FilmListViewHolder, position: Int) {
-        val item = list[position]
+        film = films[position]
 
-        holder.posterView.setImageResource(item.poster)
-        holder.titleView.text = item.title
-        holder.originalTitleView.text = item.originalTitle
-        holder.releaseDateView.text = item.releaseDate
-        holder.popularityView.text = item.popularity.toString()
+        holder.titleView.text = film.title
+        holder.originalTitleView.text = film.originalTitle
+        holder.genre.text = film.genres.toString()
+        holder.releaseDateView.text = film.releaseDate
+        holder.popularityView.text = film.popularity.toString()
+
+        setPoster(holder.posterView, film.poster)
+
+        holder.itemView.setOnClickListener {
+            val activity = it.context as OnFilmClickListener
+            activity.onFilmClick(film)
+        }
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return films.size
     }
 
+    private fun setPoster(posterView: ImageView, poster: Bitmap?) {
+        if (poster == null) {
+            posterView.setImageResource(R.drawable.no_poster)
+        } else {
+            posterView.setImageBitmap(poster)
+        }
+    }
 }
