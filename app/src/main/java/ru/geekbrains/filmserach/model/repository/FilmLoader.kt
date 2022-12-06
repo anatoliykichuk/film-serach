@@ -27,7 +27,7 @@ class FilmLoader(
         for (searchValue in search) {
             val url = "$PATH/$END_POINT?token=$TOKEN&field=$field&search=$searchValue"
             val request = Request.Builder().url(url).build()
-            val call = client?.newCall(request)
+            val call = client.newCall(request)
 
             readResponse(call, searchValue)
         }

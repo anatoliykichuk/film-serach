@@ -1,7 +1,6 @@
 package ru.geekbrains.filmserach.model.entities
 
 import androidx.room.TypeConverter
-import java.util.Arrays
 import java.util.stream.Collectors
 
 class GenresConverter {
@@ -11,7 +10,7 @@ class GenresConverter {
     }
 
     @TypeConverter
-    fun toGenres(genres: String): MutableList<List<String>> {
-        return Arrays.asList(genres.split(","))
+    fun toGenres(genres: String): List<String> {
+        return genres.split(",")
     }
 }
