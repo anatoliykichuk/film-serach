@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
                 .replace(R.id.fragment_container, MainFragment.newInstance())
                 .commitNow()
         }
-
-        App.getDatabase(this).filmDao().getAll()
     }
 
     override fun onFilmClick(film: Film) {
