@@ -19,7 +19,6 @@ class FilmListAdapter(
         val posterView: ImageView = itemView.findViewById(R.id.poster)
         val titleView: TextView = itemView.findViewById(R.id.title)
         val originalTitleView: TextView = itemView.findViewById(R.id.original_title)
-        val genre: TextView = itemView.findViewById(R.id.genre)
         val releaseDateView: TextView = itemView.findViewById(R.id.release_date)
         val popularityView: TextView = itemView.findViewById(R.id.popularity)
     }
@@ -38,7 +37,6 @@ class FilmListAdapter(
 
         holder.titleView.text = film.title
         holder.originalTitleView.text = film.originalTitle
-        holder.genre.text = film.genres.toString()
         holder.releaseDateView.text = film.releaseDate
         holder.popularityView.text = film.popularity.toString()
 
