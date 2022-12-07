@@ -1,15 +1,13 @@
 package ru.geekbrains.filmserach.model.repository
 
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.util.Log
 import com.example.example.FilmDto
-import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.model.entities.Film
+import ru.geekbrains.filmserach.model.entities.FilmEntity
 
 object FilmConverter {
 
-    fun convert(filmDto: FilmDto): Film {
+    fun convertFromDto(filmDto: FilmDto): Film {
         return Film(
             title = title(filmDto),
             originalTitle = originalTitle(filmDto),
@@ -28,19 +26,42 @@ object FilmConverter {
         )
     }
 
-    fun convertList(filmsDto: List<FilmDto>): List<Film> {
+    fun convertListFromDto(filmsDto: List<FilmDto>): List<Film> {
         val films = mutableListOf<Film>()
 
         for (filmDto in filmsDto) {
-            try {
-                val film = convert(filmDto)
-                films.add(film)
-
-            } catch (e: Error) {
-                Log.e("FILM_CONVERTER", e.message.toString())
-            }
+            val film = convertFromDto(filmDto)
+            films.add(film)
         }
+        return films
+    }
 
+    fun convertFromEntity(filmEntity: FilmEntity): Film {
+        return Film(
+            title = filmEntity.title,
+            originalTitle = filmEntity.originalTitle,
+            originalLanguage = filmEntity.originalLanguage,
+            genres = filmEntity.genres,
+            releaseDate = filmEntity.releaseDate,
+            adult = filmEntity.adult,
+            overview = filmEntity.overview,
+            video = filmEntity.video,
+            popularity = filmEntity.popularity,
+            voteCount = filmEntity.voteCount,
+            voteAverage = filmEntity.voteAverage,
+            poster = filmEntity.poster,
+            posterPath = filmEntity.posterPath,
+            backdropPath = filmEntity.backdropPath
+        )
+    }
+
+    fun convertListFromEntity(filmsEntity: List<FilmEntity>): List<Film> {
+        val films = mutableListOf<Film>()
+
+        for (filmEntity in filmsEntity) {
+            val film = convertFromEntity(filmEntity)
+            films.add(film)
+        }
         return films
     }
 

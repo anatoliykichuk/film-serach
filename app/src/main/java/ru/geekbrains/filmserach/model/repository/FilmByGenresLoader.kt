@@ -41,7 +41,7 @@ class FilmByGenresLoader(
         response.body().let {
             val filmsJson = it?.string()
             val filmsDto = Gson().fromJson(filmsJson, FilmsDto::class.java)
-            val films = FilmConverter.convertList(filmsDto.films)
+            val films = FilmConverter.convertListFromDto(filmsDto.films)
 
             filmsLoaded[genre] = films
         }
