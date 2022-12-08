@@ -19,9 +19,9 @@ data class FilmEntity(
     val popularity: Double = 0.0,
     val voteCount: Int = 0,
     val voteAverage: Int = 0,
-    @TypeConverters(PosterConverter::class) val poster: Bitmap? = null,
     val posterPath: String? = "",
-    val backdropPath: String? = ""
+    val backdropPath: String? = "",
+    val isFavorite: Boolean = false
 ) {
 
 }

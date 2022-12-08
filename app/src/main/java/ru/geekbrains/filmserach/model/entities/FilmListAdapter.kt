@@ -1,12 +1,12 @@
 package ru.geekbrains.filmserach.model.entities
 
-import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import ru.geekbrains.filmserach.R
 
 class FilmListAdapter(
@@ -40,7 +40,7 @@ class FilmListAdapter(
         holder.releaseDateView.text = film.releaseDate
         holder.popularityView.text = film.popularity.toString()
 
-        setPoster(holder.posterView, film.poster)
+        setPoster(holder.posterView, film.posterPath)
 
         holder.itemView.setOnClickListener {
             val activity = it.context as OnFilmClickListener
@@ -52,11 +52,11 @@ class FilmListAdapter(
         return films.size
     }
 
-    private fun setPoster(posterView: ImageView, poster: Bitmap?) {
-        if (poster == null) {
+    private fun setPoster(posterView: ImageView, posterPath: String?) {
+        if (posterPath == null || posterPath.isEmpty()) {
             posterView.setImageResource(R.drawable.no_poster)
         } else {
-            posterView.setImageBitmap(poster)
+            posterView.load(posterPath)
         }
     }
 }

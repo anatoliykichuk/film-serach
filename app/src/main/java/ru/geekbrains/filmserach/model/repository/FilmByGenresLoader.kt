@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.example.FilmsDto
 import com.google.gson.Gson
 import okhttp3.*
+import ru.geekbrains.filmserach.App
 import ru.geekbrains.filmserach.model.entities.*
 import java.io.IOException
 

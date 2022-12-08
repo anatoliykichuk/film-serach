@@ -22,7 +22,7 @@ class App : Application() {
     companion object {
         private var filmDatabase: FilmDatabase? = null
 
-        fun getDatabase(context: Context): FilmDatabase {
+        fun getFilmDatabase(context: Context): FilmDatabase {
             if (filmDatabase != null) {
                 return filmDatabase!!
             }

@@ -9,12 +9,17 @@ import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.model.entities.Film
 import ru.geekbrains.filmserach.model.entities.OnFilmClickListener
 import ru.geekbrains.filmserach.model.entities.SELECTED_FILM_DATA
+import ru.geekbrains.filmserach.model.repository.FilmDatabase
 
 class MainActivity : AppCompatActivity(), OnFilmClickListener {
+
+    lateinit var filmDatabase: FilmDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        filmDatabase = App.getFilmDatabase(applicationContext)
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -25,6 +30,7 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
     override fun onFilmClick(film: Film) {
         val bundle = bundleOf("film" to 1)
+        //val bundle = bundleOf("film" to film)
 
         supportFragmentManager.setFragmentResult(
             SELECTED_FILM_DATA, bundle)

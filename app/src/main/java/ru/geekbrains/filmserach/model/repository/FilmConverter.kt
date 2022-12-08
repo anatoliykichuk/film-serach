@@ -20,7 +20,6 @@ object FilmConverter {
             popularity = popularity(filmDto),
             voteCount = voteCount(filmDto),
             voteAverage = voteAverage(filmDto),
-            poster = poster(filmDto),
             posterPath = posterPath(filmDto),
             backdropPath = ""
         )
@@ -49,9 +48,9 @@ object FilmConverter {
             popularity = filmEntity.popularity,
             voteCount = filmEntity.voteCount,
             voteAverage = filmEntity.voteAverage,
-            poster = filmEntity.poster,
             posterPath = filmEntity.posterPath,
-            backdropPath = filmEntity.backdropPath
+            backdropPath = filmEntity.backdropPath,
+            isFavorite = filmEntity.isFavorite
         )
     }
 
@@ -95,10 +94,6 @@ object FilmConverter {
 
     private fun voteAverage(filmDto: FilmDto): Int {
         return filmDto?.votes?.filmCritics ?: 0
-    }
-
-    private fun poster(filmDto: FilmDto): Bitmap? {
-        return filmDto?.poster?.url?.let { PosterLoader().load(it) }
     }
 
     private fun posterPath(filmDto: FilmDto): String {
