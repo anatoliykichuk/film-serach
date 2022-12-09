@@ -11,6 +11,7 @@ import android.widget.AdapterView.OnItemClickListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.geekbrains.filmserach.AppState
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.databinding.ActivityMainBinding
 import ru.geekbrains.filmserach.databinding.FragmentMainBinding
@@ -43,7 +44,7 @@ class MainFragment: Fragment() {
 
         viewModel.getLiveData().observe(
             viewLifecycleOwner,
-            Observer<Map<String, List<Film>>> { renderFilms(it) }
+            Observer<AppState> { renderFilms(it) }
         )
         viewModel.getFilmsByGenres()
     }
@@ -54,8 +55,24 @@ class MainFragment: Fragment() {
         binding = null
     }
 
-    private fun renderFilms(filmsByGenres: Map<String, List<Film>>) {
-        recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = GenresListAdapter(filmsByGenres)
+    private fun renderFilms(appState: AppState) {
+        when (appState) {
+            is AppState.Success -> {
+                binding?.loadingProcess?.visibility = View.GONE
+
+                recyclerView.setHasFixedSize(true)
+                recyclerView.adapter = GenresListAdapter(appState.filmsByGenres)
+            }
+
+            is AppState.Error -> {
+                binding?.loadingProcess?.visibility = View.GONE
+
+                viewModel.getFilmsByGenres()
+            }
+
+            is AppState.Loading -> {
+                binding?.loadingProcess?.visibility = View.VISIBLE
+            }
+        }
     }
 }

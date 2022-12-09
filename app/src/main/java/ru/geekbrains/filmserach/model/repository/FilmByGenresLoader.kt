@@ -5,11 +5,12 @@ import com.example.example.FilmsDto
 import com.google.gson.Gson
 import okhttp3.*
 import ru.geekbrains.filmserach.App
+import ru.geekbrains.filmserach.AppState
 import ru.geekbrains.filmserach.model.entities.*
 import java.io.IOException
 
 class FilmByGenresLoader(
-    private val liveData: MutableLiveData<Map<String, List<Film>>> = MutableLiveData()
+    private val liveData: MutableLiveData<AppState> = MutableLiveData()
 ) {
     private val filmsLoaded = mutableMapOf<String, List<Film>>()
     private val field = "genres.name"
@@ -30,7 +31,8 @@ class FilmByGenresLoader(
 
                 readResponse(response, genre)
             }
-            liveData.postValue(filmsLoaded)
+
+            liveData.postValue(AppState.Success(filmsLoaded))
         }.start()
     }
 
