@@ -6,6 +6,7 @@ import android.os.Parcel
 import androidx.core.os.bundleOf
 import ru.geekbrains.filmserach.App
 import ru.geekbrains.filmserach.R
+import ru.geekbrains.filmserach.databinding.ActivityMainBinding
 import ru.geekbrains.filmserach.model.entities.Film
 import ru.geekbrains.filmserach.model.entities.OnFilmClickListener
 import ru.geekbrains.filmserach.model.entities.SELECTED_FILM_DATA
@@ -13,11 +14,15 @@ import ru.geekbrains.filmserach.model.repository.FilmDatabase
 
 class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
+    lateinit var binding: ActivityMainBinding
     lateinit var filmDatabase: FilmDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.getRoot()
+        setContentView(view)
 
         filmDatabase = App.getFilmDatabase(applicationContext)
 

@@ -12,12 +12,15 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
+import ru.geekbrains.filmserach.databinding.ActivityMainBinding
+import ru.geekbrains.filmserach.databinding.FragmentMainBinding
 import ru.geekbrains.filmserach.model.entities.*
 import ru.geekbrains.filmserach.viewmodel.MainViewModel
 
 class MainFragment: Fragment() {
 
     private val viewModel: MainViewModel by viewModel()
+    private var binding: FragmentMainBinding? = null
     private lateinit var recyclerView: RecyclerView
 
     companion object {
@@ -29,10 +32,10 @@ class MainFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val root = inflater.inflate(R.layout.fragment_main, container, false)
-        recyclerView = root.findViewById<RecyclerView>(R.id.genres_list)
+        binding = FragmentMainBinding.inflate(inflater, container, false)
+        recyclerView = binding!!.genresList
 
-        return root
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,6 +50,8 @@ class MainFragment: Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+
+        binding = null
     }
 
     private fun renderFilms(filmsByGenres: Map<String, List<Film>>) {
