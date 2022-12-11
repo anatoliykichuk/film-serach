@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcel
 import androidx.core.os.bundleOf
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import ru.geekbrains.filmserach.App
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.databinding.ActivityMainBinding
@@ -14,8 +18,9 @@ import ru.geekbrains.filmserach.model.repository.FilmDatabase
 
 class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
-    lateinit var binding: ActivityMainBinding
-    lateinit var filmDatabase: FilmDatabase
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var filmDatabase: FilmDatabase
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +31,12 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
         filmDatabase = App.getFilmDatabase(applicationContext)
 
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.fragment_container) as NavHostFragment
+
+        //navController = Navigation.findNavController(this, R.id.fragment_container)
+        navController = navHostFragment.navController
+
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, MainFragment.newInstance())
@@ -34,6 +45,7 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
     }
 
     override fun onFilmClick(film: Film) {
+        /*
         val bundle = bundleOf("film" to 1)
         //val bundle = bundleOf("film" to film)
 
@@ -45,5 +57,8 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
             .replace(R.id.fragment_container, FilmFragment.newInstance())
             .addToBackStack(null)
             .commit()
+        */
+
+        navController.navigate(R.id.film_list_to_details)
     }
 }

@@ -3,6 +3,8 @@
     <string name="title_list">Каталог</string>
     <string name="title_favorites">Избранное</string>
     <string name="title_search">Поиск</string>
+    <string name="film_list">Каталог</string>
+    <string name="film_details">Описание фильма</string>
     <string name="title_text">Название</string>
     <string name="original_title_text">Оригинальное название</string>
     <string name="genre_text">Жанр</string>
@@ -15,4 +17,5 @@
     <string name="cast_text">В ролях</string>
     <string name="adult_date">Возрастной ценз</string>
     <string name="category_name">Категория</string>
+    <string name="film_id">film_id</string>
 </resources>
