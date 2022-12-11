@@ -2,6 +2,7 @@ package ru.geekbrains.filmserach.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import ru.geekbrains.filmserach.App
@@ -12,14 +13,17 @@ import ru.geekbrains.filmserach.domain.Film
 
 class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
-    private lateinit var binding: ActivityMainBinding
     private lateinit var filmDatabase: FilmDatabase
     private lateinit var navController: NavController
+
+    private var _binding: ActivityMainBinding? = null
+    private val binding
+        get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.getRoot()
         setContentView(view)
 
@@ -32,14 +36,15 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
     }
 
     override fun onFilmClick(film: Film) {
-        /*
-        val bundle = bundleOf("film" to 1)
         //val bundle = bundleOf("film" to film)
+        val bundle = bundleOf("film" to 1)
 
-        supportFragmentManager.setFragmentResult(
-            SELECTED_FILM_DATA, bundle)
-        */
+        navController.navigate(R.id.film_list_to_details, bundle)
+    }
 
-        navController.navigate(R.id.film_list_to_details)
+    override fun onDestroy() {
+        super.onDestroy()
+
+        _binding = null
     }
 }
