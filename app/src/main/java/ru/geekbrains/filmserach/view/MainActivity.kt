@@ -32,16 +32,9 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
         filmDatabase = App.getFilmDatabase(applicationContext)
 
         val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.fragment_container) as NavHostFragment
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
-        //navController = Navigation.findNavController(this, R.id.fragment_container)
         navController = navHostFragment.navController
-
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, MainFragment.newInstance())
-                .commitNow()
-        }
     }
 
     override fun onFilmClick(film: Film) {
@@ -51,12 +44,6 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
         supportFragmentManager.setFragmentResult(
             SELECTED_FILM_DATA, bundle)
-
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container, FilmFragment.newInstance())
-            .addToBackStack(null)
-            .commit()
         */
 
         navController.navigate(R.id.film_list_to_details)

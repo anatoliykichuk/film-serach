@@ -18,9 +18,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/main_menu"/>
 
-    <fragment
-        android:id="@+id/fragment_container"
-        android:name="ru.geekbrains.filmserach.view.MainFragment"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@id/main_navigation_view"
