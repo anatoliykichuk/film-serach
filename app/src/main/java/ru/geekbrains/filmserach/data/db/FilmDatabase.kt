@@ -1,10 +1,8 @@
-package ru.geekbrains.filmserach.model.repository
+package ru.geekbrains.filmserach.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import ru.geekbrains.filmserach.model.entities.FilmEntity
-import ru.geekbrains.filmserach.model.entities.GenresConverter
 
 @TypeConverters(GenresConverter::class)
 @Database(entities = [FilmEntity::class], version = 1)

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fragment_film_list"
-        android:name="ru.geekbrains.filmserach.view.MainFragment"
+        android:name="ru.geekbrains.filmserach.ui.main.MainFragment"
         android:label="@string/film_list"
         tools:layout="@layout/fragment_main">
         <action
@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/fragment_film"
-        android:name="ru.geekbrains.filmserach.view.FilmFragment"
+        android:name="ru.geekbrains.filmserach.ui.pages.FilmFragment"
         android:label="@string/film_details"
         tools:layout="@layout/fragment_film" />
 

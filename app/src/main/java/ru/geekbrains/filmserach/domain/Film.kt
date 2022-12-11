@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.model.entities
+package ru.geekbrains.filmserach.domain
 
 import android.graphics.Bitmap
 import androidx.room.Entity

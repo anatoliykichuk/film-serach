@@ -1,6 +1,5 @@
-package ru.geekbrains.filmserach.model.entities
+package ru.geekbrains.filmserach.data.db
 
-import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters

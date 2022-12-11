@@ -1,13 +1,11 @@
-package ru.geekbrains.filmserach.model.repository
+package ru.geekbrains.filmserach.data.net
 
+import ru.geekbrains.filmserach.domain.*
 import androidx.lifecycle.MutableLiveData
 import com.example.example.FilmDto
 import com.example.example.FilmsDto
 import com.google.gson.Gson
 import okhttp3.*
-import ru.geekbrains.filmserach.model.entities.END_POINT
-import ru.geekbrains.filmserach.model.entities.PATH
-import ru.geekbrains.filmserach.model.entities.TOKEN
 import java.io.IOException
 
 class FilmLoader(

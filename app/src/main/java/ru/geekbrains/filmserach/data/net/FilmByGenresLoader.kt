@@ -1,13 +1,12 @@
-package ru.geekbrains.filmserach.model.repository
+package ru.geekbrains.filmserach.data.net
 
+import ru.geekbrains.filmserach.domain.*
 import androidx.lifecycle.MutableLiveData
 import com.example.example.FilmsDto
 import com.google.gson.Gson
 import okhttp3.*
-import ru.geekbrains.filmserach.App
 import ru.geekbrains.filmserach.AppState
-import ru.geekbrains.filmserach.model.entities.*
-import java.io.IOException
+import ru.geekbrains.filmserach.data.FilmConverter
 
 class FilmByGenresLoader(
     private val liveData: MutableLiveData<AppState> = MutableLiveData()

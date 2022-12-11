@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.model.dto
+package ru.geekbrains.filmserach.data.net.dto
 
 import com.google.gson.annotations.SerializedName
 

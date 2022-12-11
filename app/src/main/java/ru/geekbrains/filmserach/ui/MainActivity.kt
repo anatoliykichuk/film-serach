@@ -1,20 +1,14 @@
-package ru.geekbrains.filmserach.view
+package ru.geekbrains.filmserach.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcel
-import androidx.core.os.bundleOf
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import ru.geekbrains.filmserach.App
 import ru.geekbrains.filmserach.R
+import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.databinding.ActivityMainBinding
-import ru.geekbrains.filmserach.model.entities.Film
-import ru.geekbrains.filmserach.model.entities.OnFilmClickListener
-import ru.geekbrains.filmserach.model.entities.SELECTED_FILM_DATA
-import ru.geekbrains.filmserach.model.repository.FilmDatabase
+import ru.geekbrains.filmserach.domain.Film
 
 class MainActivity : AppCompatActivity(), OnFilmClickListener {
 

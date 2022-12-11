@@ -1,9 +1,8 @@
-package ru.geekbrains.filmserach.model.repository
+package ru.geekbrains.filmserach.data
 
-import android.graphics.Bitmap
+import ru.geekbrains.filmserach.data.db.*
+import ru.geekbrains.filmserach.domain.*
 import com.example.example.FilmDto
-import ru.geekbrains.filmserach.model.entities.Film
-import ru.geekbrains.filmserach.model.entities.FilmEntity
 
 object FilmConverter {
 

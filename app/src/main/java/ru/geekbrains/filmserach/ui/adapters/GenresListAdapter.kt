@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.model.entities
+package ru.geekbrains.filmserach.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.filmserach.R
+import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.domain.getAllGenres
 
 class GenresListAdapter(
     private val filmsByGenres: Map<String, List<Film>>,

@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.model.entities
+package ru.geekbrains.filmserach.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.geekbrains.filmserach.R
+import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.ui.OnFilmClickListener
 
 class FilmListAdapter(
     private val films: List<Film>
@@ -24,7 +26,7 @@ class FilmListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
-            FilmListAdapter.FilmListViewHolder {
+            FilmListViewHolder {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.fragment_film_list_item, parent, false)
@@ -32,7 +34,7 @@ class FilmListAdapter(
         return FilmListViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FilmListAdapter.FilmListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FilmListViewHolder, position: Int) {
         film = films[position]
 
         holder.titleView.text = film.title

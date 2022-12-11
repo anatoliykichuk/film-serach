@@ -1,7 +1,6 @@
-package ru.geekbrains.filmserach.model.entities
+package ru.geekbrains.filmserach.data.db
 
 import androidx.room.TypeConverter
-import java.util.Arrays
 import java.util.stream.Collectors
 
 class GenresConverter {
