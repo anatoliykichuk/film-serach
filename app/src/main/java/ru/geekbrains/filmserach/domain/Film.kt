@@ -1,6 +1,8 @@
 package ru.geekbrains.filmserach.domain
 
 import android.graphics.Bitmap
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
@@ -20,6 +22,54 @@ data class Film(
     val posterPath: String? = "",
     val backdropPath: String? = "",
     val isFavorite: Boolean = false
-) {
+) : Parcelable {
 
+    constructor(parcel: Parcel) : this(
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.createStringArrayList()!!,
+        parcel.readString().toString(),
+        parcel.readByte() != 0.toByte(),
+        parcel.readString().toString(),
+        parcel.readByte() != 0.toByte(),
+        parcel.readDouble(),
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readByte() != 0.toByte()
+    ) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(title)
+        parcel.writeString(originalTitle)
+        parcel.writeString(originalLanguage)
+        parcel.writeStringList(genres)
+        parcel.writeString(releaseDate)
+        parcel.writeByte(if (adult) 1 else 0)
+        parcel.writeString(overview)
+        parcel.writeByte(if (video) 1 else 0)
+        parcel.writeDouble(popularity)
+        parcel.writeInt(voteCount)
+        parcel.writeInt(voteAverage)
+        parcel.writeString(posterPath)
+        parcel.writeString(backdropPath)
+        parcel.writeByte(if (isFavorite) 1 else 0)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Film> {
+        override fun createFromParcel(parcel: Parcel): Film {
+            return Film(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Film?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

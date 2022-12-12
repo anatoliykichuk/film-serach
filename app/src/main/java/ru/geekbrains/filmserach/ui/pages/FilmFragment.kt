@@ -11,7 +11,9 @@ import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
 class FilmFragment : Fragment() {
 
     private val viewModel: FilmViewModel by viewModel()
-    private var binding: FragmentFilmBinding? = null
+    private var _binding: FragmentFilmBinding? = null
+    private val binding
+        get() = _binding!!
 
     companion object {
         fun newInstance() = FilmFragment()
@@ -21,9 +23,9 @@ class FilmFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFilmBinding.inflate(inflater, container, false)
+        _binding = FragmentFilmBinding.inflate(inflater, container, false)
 
-        return binding!!.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,7 +36,7 @@ class FilmFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
 
-        binding = null
+        _binding = null
     }
 
 }

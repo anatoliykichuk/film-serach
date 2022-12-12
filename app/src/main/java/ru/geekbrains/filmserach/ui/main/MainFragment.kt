@@ -15,8 +15,10 @@ import ru.geekbrains.filmserach.ui.adapters.GenresListAdapter
 class MainFragment: Fragment() {
 
     private val viewModel: MainViewModel by viewModel()
-    private var binding: FragmentMainBinding? = null
     private lateinit var recyclerView: RecyclerView
+    private var _binding: FragmentMainBinding? = null
+    private val binding
+        get() = _binding!!
 
     companion object {
         fun newInstance() = MainFragment()
@@ -27,10 +29,10 @@ class MainFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
         recyclerView = binding!!.genresList
 
-        return binding!!.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,7 +48,7 @@ class MainFragment: Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
 
-        binding = null
+        _binding = null
     }
 
     private fun renderFilms(appState: AppState) {
