@@ -2,16 +2,15 @@ package ru.geekbrains.filmserach.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcel
-import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import kotlinx.parcelize.parcelableCreator
+import org.koin.core.component.getScopeName
 import ru.geekbrains.filmserach.App
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.databinding.ActivityMainBinding
 import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.domain.SELECTED_FILM
 
 class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
     override fun onFilmClick(film: Film) {
         val bundle = Bundle()
-        bundle.putParcelable("film", film)
+        bundle.putParcelable(SELECTED_FILM, film)
         navController.navigate(R.id.film_list_to_details, bundle)
     }
 

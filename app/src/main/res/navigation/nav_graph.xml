@@ -15,9 +15,7 @@
             android:id="@+id/film_list_to_details"
             app:destination="@id/fragment_film">
             <argument
-                android:name="@string/film_id"
-                app:argType="long"
-                app:nullable="false"/>
+                android:name="@string/selected_film"/>
         </action>
     </fragment>
 

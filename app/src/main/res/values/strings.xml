@@ -12,10 +12,10 @@
     <string name="budget_text">Бюджет</string>
     <string name="revenue">Сборы</string>
     <string name="release_date">Дата релиза</string>
-    <string name="description_text">Описание</string>
+    <string name="overview_text">Обзор</string>
     <string name="director_text">Режисер</string>
     <string name="cast_text">В ролях</string>
     <string name="adult_date">Возрастной ценз</string>
     <string name="category_name">Категория</string>
-    <string name="film_id">film_id</string>
+    <string name="selected_film">selected_film</string>
 </resources>

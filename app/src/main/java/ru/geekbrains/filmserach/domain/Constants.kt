@@ -8,7 +8,7 @@ const val PATH = "https://api.kinopoisk.dev"
 const val END_POINT = "movie"
 const val TOKEN = "AF2F5V2-SGRM6NN-JDNY2ZC-K6Z71K7"
 const val FILM_DATABASE = "film_database"
-const val SELECTED_FILM_DATA = "selectedFilmData"
+const val SELECTED_FILM = "selected_film"
 
 fun getAllGenres(): List<String> {
     return listOf<String>(

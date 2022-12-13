@@ -119,10 +119,10 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/description"
+            android:id="@+id/overview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/description_text"
+            android:text="@string/overview_text"
             style="@style/Text"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
