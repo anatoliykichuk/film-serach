@@ -6,12 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.RequiresApi
-import coil.load
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
 import ru.geekbrains.filmserach.domain.Film
@@ -42,8 +38,7 @@ class FilmFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // TODO: Use the ViewModel
-        //val bundle = arguments?.getBundle(SELECTED_FILM)
-        val film = arguments?.getParcelable(SELECTED_FILM, Film::class.java)
+        val film = arguments?.getParcelable<Film>(SELECTED_FILM)
 
         showFilmData(film)
     }
