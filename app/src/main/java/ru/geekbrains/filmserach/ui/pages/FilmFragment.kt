@@ -12,6 +12,7 @@ import androidx.annotation.RequiresApi
 import coil.load
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
+import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.domain.SELECTED_FILM
@@ -66,8 +67,6 @@ class FilmFragment : Fragment() {
         binding.adult.text = film.adult.toString()
         binding.overview.text = film.overview
 
-        if (film.posterPath == null || film.posterPath.isEmpty()) {
-            binding.poster.load(film.posterPath)
-        }
+        PosterLoader.load(binding.poster, film.posterPath)
     }
 }

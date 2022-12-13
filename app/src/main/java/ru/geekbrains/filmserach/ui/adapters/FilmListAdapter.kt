@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.geekbrains.filmserach.R
+import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.OnFilmClickListener
 
@@ -42,7 +43,7 @@ class FilmListAdapter(
         holder.releaseDateView.text = film.releaseDate
         holder.popularityView.text = film.popularity.toString()
 
-        setPoster(holder.posterView, film.posterPath)
+        PosterLoader.load(holder.posterView, film.posterPath)
 
         holder.itemView.setOnClickListener {
             val activity = it.context as OnFilmClickListener
@@ -52,13 +53,5 @@ class FilmListAdapter(
 
     override fun getItemCount(): Int {
         return films.size
-    }
-
-    private fun setPoster(posterView: ImageView, posterPath: String?) {
-        if (posterPath == null || posterPath.isEmpty()) {
-            posterView.setImageResource(R.drawable.no_poster)
-        } else {
-            posterView.load(posterPath)
-        }
     }
 }
