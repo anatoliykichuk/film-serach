@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import org.koin.core.component.getScopeName
 import ru.geekbrains.filmserach.App
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.db.FilmDatabase

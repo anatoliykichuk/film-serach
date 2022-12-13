@@ -15,8 +15,14 @@ class GenresListAdapter(
     ): RecyclerView.Adapter<GenresListAdapter.GenresListViewHolder>() {
 
     class GenresListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val genresNameView: TextView = itemView.findViewById(R.id.genre_name)
         val filmListView: RecyclerView = itemView.findViewById(R.id.film_list)
+
+        fun bind(filmsByGenres: Map<String, List<Film>>, genre: String) {
+            (itemView.findViewById(R.id.genre_name) as TextView).text = genre
+
+            filmListView.setHasFixedSize(true);
+            filmListView.adapter = filmsByGenres[genre]?.let { FilmListAdapter(it.toList()) }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenresListViewHolder {
@@ -28,11 +34,7 @@ class GenresListAdapter(
     }
 
     override fun onBindViewHolder(holder: GenresListViewHolder, position: Int) {
-        val genre = genres[position]
-
-        holder.filmListView.setHasFixedSize(true);
-        holder.genresNameView.text = genre
-        holder.filmListView.adapter = filmsByGenres[genre]?.let { FilmListAdapter(it.toList()) }
+        holder.bind(filmsByGenres, genres[position])
     }
 
     override fun getItemCount(): Int {

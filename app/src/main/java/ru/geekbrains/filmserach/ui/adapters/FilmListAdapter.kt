@@ -16,14 +16,21 @@ class FilmListAdapter(
     private val films: List<Film>
     ): RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder>() {
 
-    private var film = Film()
-
     class FilmListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val posterView: ImageView = itemView.findViewById(R.id.poster)
-        val titleView: TextView = itemView.findViewById(R.id.title)
-        val originalTitleView: TextView = itemView.findViewById(R.id.original_title)
-        val releaseDateView: TextView = itemView.findViewById(R.id.release_date)
-        val popularityView: TextView = itemView.findViewById(R.id.popularity)
+        fun bind(film: Film) {
+            (itemView.findViewById(R.id.title) as TextView).text = film.title
+            (itemView.findViewById(R.id.original_title) as TextView).text = film.originalTitle
+            (itemView.findViewById(R.id.release_date) as TextView).text = film.releaseDate
+            (itemView.findViewById(R.id.popularity) as TextView).text = film.popularity.toString()
+
+            val posterView: ImageView = itemView.findViewById(R.id.poster)
+            PosterLoader.load(posterView, film.posterPath)
+
+            itemView.setOnClickListener {
+                val activity = it.context as OnFilmClickListener
+                activity.onFilmClick(film)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
@@ -36,19 +43,7 @@ class FilmListAdapter(
     }
 
     override fun onBindViewHolder(holder: FilmListViewHolder, position: Int) {
-        film = films[position]
-
-        holder.titleView.text = film.title
-        holder.originalTitleView.text = film.originalTitle
-        holder.releaseDateView.text = film.releaseDate
-        holder.popularityView.text = film.popularity.toString()
-
-        PosterLoader.load(holder.posterView, film.posterPath)
-
-        holder.itemView.setOnClickListener {
-            val activity = it.context as OnFilmClickListener
-            activity.onFilmClick(film)
-        }
+        holder.bind(films[position])
     }
 
     override fun getItemCount(): Int {
