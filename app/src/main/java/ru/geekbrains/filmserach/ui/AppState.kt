@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach
+package ru.geekbrains.filmserach.ui
 
 import ru.geekbrains.filmserach.domain.Film
 

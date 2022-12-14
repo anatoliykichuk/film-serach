@@ -12,6 +12,7 @@ import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.domain.SELECTED_FILM
+import java.util.stream.Collectors
 
 class FilmFragment : Fragment() {
 
@@ -57,7 +58,7 @@ class FilmFragment : Fragment() {
         binding.title.text = film.title
         binding.originalTitle.text = film.originalTitle
         binding.popularity.text = film.popularity.toString()
-        binding.genre.text = film.genres.toString()
+        binding.genre.text = film.genres.stream().collect(Collectors.joining(", "))
         binding.releaseDate.text = film.releaseDate
         binding.adult.text = film.adult.toString()
         binding.overview.text = film.overview

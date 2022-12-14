@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import ru.geekbrains.filmserach.AppState
+import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.databinding.FragmentMainBinding
 import ru.geekbrains.filmserach.ui.adapters.GenresListAdapter
 

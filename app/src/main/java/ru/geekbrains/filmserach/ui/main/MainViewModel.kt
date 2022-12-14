@@ -2,8 +2,8 @@ package ru.geekbrains.filmserach.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.geekbrains.filmserach.AppState
-import ru.geekbrains.filmserach.data.net.FilmByGenresLoader
+import ru.geekbrains.filmserach.data.Repository
+import ru.geekbrains.filmserach.ui.AppState
 
 class MainViewModel(
     private val liveData: MutableLiveData<AppState> = MutableLiveData()
@@ -12,6 +12,14 @@ class MainViewModel(
     fun getLiveData() = liveData
 
     fun getFilmsByGenres() {
-        FilmByGenresLoader(liveData).load()
+        liveData.value = AppState.Loading
+
+        Thread {
+            liveData.postValue(
+                AppState.Success(
+                    Repository().getFilmsByGenresFromNet()
+                )
+            )
+        }.start()
     }
 }
