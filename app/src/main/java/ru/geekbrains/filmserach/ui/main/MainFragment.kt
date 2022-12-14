@@ -30,7 +30,7 @@ class MainFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-        recyclerView = binding!!.genresList
+        recyclerView = binding.genresList
 
         return binding.root
     }
@@ -54,20 +54,20 @@ class MainFragment: Fragment() {
     private fun renderFilms(appState: AppState) {
         when (appState) {
             is AppState.Success -> {
-                binding?.loadingProcess?.visibility = View.GONE
+                binding.loadingProcess.visibility = View.GONE
 
                 recyclerView.setHasFixedSize(true)
                 recyclerView.adapter = GenresListAdapter(appState.filmsByGenres)
             }
 
             is AppState.Error -> {
-                binding?.loadingProcess?.visibility = View.GONE
+                binding.loadingProcess.visibility = View.GONE
 
                 viewModel.getFilmsByGenres()
             }
 
             is AppState.Loading -> {
-                binding?.loadingProcess?.visibility = View.VISIBLE
+                binding.loadingProcess.visibility = View.VISIBLE
             }
         }
     }
