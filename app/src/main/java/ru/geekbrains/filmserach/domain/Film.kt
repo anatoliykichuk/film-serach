@@ -1,11 +1,7 @@
 package ru.geekbrains.filmserach.domain
 
-import android.graphics.Bitmap
 import android.os.Parcel
 import android.os.Parcelable
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
 
 data class Film(
     val title: String = "",

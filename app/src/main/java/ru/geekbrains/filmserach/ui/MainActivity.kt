@@ -9,7 +9,7 @@ import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.databinding.ActivityMainBinding
 import ru.geekbrains.filmserach.domain.Film
-import ru.geekbrains.filmserach.domain.SELECTED_FILM
+import ru.geekbrains.filmserach.data.SELECTED_FILM
 
 class MainActivity : AppCompatActivity(), OnFilmClickListener {
 

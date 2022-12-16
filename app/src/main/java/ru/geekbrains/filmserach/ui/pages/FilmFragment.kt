@@ -11,7 +11,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
 import ru.geekbrains.filmserach.domain.Film
-import ru.geekbrains.filmserach.domain.SELECTED_FILM
+import ru.geekbrains.filmserach.data.SELECTED_FILM
 import java.util.stream.Collectors
 
 class FilmFragment : Fragment() {

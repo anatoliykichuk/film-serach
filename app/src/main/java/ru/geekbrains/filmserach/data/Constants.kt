@@ -1,7 +1,5 @@
-package ru.geekbrains.filmserach.domain
+package ru.geekbrains.filmserach.data
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import ru.geekbrains.filmserach.R
 
 const val PATH = "https://api.kinopoisk.dev"
@@ -9,6 +7,7 @@ const val END_POINT = "movie"
 const val TOKEN = "AF2F5V2-SGRM6NN-JDNY2ZC-K6Z71K7"
 const val FILM_DATABASE = "film_database"
 const val SELECTED_FILM = "selected_film"
+const val EMPTY_POSTER_PATH = R.drawable.no_poster
 
 fun getAllGenres(): List<String> {
     return listOf<String>(

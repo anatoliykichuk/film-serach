@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.domain.Film
-import ru.geekbrains.filmserach.domain.getAllGenres
+import ru.geekbrains.filmserach.data.getAllGenres
 
 class GenresListAdapter(
     private val filmsByGenres: Map<String, List<Film>>,
