@@ -1,13 +1,13 @@
 package ru.geekbrains.filmserach.ui.pages
 
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import android.widget.ImageButton
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
 import ru.geekbrains.filmserach.domain.Film
@@ -34,14 +34,24 @@ class FilmFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO: Use the ViewModel
         val film = arguments?.getParcelable<Film>(SELECTED_FILM)
 
         showFilmData(film)
+
+        binding.addToFavorites.setOnClickListener {
+            (it as ImageButton).setImageResource(
+                if (film!!.isFavorite) {
+                    R.drawable.add_to_favorites
+                } else {
+                    R.drawable.remove_from_favorites
+                }
+            )
+
+            viewModel.changFavoritesTag(film)
+        }
     }
 
     override fun onDestroyView() {
