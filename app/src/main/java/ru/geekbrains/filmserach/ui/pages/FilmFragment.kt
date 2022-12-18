@@ -16,9 +16,7 @@ import java.util.stream.Collectors
 
 class FilmFragment: Fragment() {
 
-    private val viewModel: FilmViewModel = ViewModelProviders
-        .of(this, FilmViewModelFactory(activity?.applicationContext))
-        .get(FilmViewModel::class.java)
+    private lateinit var viewModel: FilmViewModel
 
     private var _binding: FragmentFilmBinding? = null
     private val binding
@@ -37,6 +35,10 @@ class FilmFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentFilmBinding.inflate(inflater, container, false)
+
+        viewModel = ViewModelProviders
+            .of(this, FilmViewModelFactory(activity?.applicationContext))
+            .get(FilmViewModel::class.java)
 
         return binding.root
     }

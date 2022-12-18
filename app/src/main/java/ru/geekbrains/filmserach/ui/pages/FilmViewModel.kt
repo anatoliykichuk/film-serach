@@ -16,11 +16,13 @@ class FilmViewModel(
     fun getLiveData(): LiveData<Film> = liveData
 
     fun isFavorite(film: Film): Boolean {
-        return filmDatabase.filmDao().isFavorite(film.title, film.originalTitle, film.releaseDate)
+        return filmDatabase.filmDao()
+            .isFavorite(film.title, film.originalTitle, film.releaseDate)
     }
 
     fun changeFavoritesTag(film: Film) {
         film.isFavorite = !film.isFavorite
-        filmDatabase.filmDao().insert(FilmConverter.convertToEntity(film))
+        filmDatabase.filmDao()
+            .insert(FilmConverter.convertToEntity(film))
     }
 }
