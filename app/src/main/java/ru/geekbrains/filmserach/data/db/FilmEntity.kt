@@ -4,9 +4,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 
-@Entity(tableName = "films")
+@Entity(tableName = "films", primaryKeys = ["title", "originalTitle", "releaseDate"])
 data class FilmEntity(
-    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val title: String = "",
     val originalTitle: String = "",
     val originalLanguage: String = "",

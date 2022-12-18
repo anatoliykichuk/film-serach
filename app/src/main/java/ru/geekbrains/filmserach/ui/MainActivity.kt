@@ -4,16 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import ru.geekbrains.filmserach.App
 import ru.geekbrains.filmserach.R
-import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.databinding.ActivityMainBinding
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.data.SELECTED_FILM
 
 class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
-    private lateinit var filmDatabase: FilmDatabase
     private lateinit var navController: NavController
 
     private var _binding: ActivityMainBinding? = null
@@ -26,8 +23,6 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.getRoot()
         setContentView(view)
-
-        filmDatabase = App.getFilmDatabase(applicationContext)
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment

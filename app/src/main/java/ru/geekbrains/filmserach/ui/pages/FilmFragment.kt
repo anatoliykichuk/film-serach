@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import androidx.lifecycle.ViewModelProviders
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
@@ -14,12 +14,19 @@ import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.data.SELECTED_FILM
 import java.util.stream.Collectors
 
-class FilmFragment : Fragment() {
+class FilmFragment: Fragment() {
 
-    private val viewModel: FilmViewModel by viewModel()
+    private val viewModel: FilmViewModel = ViewModelProviders
+        .of(this, FilmViewModelFactory(activity?.applicationContext))
+        .get(FilmViewModel::class.java)
+
     private var _binding: FragmentFilmBinding? = null
     private val binding
         get() = _binding!!
+
+    private var _film: Film? = null
+    private val film
+        get() = _film!!
 
     companion object {
         fun newInstance() = FilmFragment()
@@ -37,20 +44,21 @@ class FilmFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val film = arguments?.getParcelable<Film>(SELECTED_FILM)
+        _film = arguments?.getParcelable<Film>(SELECTED_FILM)
+        film.isFavorite = viewModel.isFavorite(film)
 
-        showFilmData(film)
+        showFilmData()
 
         binding.addToFavorites.setOnClickListener {
             (it as ImageButton).setImageResource(
-                if (film!!.isFavorite) {
+                if (film.isFavorite) {
                     R.drawable.add_to_favorites
                 } else {
                     R.drawable.remove_from_favorites
                 }
             )
 
-            viewModel.changFavoritesTag(film)
+            viewModel.changeFavoritesTag(film)
         }
     }
 
@@ -60,11 +68,7 @@ class FilmFragment : Fragment() {
         _binding = null
     }
 
-    private fun showFilmData(film: Film?) {
-        if (film == null) {
-            return
-        }
-
+    private fun showFilmData() {
         binding.title.text = film.title
         binding.originalTitle.text = film.originalTitle
         binding.popularity.text = film.popularity.toString()

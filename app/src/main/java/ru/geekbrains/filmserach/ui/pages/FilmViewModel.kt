@@ -1,17 +1,26 @@
 package ru.geekbrains.filmserach.ui.pages
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ru.geekbrains.filmserach.data.FilmConverter
+import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.domain.Film
 
-class FilmViewModel : ViewModel() {
+class FilmViewModel(
+    private val filmDatabase: FilmDatabase
+    ) : ViewModel() {
 
-    // Надо в факбикку ViewModel передавать базу данных из фрагмента/активити
+    private val liveData: MutableLiveData<Film> = MutableLiveData()
 
-    fun changFavoritesTag(film: Film?) {
-        if (film!!.isFavorite) {
+    fun getLiveData(): LiveData<Film> = liveData
 
-        } else {
+    fun isFavorite(film: Film): Boolean {
+        return filmDatabase.filmDao().isFavorite(film.title, film.originalTitle, film.releaseDate)
+    }
 
-        }
+    fun changeFavoritesTag(film: Film) {
+        film.isFavorite = !film.isFavorite
+        filmDatabase.filmDao().insert(FilmConverter.convertToEntity(film))
     }
 }

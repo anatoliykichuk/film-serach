@@ -63,6 +63,25 @@ object FilmConverter {
         return films
     }
 
+    fun convertToEntity(film: Film): FilmEntity {
+        return FilmEntity(
+            title = film.title,
+            originalTitle = film.originalTitle,
+            originalLanguage = film.originalLanguage,
+            genres = film.genres,
+            releaseDate = film.releaseDate,
+            adult = film.adult,
+            overview = film.overview,
+            video = film.video,
+            popularity = film.popularity,
+            voteCount = film.voteCount,
+            voteAverage = film.voteAverage,
+            posterPath = film.posterPath,
+            backdropPath = film.backdropPath,
+            isFavorite = film.isFavorite
+        )
+    }
+
     private fun title(filmDto: FilmDto): String {
         return filmDto?.name ?: ""
     }

@@ -17,7 +17,7 @@ data class Film(
     val voteAverage: Int = 0,
     val posterPath: String? = "",
     val backdropPath: String? = "",
-    val isFavorite: Boolean = false
+    var isFavorite: Boolean = false
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
