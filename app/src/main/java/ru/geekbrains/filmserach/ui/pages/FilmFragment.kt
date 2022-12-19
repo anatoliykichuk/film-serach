@@ -47,10 +47,12 @@ class FilmFragment: Fragment() {
         _film = arguments?.getParcelable<Film>(SELECTED_FILM)
         film.isFavorite = viewModel.isFavorite(film)
 
-        setFavoritesTagIcon(binding.addToFavorites, film)
+        val favoritesTagButton: ImageButton = binding.favoritesTag
+
+        setFavoritesTagIcon(favoritesTagButton, film)
         showFilmData()
 
-        binding.addToFavorites.setOnClickListener {
+        favoritesTagButton.setOnClickListener {
             viewModel.changeFavoritesTag(film)
             setFavoritesTagIcon((it as ImageButton), film)
         }
@@ -74,11 +76,11 @@ class FilmFragment: Fragment() {
         PosterLoader.load(binding.poster, film.posterPath)
     }
 
-    private fun setFavoritesTagIcon(addToFavoritesButton: ImageButton, film: Film) {
+    private fun setFavoritesTagIcon(favoritesTagButton: ImageButton, film: Film) {
         if (film.isFavorite) {
-            addToFavoritesButton.setImageResource(R.drawable.remove_from_favorites)
+            favoritesTagButton.setImageResource(R.drawable.remove_from_favorites)
         } else {
-            addToFavoritesButton.setImageResource(R.drawable.add_to_favorites)
+            favoritesTagButton.setImageResource(R.drawable.add_to_favorites)
         }
     }
 }
