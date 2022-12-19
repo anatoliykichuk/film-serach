@@ -5,13 +5,30 @@ import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.domain.*
 
 class Repository() : Storable {
     private val filmsByGenresLoaded = mutableMapOf<String, List<Film>>()
     private val genres = getAllGenres()
 
-    override fun getFilmsByGenresFromDb(): Map<String, List<Film>> {
+    override fun isFavorite(filmDatabase: FilmDatabase, film: Film): Boolean {
+        return filmDatabase.filmDao()
+            .isFavorite(film.title, film.originalTitle, film.releaseDate)
+    }
+
+    override fun changeFavoritesTag(filmDatabase: FilmDatabase, film: Film) {
+        film.isFavorite = !film.isFavorite
+        val filmEntity = FilmConverter.convertToEntity(film)
+
+        if (film.isFavorite) {
+            filmDatabase.filmDao().insert(filmEntity)
+        } else {
+            filmDatabase.filmDao().delete(filmEntity)
+        }
+    }
+
+    override fun getFavorites(filmDatabase: FilmDatabase): List<Film> {
         TODO("Not yet implemented")
     }
 

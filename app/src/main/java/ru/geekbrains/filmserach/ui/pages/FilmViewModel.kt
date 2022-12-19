@@ -3,7 +3,7 @@ package ru.geekbrains.filmserach.ui.pages
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.geekbrains.filmserach.data.FilmConverter
+import ru.geekbrains.filmserach.data.Repository
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.domain.Film
 
@@ -15,19 +15,7 @@ class FilmViewModel(
 
     fun getLiveData(): LiveData<Film> = liveData
 
-    fun isFavorite(film: Film): Boolean {
-        return filmDatabase.filmDao()
-            .isFavorite(film.title, film.originalTitle, film.releaseDate)
-    }
+    fun isFavorite(film: Film): Boolean = Repository().isFavorite(filmDatabase, film)
 
-    fun changeFavoritesTag(film: Film) {
-        film.isFavorite = !film.isFavorite
-        val filmEntity = FilmConverter.convertToEntity(film)
-
-        if (film.isFavorite) {
-            filmDatabase.filmDao().insert(filmEntity)
-        } else {
-            filmDatabase.filmDao().delete(filmEntity)
-        }
-    }
+    fun changeFavoritesTag(film: Film) = Repository().changeFavoritesTag(filmDatabase, film)
 }
