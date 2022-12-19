@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelStore
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
@@ -16,7 +18,9 @@ import java.util.stream.Collectors
 
 class FilmFragment: Fragment() {
 
-    private lateinit var viewModel: FilmViewModel
+    private val viewModel: FilmViewModel by viewModels {
+        FilmViewModelFactory(activity?.applicationContext)
+    }
 
     private var _binding: FragmentFilmBinding? = null
     private val binding
@@ -35,10 +39,6 @@ class FilmFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentFilmBinding.inflate(inflater, container, false)
-
-        viewModel = ViewModelProviders
-            .of(this, FilmViewModelFactory(activity?.applicationContext))
-            .get(FilmViewModel::class.java)
 
         return binding.root
     }
