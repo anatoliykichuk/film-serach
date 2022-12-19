@@ -22,7 +22,12 @@ class FilmViewModel(
 
     fun changeFavoritesTag(film: Film) {
         film.isFavorite = !film.isFavorite
-        filmDatabase.filmDao()
-            .insert(FilmConverter.convertToEntity(film))
+        val filmEntity = FilmConverter.convertToEntity(film)
+
+        if (film.isFavorite) {
+            filmDatabase.filmDao().insert(filmEntity)
+        } else {
+            filmDatabase.filmDao().delete(filmEntity)
+        }
     }
 }

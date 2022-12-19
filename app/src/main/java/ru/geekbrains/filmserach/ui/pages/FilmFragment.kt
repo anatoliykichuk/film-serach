@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.ViewModelStore
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
@@ -49,18 +47,12 @@ class FilmFragment: Fragment() {
         _film = arguments?.getParcelable<Film>(SELECTED_FILM)
         film.isFavorite = viewModel.isFavorite(film)
 
+        setFavoritesTagIcon(binding.addToFavorites, film)
         showFilmData()
 
         binding.addToFavorites.setOnClickListener {
-            (it as ImageButton).setImageResource(
-                if (film.isFavorite) {
-                    R.drawable.add_to_favorites
-                } else {
-                    R.drawable.remove_from_favorites
-                }
-            )
-
             viewModel.changeFavoritesTag(film)
+            setFavoritesTagIcon((it as ImageButton), film)
         }
     }
 
@@ -80,5 +72,13 @@ class FilmFragment: Fragment() {
         binding.overview.text = film.overview
 
         PosterLoader.load(binding.poster, film.posterPath)
+    }
+
+    private fun setFavoritesTagIcon(addToFavoritesButton: ImageButton, film: Film) {
+        if (film.isFavorite) {
+            addToFavoritesButton.setImageResource(R.drawable.remove_from_favorites)
+        } else {
+            addToFavoritesButton.setImageResource(R.drawable.add_to_favorites)
+        }
     }
 }

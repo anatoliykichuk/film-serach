@@ -42,7 +42,7 @@ class Repository() : Storable {
         response.body().let {
             val filmsJson = it?.string()
             val filmsDto = Gson().fromJson(filmsJson, FilmsDto::class.java)
-            val films = FilmConverter.convertListFromDto(filmsDto.films)
+            val films = FilmConverter.convertListFromDto(filmsDto.films, genre)
 
             filmsByGenresLoaded[genre] = films
         }

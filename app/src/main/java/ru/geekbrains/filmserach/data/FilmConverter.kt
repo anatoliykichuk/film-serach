@@ -6,12 +6,11 @@ import com.example.example.FilmDto
 
 object FilmConverter {
 
-    fun convertFromDto(filmDto: FilmDto): Film {
+    fun convertFromDto(filmDto: FilmDto, genre: String = ""): Film {
         return Film(
             title = title(filmDto),
             originalTitle = originalTitle(filmDto),
-            originalLanguage = originalLanguage(filmDto),
-            genres = listOf<String>(),
+            genres = listOf(genre),
             releaseDate = releaseDate(filmDto),
             adult = false,
             overview = overview(filmDto),
@@ -24,11 +23,11 @@ object FilmConverter {
         )
     }
 
-    fun convertListFromDto(filmsDto: List<FilmDto>): List<Film> {
+    fun convertListFromDto(filmsDto: List<FilmDto>, genre: String = ""): List<Film> {
         val films = mutableListOf<Film>()
 
         for (filmDto in filmsDto) {
-            val film = convertFromDto(filmDto)
+            val film = convertFromDto(filmDto, genre)
             films.add(film)
         }
         return films
@@ -83,38 +82,34 @@ object FilmConverter {
     }
 
     private fun title(filmDto: FilmDto): String {
-        return filmDto?.name ?: ""
+        return filmDto.name ?: ""
     }
 
     private fun originalTitle(filmDto: FilmDto): String {
-        return filmDto?.alternativeName ?: ""
-    }
-
-    private fun originalLanguage(filmDto: FilmDto): String {
-        return filmDto?.movieLength ?: ""
+        return filmDto.alternativeName ?: filmDto.enName ?: ""
     }
 
     private fun releaseDate(filmDto: FilmDto): String {
-        return filmDto?.year.toString() ?: ""
+        return filmDto.year.toString()
     }
 
     private fun overview(filmDto: FilmDto): String {
-        return filmDto?.shortDescription ?: ""
+        return filmDto.shortDescription ?: ""
     }
 
     private fun popularity(filmDto: FilmDto): Double {
-        return filmDto?.rating?.imdb ?: 0.0
+        return filmDto.rating?.imdb ?: 0.0
     }
 
     private fun voteCount(filmDto: FilmDto): Int {
-        return filmDto?.votes?.imdb ?: 0
+        return filmDto.votes?.imdb ?: 0
     }
 
     private fun voteAverage(filmDto: FilmDto): Int {
-        return filmDto?.votes?.filmCritics ?: 0
+        return filmDto.votes?.filmCritics ?: 0
     }
 
     private fun posterPath(filmDto: FilmDto): String {
-        return filmDto?.poster?.url ?: ""
+        return filmDto.poster?.url ?: ""
     }
 }
