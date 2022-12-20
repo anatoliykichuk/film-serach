@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
     private fun setOnItemMenuListener() {
         val mainMenu: BottomNavigationView = binding.mainMenu
+
         mainMenu.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_list -> {

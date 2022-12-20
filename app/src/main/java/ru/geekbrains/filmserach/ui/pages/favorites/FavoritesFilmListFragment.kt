@@ -5,13 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.databinding.FragmentFavoritesFilmListBinding
+import ru.geekbrains.filmserach.domain.Film
 
 class FavoritesFilmListFragment : Fragment() {
 
-    private val viewModel: FavoritesFilmListViewModel by viewModel()
+    private val viewModel: FavoritesFilmListViewModel by viewModels {
+        FavoritesFilmListViewModelFactory(activity?.applicationContext)
+    }
+
     private lateinit var recyclerView: RecyclerView
     private var _binding: FragmentFavoritesFilmListBinding? = null
     private val binding
@@ -35,11 +40,20 @@ class FavoritesFilmListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.getLiveData().observe(
+            viewLifecycleOwner,
+            Observer { renderFilms(it) }
+        )
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
         _binding = null
+    }
+
+    private fun renderFilms(films: List<Film>) {
+
     }
 }
