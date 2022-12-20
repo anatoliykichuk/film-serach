@@ -45,6 +45,7 @@ class FavoritesFilmListFragment : Fragment() {
             viewLifecycleOwner,
             Observer { renderFilms(it) }
         )
+        viewModel.getFavorites()
     }
 
     override fun onDestroy() {
