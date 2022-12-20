@@ -4,25 +4,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragment_film_list">
+    app:startDestination="@id/film_list">
 
     <fragment
-        android:id="@+id/fragment_film_list"
+        android:id="@+id/film_list"
         android:name="ru.geekbrains.filmserach.ui.main.MainFragment"
         android:label="@string/film_list"
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/film_list_to_details"
-            app:destination="@id/fragment_film">
+            app:destination="@id/film">
             <argument
                 android:name="@string/selected_film"/>
+        </action>
+
+        <action
+            android:id="@+id/film_list_to_favorites"
+            app:destination="@id/favorites_film_list">
         </action>
     </fragment>
 
     <fragment
-        android:id="@+id/fragment_film"
-        android:name="ru.geekbrains.filmserach.ui.pages.FilmFragment"
+        android:id="@+id/film"
+        android:name="ru.geekbrains.filmserach.ui.pages.film.FilmFragment"
         android:label="@string/film_details"
         tools:layout="@layout/fragment_film" />
+
+    <fragment
+        android:id="@+id/favorites_film_list"
+        android:name="ru.geekbrains.filmserach.ui.pages.favorites.FavoritesFilmListFragment"
+        android:label="@string/favorites_film_list"
+        tools:layout="@layout/fragment_favorites_film_list" />
 
 </navigation>

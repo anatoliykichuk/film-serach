@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.ui.pages
+package ru.geekbrains.filmserach.ui.pages.film
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

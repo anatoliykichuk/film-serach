@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.ui.pages
+package ru.geekbrains.filmserach.ui.pages.film
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

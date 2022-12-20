@@ -25,7 +25,7 @@
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/fragment_film_list_item"
-            tools:itemCount="2"/>
+            tools:itemCount="3"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
