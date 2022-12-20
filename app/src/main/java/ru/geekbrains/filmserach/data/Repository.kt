@@ -6,6 +6,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import ru.geekbrains.filmserach.data.db.FilmDatabase
+import ru.geekbrains.filmserach.data.db.FilmEntity
 import ru.geekbrains.filmserach.domain.*
 
 class Repository() : Storable {
@@ -29,7 +30,8 @@ class Repository() : Storable {
     }
 
     override fun getFavorites(filmDatabase: FilmDatabase): List<Film> {
-        TODO("Not yet implemented")
+        val filmsEntity: List<FilmEntity> = filmDatabase.filmDao().getFavorites()
+        return FilmConverter.convertListFromEntity(filmsEntity)
     }
 
     override fun getFilmsByGenresFromNet(): Map<String, List<Film>> {

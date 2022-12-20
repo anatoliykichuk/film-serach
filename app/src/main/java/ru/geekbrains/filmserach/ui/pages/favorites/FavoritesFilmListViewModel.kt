@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import ru.geekbrains.filmserach.data.Repository
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.domain.Film
-import kotlin.concurrent.thread
 
 class FavoritesFilmListViewModel(
     private val filmDatabase: FilmDatabase
@@ -17,7 +16,7 @@ class FavoritesFilmListViewModel(
     fun getLiveData(): LiveData<List<Film>> = liveData
 
     fun getFavorites() {
-        thread {
+        Thread {
             liveData.postValue(
                 Repository().getFavorites(filmDatabase)
             )
