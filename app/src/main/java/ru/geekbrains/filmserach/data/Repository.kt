@@ -2,7 +2,7 @@ package ru.geekbrains.filmserach.data
 
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.db.FilmEntity
-import ru.geekbrains.filmserach.data.net.dto.FilmLoader
+import ru.geekbrains.filmserach.data.net.FilmLoader
 import ru.geekbrains.filmserach.domain.*
 
 class Repository() : Storable {

@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.data.net.dto
+package ru.geekbrains.filmserach.data.net
 
 import com.example.example.FilmsDto
 import com.google.gson.Gson
