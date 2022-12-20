@@ -54,7 +54,11 @@ class MainFragment: Fragment() {
 
     private fun renderFilms(appState: AppState) {
         when (appState) {
-            is AppState.Success -> {
+            is AppState.SuccessGettingFavoritesFilms -> {
+                binding.loadingProcess.visibility = View.VISIBLE
+            }
+
+            is AppState.SuccessGettingFilmsByGenre -> {
                 binding.loadingProcess.visibility = View.GONE
 
                 recyclerView.setHasFixedSize(true)

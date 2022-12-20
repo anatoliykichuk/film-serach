@@ -17,7 +17,7 @@ class MainViewModel : ViewModel() {
 
         Thread {
             liveData.postValue(
-                AppState.Success(
+                AppState.SuccessGettingFilmsByGenre(
                     Repository().getFilmsByGenresFromNet()
                 )
             )

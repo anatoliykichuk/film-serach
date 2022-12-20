@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.filmserach.databinding.FragmentFavoritesFilmListBinding
-import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.adapters.FilmListAdapter
 
 class FavoritesFilmListFragment : Fragment() {
@@ -55,8 +55,28 @@ class FavoritesFilmListFragment : Fragment() {
         _binding = null
     }
 
-    private fun renderFilms(films: List<Film>) {
-        recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = FilmListAdapter(films)
+    private fun renderFilms(appState: AppState) {
+        when(appState) {
+            is AppState.SuccessGettingFavoritesFilms -> {
+                binding.loadingProcess.visibility = View.GONE
+
+                recyclerView.setHasFixedSize(true)
+                recyclerView.adapter = FilmListAdapter(appState.films)
+            }
+
+            is AppState.SuccessGettingFilmsByGenre -> {
+                binding.loadingProcess.visibility = View.VISIBLE
+            }
+
+            is AppState.Error -> {
+                binding.loadingProcess.visibility = View.GONE
+
+                viewModel.getFavorites()
+            }
+
+            is AppState.Loading -> {
+                binding.loadingProcess.visibility = View.VISIBLE
+            }
+        }
     }
 }

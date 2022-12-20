@@ -16,4 +16,19 @@
         tools:listitem="@layout/fragment_film_list_item"
         tools:itemCount="3"/>
 
+    <FrameLayout
+        android:id="@+id/loading_process"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/loadingBackground"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
 </androidx.cardview.widget.CardView>
