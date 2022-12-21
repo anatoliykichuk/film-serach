@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.geekbrains.filmserach.data.getAllCountries
 import ru.geekbrains.filmserach.data.getAllGenres
 import ru.geekbrains.filmserach.databinding.FragmentSearchOptionsBinding
 
@@ -31,8 +32,10 @@ class SearchOptionsFragment : Fragment() {
 
         _binding = FragmentSearchOptionsBinding.inflate(inflater, container, false)
 
-        setGenresList()
-        setCountriesList()
+        val context: Context = requireActivity().applicationContext
+
+        setGenresList(context)
+        setCountriesList(context)
 
         return binding.root
     }
@@ -43,8 +46,7 @@ class SearchOptionsFragment : Fragment() {
         _binding = null
     }
 
-    private fun setGenresList() {
-        val context: Context = requireActivity().applicationContext
+    private fun setGenresList(context: Context) {
         val genres = getAllGenres().toTypedArray()
         val genreView = binding.genre as AutoCompleteTextView
         genreView.threshold = 1
@@ -54,7 +56,13 @@ class SearchOptionsFragment : Fragment() {
         }
     }
 
-    private fun setCountriesList() {
+    private fun setCountriesList(context: Context) {
+        val counties = getAllCountries().values.toTypedArray()
+        val countiesView = binding.country as AutoCompleteTextView
+        countiesView.threshold = 1
 
+        ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, counties).also {
+            countiesView.setAdapter(it)
+        }
     }
 }
