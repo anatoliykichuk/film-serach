@@ -1,17 +1,14 @@
 package ru.geekbrains.filmserach.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.geekbrains.filmserach.R
+import ru.geekbrains.filmserach.data.SELECTED_FILM
 import ru.geekbrains.filmserach.databinding.ActivityMainBinding
 import ru.geekbrains.filmserach.domain.Film
-import ru.geekbrains.filmserach.data.SELECTED_FILM
 
 class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
@@ -65,7 +62,7 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
                 }
 
                 R.id.menu_search -> {
-
+                    navController.navigate(R.id.film_list_to_search)
                 }
             }
             true

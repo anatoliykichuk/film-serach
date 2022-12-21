@@ -1,7 +1,6 @@
 package ru.geekbrains.filmserach.data.db
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 
 @Entity(tableName = "films", primaryKeys = ["title", "originalTitle", "releaseDate"])

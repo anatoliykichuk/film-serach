@@ -3,7 +3,7 @@ package ru.geekbrains.filmserach.data
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.db.FilmEntity
 import ru.geekbrains.filmserach.data.net.FilmLoader
-import ru.geekbrains.filmserach.domain.*
+import ru.geekbrains.filmserach.domain.Film
 
 class Repository() : Storable {
     override fun isFavorite(filmDatabase: FilmDatabase, film: Film): Boolean {

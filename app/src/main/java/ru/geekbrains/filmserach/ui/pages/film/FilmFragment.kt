@@ -1,17 +1,17 @@
 package ru.geekbrains.filmserach.ui.pages.film
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.PosterLoader
+import ru.geekbrains.filmserach.data.SELECTED_FILM
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
 import ru.geekbrains.filmserach.domain.Film
-import ru.geekbrains.filmserach.data.SELECTED_FILM
 import java.util.stream.Collectors
 
 class FilmFragment: Fragment() {

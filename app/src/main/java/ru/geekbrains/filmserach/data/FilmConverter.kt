@@ -1,8 +1,8 @@
 package ru.geekbrains.filmserach.data
 
-import ru.geekbrains.filmserach.data.db.*
-import ru.geekbrains.filmserach.domain.*
 import com.example.example.FilmDto
+import ru.geekbrains.filmserach.data.db.FilmEntity
+import ru.geekbrains.filmserach.domain.Film
 
 object FilmConverter {
 
