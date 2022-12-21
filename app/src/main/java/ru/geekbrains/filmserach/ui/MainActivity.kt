@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
         setContentView(view)
         initializeNavController()
-        setupMainMenu() // TODO: не понятно, почему не работает навигацию по меню
         setOnItemMenuListener()
     }
 
@@ -50,16 +49,6 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
         navController = navHostFragment.navController
-    }
-
-    private fun setupMainMenu() {
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.menu_list, R.id.menu_favorites, R.id.menu_search)
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        val mainMenu: BottomNavigationView = binding.mainMenu
-        mainMenu.setupWithNavController(navController)
     }
 
     private fun setOnItemMenuListener() {
