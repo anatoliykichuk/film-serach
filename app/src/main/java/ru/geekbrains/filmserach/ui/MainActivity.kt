@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
         mainMenu.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_list -> {
-                    navController.navigate(R.id.film_list)
+                    navController.navigate(R.id.film_list_by_genres)
                 }
 
                 R.id.menu_favorites -> {
