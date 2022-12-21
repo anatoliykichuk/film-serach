@@ -8,4 +8,5 @@ interface Storable {
     fun changeFavoritesTag(filmDatabase: FilmDatabase, film: Film)
     fun getFavorites(filmDatabase: FilmDatabase): List<Film>
     fun getFilmsByGenresFromNet(): Map<String, List<Film>>
+    fun getFilmsBySearchOptionsFromNet(): List<Film>
 }

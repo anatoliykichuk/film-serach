@@ -30,4 +30,8 @@ class Repository() : Storable {
     override fun getFilmsByGenresFromNet(): Map<String, List<Film>> {
         return FilmLoader().loadFilmsByGenres()
     }
+
+    override fun getFilmsBySearchOptionsFromNet(): List<Film> {
+        TODO("Not yet implemented")
+    }
 }
