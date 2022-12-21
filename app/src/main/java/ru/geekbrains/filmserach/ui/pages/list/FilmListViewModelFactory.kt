@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.ui.pages.favorites
+package ru.geekbrains.filmserach.ui.pages.list
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import ru.geekbrains.filmserach.App
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 
-class FavoritesFilmListViewModelFactory(
+class FilmListViewModelFactory(
     private val context: Context?
     ) : ViewModelProvider.Factory {
 
@@ -17,6 +17,6 @@ class FavoritesFilmListViewModelFactory(
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         filmDatabase = App.getFilmDatabase(appContext)
-        return FavoritesFilmListViewModel(filmDatabase) as T
+        return FilmListViewModel(filmDatabase) as T
     }
 }

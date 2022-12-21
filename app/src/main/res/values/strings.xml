@@ -16,7 +16,7 @@
     <string name="director_text">Режисер</string>
     <string name="cast_text">В ролях</string>
     <string name="adult_date">Возрастной ценз</string>
-    <string name="category_name">Категория</string>
+    <string name="genre_name">Жанр</string>
     <string name="selected_film">selected_film</string>
     <string name="menu_title_add_to_favorites">Добавить к избранным</string>
     <string name="menu_title_remove_from_favorites">Удалить из избранных</string>

@@ -13,27 +13,22 @@
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/film_list_to_details"
-            app:destination="@id/film">
-            <argument
-                android:name="@string/selected_film"/>
-        </action>
-
+            app:destination="@id/film"/>
         <action
             android:id="@+id/film_list_to_favorites"
-            app:destination="@id/favorites_film_list">
-        </action>
+            app:destination="@id/favorites_film_list"/>
     </fragment>
 
     <fragment
         android:id="@+id/film"
         android:name="ru.geekbrains.filmserach.ui.pages.film.FilmFragment"
         android:label="@string/film_details"
-        tools:layout="@layout/fragment_film" />
+        tools:layout="@layout/fragment_film"/>
 
     <fragment
         android:id="@+id/favorites_film_list"
-        android:name="ru.geekbrains.filmserach.ui.pages.favorites.FavoritesFilmListFragment"
+        android:name="ru.geekbrains.filmserach.ui.pages.list.FilmListFragment"
         android:label="@string/favorites_film_list"
-        tools:layout="@layout/fragment_favorites_film_list" />
+        tools:layout="@layout/fragment_film_list"/>
 
 </navigation>

@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.ui.pages.favorites
+package ru.geekbrains.filmserach.ui.pages.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,7 +7,7 @@ import ru.geekbrains.filmserach.data.Repository
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.ui.AppState
 
-class FavoritesFilmListViewModel(
+class FilmListViewModel(
     private val filmDatabase: FilmDatabase
     ) : ViewModel() {
 

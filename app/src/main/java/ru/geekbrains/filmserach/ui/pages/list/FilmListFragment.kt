@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.ui.pages.favorites
+package ru.geekbrains.filmserach.ui.pages.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,23 +9,23 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.geekbrains.filmserach.databinding.FragmentFavoritesFilmListBinding
+import ru.geekbrains.filmserach.databinding.FragmentFilmListBinding
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.adapters.FilmListAdapter
 
-class FavoritesFilmListFragment : Fragment() {
+class FilmListFragment : Fragment() {
 
-    private val viewModel: FavoritesFilmListViewModel by viewModels {
-        FavoritesFilmListViewModelFactory(activity?.applicationContext)
+    private val viewModel: FilmListViewModel by viewModels {
+        FilmListViewModelFactory(activity?.applicationContext)
     }
 
     private lateinit var recyclerView: RecyclerView
-    private var _binding: FragmentFavoritesFilmListBinding? = null
+    private var _binding: FragmentFilmListBinding? = null
     private val binding
         get() = _binding!!
 
     companion object {
-        fun newInstance() = FavoritesFilmListFragment()
+        fun newInstance() = FilmListFragment()
     }
 
     override fun onCreateView(
@@ -34,7 +34,7 @@ class FavoritesFilmListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentFavoritesFilmListBinding.inflate(inflater, container, false)
+        _binding = FragmentFilmListBinding.inflate(inflater, container, false)
         recyclerView = binding.favoritesList
 
         return binding.root

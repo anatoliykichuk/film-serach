@@ -28,7 +28,7 @@ class GenresListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenresListViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.fragment_film_list, parent, false)
+            .inflate(R.layout.fragment_film_list_by_genres, parent, false)
 
         return GenresListViewHolder(itemView)
     }

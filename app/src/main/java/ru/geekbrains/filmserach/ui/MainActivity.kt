@@ -68,11 +68,13 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
         mainMenu.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_list -> {
-
+                    navController.navigate(R.id.film_list)
                 }
+
                 R.id.menu_favorites -> {
                     navController.navigate(R.id.film_list_to_favorites)
                 }
+
                 R.id.menu_search -> {
 
                 }
