@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.fragment.app.Fragment
+import com.google.android.material.slider.RangeSlider
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import ru.geekbrains.filmserach.data.getAllCountries
-import ru.geekbrains.filmserach.data.getAllGenres
+import ru.geekbrains.filmserach.data.*
 import ru.geekbrains.filmserach.databinding.FragmentSearchOptionsBinding
+import java.text.NumberFormat
+import java.time.LocalDate
+import java.util.*
 
 class SearchOptionsFragment : Fragment() {
 
@@ -36,6 +39,8 @@ class SearchOptionsFragment : Fragment() {
 
         setGenresList(context)
         setCountriesList(context)
+        setYearsOptions()
+        setPopularityOptions()
 
         return binding.root
     }
@@ -51,7 +56,9 @@ class SearchOptionsFragment : Fragment() {
         val genreView = binding.genre as AutoCompleteTextView
         genreView.threshold = 1
 
-        ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, genres).also {
+        ArrayAdapter<String>(
+            context, android.R.layout.simple_list_item_1, genres
+        ).also {
             genreView.setAdapter(it)
         }
     }
@@ -61,8 +68,33 @@ class SearchOptionsFragment : Fragment() {
         val countiesView = binding.country as AutoCompleteTextView
         countiesView.threshold = 1
 
-        ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, counties).also {
+        ArrayAdapter<String>(
+            context, android.R.layout.simple_list_item_1, counties
+        ).also {
             countiesView.setAdapter(it)
         }
+    }
+
+    private fun setYearsOptions() {
+        val yearsView = binding.years as RangeSlider
+        var endYear = LocalDate.now().year.toFloat()
+        val rest = (endYear - INITIAL_YEAR) % YEARS_FOR_STEP
+
+        if (rest > 0) {
+            endYear += (YEARS_FOR_STEP - rest)
+        }
+
+        yearsView.stepSize = YEARS_FOR_STEP
+        yearsView.valueFrom = INITIAL_YEAR
+        yearsView.valueTo = endYear
+        yearsView.values = listOf<Float>(INITIAL_YEAR, endYear)
+    }
+
+    private fun setPopularityOptions() {
+        val popularityView = binding.popularity as RangeSlider
+        popularityView.stepSize = POPULARITY_FOR_STEP
+        popularityView.valueFrom = INITIAL_POPULARITY
+        popularityView.valueTo = END_POPULARITY
+        popularityView.values = listOf<Float>(INITIAL_POPULARITY, END_POPULARITY)
     }
 }

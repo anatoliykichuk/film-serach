@@ -21,4 +21,12 @@
     <string name="menu_title_add_to_favorites">Добавить к избранным</string>
     <string name="menu_title_remove_from_favorites">Удалить из избранных</string>
     <string name="favorites_film_list">Избранные фильмы</string>
+    <string name="search_option_years_name">Годы</string>
+    <string name="search_option_name">Название</string>
+    <string name="search_option_genre_name">Жанр</string>
+    <string name="search_option_country_name">Страна</string>
+    <string name="search_option_popularity_name">Рейтинг</string>
+    <string name="search_option_default_genre">все</string>
+    <string name="search_option_default_name">все</string>
+    <string name="search_options_start_searching">Найти</string>
 </resources>
