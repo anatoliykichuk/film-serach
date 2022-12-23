@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.slider.RangeSlider
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.*
 import ru.geekbrains.filmserach.databinding.FragmentSearchOptionsBinding
-import java.text.NumberFormat
+import ru.geekbrains.filmserach.domain.SearchOptions
 import java.time.LocalDate
-import java.util.*
 
 class SearchOptionsFragment : Fragment() {
 
@@ -41,6 +42,10 @@ class SearchOptionsFragment : Fragment() {
         setCountriesList(context)
         setYearsOptions()
         setPopularityOptions()
+
+        binding.startSearching.setOnClickListener {
+            setOnStartSearchingClickListener(it)
+        }
 
         return binding.root
     }
@@ -78,23 +83,40 @@ class SearchOptionsFragment : Fragment() {
     private fun setYearsOptions() {
         val yearsView = binding.years as RangeSlider
         var endYear = LocalDate.now().year.toFloat()
-        val rest = (endYear - INITIAL_YEAR) % YEARS_FOR_STEP
+        val rest = (endYear - START_YEAR) % YEARS_FOR_STEP
 
         if (rest > 0) {
             endYear += (YEARS_FOR_STEP - rest)
         }
 
         yearsView.stepSize = YEARS_FOR_STEP
-        yearsView.valueFrom = INITIAL_YEAR
+        yearsView.valueFrom = START_YEAR
         yearsView.valueTo = endYear
-        yearsView.values = listOf<Float>(INITIAL_YEAR, endYear)
+        yearsView.values = listOf<Float>(START_YEAR, endYear)
     }
 
     private fun setPopularityOptions() {
         val popularityView = binding.popularity as RangeSlider
         popularityView.stepSize = POPULARITY_FOR_STEP
-        popularityView.valueFrom = INITIAL_POPULARITY
+        popularityView.valueFrom = START_POPULARITY
         popularityView.valueTo = END_POPULARITY
-        popularityView.values = listOf<Float>(INITIAL_POPULARITY, END_POPULARITY)
+        popularityView.values = listOf<Float>(START_POPULARITY, END_POPULARITY)
+    }
+
+    private fun setOnStartSearchingClickListener(view: View) {
+        val searchOptions = SearchOptions(
+            name = binding.name.toString(),
+            genre = binding.genre.toString(),
+            country = binding.country.toString(),
+            startYear = binding.years.valueFrom,
+            endYear = binding.years.valueTo,
+            startPopularity = binding.popularity.valueFrom,
+            endPopularity = binding.popularity.valueTo
+        )
+
+        val bundle = Bundle()
+        bundle.putParcelable(SEARCH_OPTIONS, searchOptions)
+
+        findNavController().navigate(R.id.search_options_to_found, bundle)
     }
 }

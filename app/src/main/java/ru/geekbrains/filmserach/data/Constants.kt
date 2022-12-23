@@ -7,11 +7,12 @@ const val END_POINT = "movie"
 const val TOKEN = "AF2F5V2-SGRM6NN-JDNY2ZC-K6Z71K7"
 const val FILM_DATABASE = "film_database"
 const val SELECTED_FILM = "selected_film"
+const val SEARCH_OPTIONS = "search_options"
 const val EMPTY_POSTER_PATH = R.drawable.no_poster
 const val YEARS_FOR_STEP = 10F
-const val INITIAL_YEAR = 1890F
+const val START_YEAR = 1890F
 const val POPULARITY_FOR_STEP = 1F
-const val INITIAL_POPULARITY = 0F
+const val START_POPULARITY = 0F
 const val END_POPULARITY = 10F
 
 fun getAllGenres(): List<String> {
