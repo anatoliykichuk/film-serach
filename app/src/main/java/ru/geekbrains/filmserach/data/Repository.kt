@@ -4,8 +4,10 @@ import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.db.FilmEntity
 import ru.geekbrains.filmserach.data.net.FilmLoader
 import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.domain.SearchOptions
 
 class Repository() : Storable {
+
     override fun isFavorite(filmDatabase: FilmDatabase, film: Film): Boolean {
         return filmDatabase.filmDao()
             .isFavorite(film.title, film.originalTitle, film.releaseDate)
@@ -31,7 +33,7 @@ class Repository() : Storable {
         return FilmLoader().loadFilmsByGenres()
     }
 
-    override fun getFilmsBySearchOptionsFromNet(): List<Film> {
-        TODO("Not yet implemented")
+    override fun getFilmsBySearchOptionsFromNet(searchOptions: SearchOptions): List<Film> {
+        return FilmLoader().loadFilmsBySearchOptions(searchOptions)
     }
 }

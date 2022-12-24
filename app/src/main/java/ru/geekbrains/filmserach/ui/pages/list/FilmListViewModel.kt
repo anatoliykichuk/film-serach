@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.geekbrains.filmserach.data.Repository
 import ru.geekbrains.filmserach.data.db.FilmDatabase
+import ru.geekbrains.filmserach.domain.SearchOptions
 import ru.geekbrains.filmserach.ui.AppState
 
 class FilmListViewModel(
@@ -20,6 +21,16 @@ class FilmListViewModel(
             liveData.postValue(
                 AppState.SuccessGettingFavoritesFilms(
                     Repository().getFavorites(filmDatabase)
+                )
+            )
+        }.start()
+    }
+
+    fun getFound(searchOptions: SearchOptions) {
+        Thread {
+            liveData.postValue(
+                AppState.SuccessGettingFavoritesFilms(
+                    Repository().getFilmsBySearchOptionsFromNet(searchOptions)
                 )
             )
         }.start()

@@ -7,6 +7,7 @@ import okhttp3.Request
 import okhttp3.Response
 import ru.geekbrains.filmserach.data.*
 import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.domain.SearchOptions
 
 class FilmLoader {
 
@@ -26,6 +27,10 @@ class FilmLoader {
         }
 
         return filmsByGenresLoaded
+    }
+
+    fun loadFilmsBySearchOptions(searchOptions: SearchOptions): List<Film> {
+        return listOf()
     }
 
     private fun readResponse(

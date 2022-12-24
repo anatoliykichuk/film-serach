@@ -9,7 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ru.geekbrains.filmserach.data.SEARCH_OPTIONS
 import ru.geekbrains.filmserach.databinding.FragmentFilmListBinding
+import ru.geekbrains.filmserach.domain.SearchOptions
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.adapters.FilmListAdapter
 
@@ -23,6 +25,10 @@ class FilmListFragment : Fragment() {
     private var _binding: FragmentFilmListBinding? = null
     private val binding
         get() = _binding!!
+
+    private var _searchOptions: SearchOptions? = null
+    private val searchOptions
+        get() = _searchOptions!!
 
     companion object {
         fun newInstance() = FilmListFragment()
@@ -43,11 +49,19 @@ class FilmListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        _searchOptions = arguments?.getParcelable(SEARCH_OPTIONS)
+
         viewModel.getLiveData().observe(
             viewLifecycleOwner,
             Observer { renderFilms(it) }
         )
-        viewModel.getFavorites()
+
+        if (_searchOptions == null) {
+            viewModel.getFavorites()
+        }
+        else {
+            viewModel.getFound(searchOptions) // TODO: подумать, как передать параметры поиска
+        }
     }
 
     override fun onDestroy() {
