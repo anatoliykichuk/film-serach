@@ -44,7 +44,7 @@ class SearchOptionsFragment : Fragment() {
         setPopularityOptions()
 
         binding.startSearching.setOnClickListener {
-            setOnStartSearchingClickListener(it)
+            StartSearching()
         }
 
         return binding.root
@@ -103,7 +103,7 @@ class SearchOptionsFragment : Fragment() {
         popularityView.values = listOf<Float>(START_POPULARITY, END_POPULARITY)
     }
 
-    private fun setOnStartSearchingClickListener(view: View) {
+    private fun StartSearching() {
         val searchOptions = SearchOptions(
             name = binding.name.text.toString(),
             genre = binding.genre.text.toString(),
