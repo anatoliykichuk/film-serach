@@ -15,25 +15,45 @@ class FilmLoader {
         val filmsByGenresLoaded = mutableMapOf<String, List<Film>>()
         val genres = getAllGenres()
         val field = "genres.name"
-        val client = OkHttpClient()
+        val client = getClient()
 
         for (genre in genres) {
             val url = "$PATH/$END_POINT?token=$TOKEN&field=$field&search=$genre"
-            val request = Request.Builder().url(url).build()
-            val call = client.newCall(request)
-            val response = call.execute()
+            val response = getResponse(client, url)
 
-            readResponse(response, genre, filmsByGenresLoaded)
+            readResponseByGenre(response, genre, filmsByGenresLoaded)
         }
 
         return filmsByGenresLoaded
     }
 
     fun loadFilmsBySearchOptions(searchOptions: SearchOptions): List<Film> {
-        return listOf()
+        val filmsLoaded = mutableListOf<Film>()
+        val options = searchOptions.toString()
+
+        if (options.isEmpty()) {
+            return filmsLoaded
+        }
+
+        val url = "$PATH/$END_POINT?token=$TOKEN&$options"
+        val client = getClient()
+        val response = getResponse(client, url)
+
+        if (!response.isSuccessful) {
+            return filmsLoaded
+        }
+
+        response.body().let {
+            val filmsJson = it?.string()
+            val filmsDto = Gson().fromJson(filmsJson, FilmsDto::class.java)
+
+            return FilmConverter.convertListFromDto(filmsDto.films)
+        }
+
+        return filmsLoaded
     }
 
-    private fun readResponse(
+    private fun readResponseByGenre(
         response: Response,
         genre: String,
         filmsByGenresLoaded: MutableMap<String, List<Film>>
@@ -49,5 +69,14 @@ class FilmLoader {
 
             filmsByGenresLoaded[genre] = films
         }
+    }
+
+    private fun getClient() = OkHttpClient()
+
+    private fun getResponse(client: OkHttpClient, url: String): Response {
+        val request = Request.Builder().url(url).build()
+        val call = client.newCall(request)
+
+        return call.execute()
     }
 }

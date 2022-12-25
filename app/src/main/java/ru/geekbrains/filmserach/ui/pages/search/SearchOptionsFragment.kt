@@ -105,13 +105,13 @@ class SearchOptionsFragment : Fragment() {
 
     private fun setOnStartSearchingClickListener(view: View) {
         val searchOptions = SearchOptions(
-            name = binding.name.toString(),
-            genre = binding.genre.toString(),
-            country = binding.country.toString(),
-            startYear = binding.years.valueFrom,
-            endYear = binding.years.valueTo,
-            startPopularity = binding.popularity.valueFrom,
-            endPopularity = binding.popularity.valueTo
+            name = binding.name.text.toString(),
+            genre = binding.genre.text.toString(),
+            country = binding.country.text.toString(),
+            startYear = binding.years.values[0],
+            endYear = binding.years.values[1],
+            startPopularity = binding.popularity.values[0],
+            endPopularity = binding.popularity.values[1]
         )
 
         val bundle = Bundle()

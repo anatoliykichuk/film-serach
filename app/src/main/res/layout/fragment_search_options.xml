@@ -50,7 +50,7 @@
                 android:id="@+id/genre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/search_option_default_genre" />
+                android:hint="@string/search_option_default_genre" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -69,7 +69,7 @@
                 android:id="@+id/country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/search_option_default_name" />
+                android:hint="@string/search_option_default_name" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
