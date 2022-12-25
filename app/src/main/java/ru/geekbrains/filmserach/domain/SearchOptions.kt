@@ -10,9 +10,13 @@ class SearchOptions(
     val name: String,
     val genre: String,
     val country: String,
+    val startYearDefault: Float,
     val startYear: Float,
+    val endYearDefault: Float,
     val endYear: Float,
+    val startPopularityDefault: Float,
     val startPopularity: Float,
+    val endPopularityDefault: Float,
     val endPopularity: Float
 ) : Parcelable {
 
@@ -32,13 +36,11 @@ class SearchOptions(
             optionsBuilder.add("field=premiere.country&search=$country")
         }
 
-        val actualYear = LocalDate.now().year.toFloat()
-
-        if (startYear > START_YEAR || endYear < actualYear) {
+        if (startYear > startYearDefault || endYear < endYearDefault) {
             optionsBuilder.add("field=year&search=${startYear.toInt()}-${endYear.toInt()}")
         }
 
-        if (startPopularity > START_POPULARITY || endPopularity < END_POPULARITY) {
+        if (startPopularity > startPopularityDefault || endPopularity < endPopularityDefault) {
             optionsBuilder.add(
                 "field=rating.kp&search=${startPopularity.toInt()}-${endPopularity.toInt()}"
             )

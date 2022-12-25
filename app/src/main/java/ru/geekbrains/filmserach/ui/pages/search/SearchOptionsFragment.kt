@@ -108,9 +108,13 @@ class SearchOptionsFragment : Fragment() {
             name = binding.name.text.toString(),
             genre = binding.genre.text.toString(),
             country = binding.country.text.toString(),
+            startYearDefault = binding.years.valueFrom,
             startYear = binding.years.values[0],
+            endYearDefault = binding.years.valueTo,
             endYear = binding.years.values[1],
+            startPopularityDefault = binding.popularity.valueFrom,
             startPopularity = binding.popularity.values[0],
+            endPopularityDefault = binding.popularity.valueTo,
             endPopularity = binding.popularity.values[1]
         )
 
