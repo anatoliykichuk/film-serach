@@ -10,17 +10,7 @@
         android:id="@+id/film_list_by_genres"
         android:name="ru.geekbrains.filmserach.ui.main.MainFragment"
         android:label="@string/film_list"
-        tools:layout="@layout/fragment_main">
-        <action
-            android:id="@+id/film_list_to_details"
-            app:destination="@id/film"/>
-        <action
-            android:id="@+id/film_list_to_favorites"
-            app:destination="@id/film_list"/>
-        <action
-            android:id="@+id/film_list_to_search"
-            app:destination="@id/search_options"/>
-    </fragment>
+        tools:layout="@layout/fragment_main"/>
 
     <fragment
         android:id="@+id/film"
@@ -38,10 +28,6 @@
         android:id="@+id/search_options"
         android:name="ru.geekbrains.filmserach.ui.pages.search.SearchOptionsFragment"
         android:label="@string/favorites_film_list"
-        tools:layout="@layout/fragment_search_options">
-        <action
-            android:id="@+id/search_options_to_found"
-            app:destination="@id/film_list"/>
-    </fragment>
+        tools:layout="@layout/fragment_search_options"/>
 
 </navigation>

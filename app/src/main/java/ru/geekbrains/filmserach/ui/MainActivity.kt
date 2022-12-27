@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
     override fun onFilmClick(film: Film) {
         val bundle = Bundle()
         bundle.putParcelable(SELECTED_FILM, film)
-        navController.navigate(R.id.film_list_to_details, bundle)
+        navController.navigate(R.id.film, bundle)
     }
 
     override fun onDestroy() {
@@ -58,11 +58,11 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
                 }
 
                 R.id.menu_favorites -> {
-                    navController.navigate(R.id.film_list_to_favorites)
+                    navController.navigate(R.id.film_list)
                 }
 
                 R.id.menu_search -> {
-                    navController.navigate(R.id.film_list_to_search)
+                    navController.navigate(R.id.search_options)
                 }
             }
             true
