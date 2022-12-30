@@ -23,8 +23,12 @@ object FilmConverter {
         )
     }
 
-    fun convertListFromDto(filmsDto: List<FilmDto>, genre: String = ""): List<Film> {
+    fun convertListFromDto(filmsDto: List<FilmDto>?, genre: String = ""): List<Film> {
         val films = mutableListOf<Film>()
+
+        if (filmsDto == null) {
+            return films
+        }
 
         for (filmDto in filmsDto) {
             val film = convertFromDto(filmDto, genre)

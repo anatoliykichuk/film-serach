@@ -12,16 +12,24 @@ import ru.geekbrains.filmserach.domain.SearchOptions
 class FilmLoader {
 
     fun loadFilmsByGenres(): Map<String, List<Film>> {
+
         val filmsByGenresLoaded = mutableMapOf<String, List<Film>>()
-        val genres = getAllGenres()
+        val filmApi = RetrofitClient.getClient().create(FilmApi::class.java)
         val field = "genres.name"
-        val client = getClient()
+        val genres = getAllGenres()
 
         for (genre in genres) {
-            val url = "$PATH/$END_POINT?token=$TOKEN&field=$field&search=$genre"
-            val response = getResponse(client, url)
 
-            readResponseByGenre(response, genre, filmsByGenresLoaded)
+            filmApi.getByGenre(TOKEN, field, genre)
+                .execute().let {
+
+                    if (it.isSuccessful) {
+                        val filmsDto = it.body()?.films
+                        val films = FilmConverter.convertListFromDto(filmsDto, genre)
+
+                        filmsByGenresLoaded[genre] = films
+                }
+            }
         }
 
         return filmsByGenresLoaded
@@ -51,24 +59,6 @@ class FilmLoader {
         }
 
         return filmsLoaded
-    }
-
-    private fun readResponseByGenre(
-        response: Response,
-        genre: String,
-        filmsByGenresLoaded: MutableMap<String, List<Film>>
-    ) {
-        if (!response.isSuccessful) {
-            return
-        }
-
-        response.body().let {
-            val filmsJson = it?.string()
-            val filmsDto = Gson().fromJson(filmsJson, FilmsDto::class.java)
-            val films = FilmConverter.convertListFromDto(filmsDto.films, genre)
-
-            filmsByGenresLoaded[genre] = films
-        }
     }
 
     private fun getClient() = OkHttpClient()
