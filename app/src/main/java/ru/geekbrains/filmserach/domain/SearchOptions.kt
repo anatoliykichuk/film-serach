@@ -6,7 +6,7 @@ import ru.geekbrains.filmserach.data.*
 import java.time.LocalDate
 
 @Parcelize
-class SearchOptions(
+data class SearchOptions(
     val name: String,
     val genre: String,
     val country: String,
@@ -19,6 +19,14 @@ class SearchOptions(
     val endPopularityDefault: Float,
     val endPopularity: Float
 ) : Parcelable {
+
+    fun getYearRange(): String {
+        return "${startYear.toInt()}-${endYear.toInt()}"
+    }
+
+    fun getPopularityRange(): String {
+        return "${startPopularity.toInt()}-${endPopularity.toInt()}"
+    }
 
     override fun toString(): String {
         val optionsBuilder: MutableList<String> = mutableListOf()
@@ -37,13 +45,11 @@ class SearchOptions(
         }
 
         if (startYear > startYearDefault || endYear < endYearDefault) {
-            optionsBuilder.add("field=year&search=${startYear.toInt()}-${endYear.toInt()}")
+            optionsBuilder.add("field=year&search=${getYearRange()}")
         }
 
         if (startPopularity > startPopularityDefault || endPopularity < endPopularityDefault) {
-            optionsBuilder.add(
-                "field=rating.kp&search=${startPopularity.toInt()}-${endPopularity.toInt()}"
-            )
+            optionsBuilder.add("field=rating.kp&search=${getPopularityRange()}")
         }
 
         return optionsBuilder.joinToString(optionSeparator)
