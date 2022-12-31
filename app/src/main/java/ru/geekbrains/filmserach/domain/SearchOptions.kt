@@ -2,8 +2,6 @@ package ru.geekbrains.filmserach.domain
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import ru.geekbrains.filmserach.data.*
-import java.time.LocalDate
 
 @Parcelize
 data class SearchOptions(
@@ -32,15 +30,15 @@ data class SearchOptions(
         val optionsBuilder: MutableList<String> = mutableListOf()
         val optionSeparator = "&"
 
-        if (!name.isEmpty()) {
+        if (name.isNotEmpty()) {
             optionsBuilder.add("field=name&search=$name")
         }
 
-        if (!genre.isEmpty()) {
+        if (genre.isNotEmpty()) {
             optionsBuilder.add("field=genres.name&search=$genre")
         }
 
-        if (!country.isEmpty()) {
+        if (country.isNotEmpty()) {
             optionsBuilder.add("field=premiere.country&search=$country")
         }
 
