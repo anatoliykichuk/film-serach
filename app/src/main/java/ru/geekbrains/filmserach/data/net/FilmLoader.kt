@@ -52,7 +52,6 @@ class FilmLoader {
 
                 if (it.isSuccessful) {
                     val filmsDto = it.body()?.films
-                    val films = FilmConverter.convertListFromDto(filmsDto)
 
                     return FilmConverter.convertListFromDto(filmsDto)
             }
