@@ -18,14 +18,6 @@ data class SearchOptions(
     val endPopularity: Float
 ) : Parcelable {
 
-    fun getYearRange(): String {
-        return "${startYear.toInt()}-${endYear.toInt()}"
-    }
-
-    fun getPopularityRange(): String {
-        return "${startPopularity.toInt()}-${endPopularity.toInt()}"
-    }
-
     override fun toString(): String {
         val optionsBuilder: MutableList<String> = mutableListOf()
         val optionSeparator = "&"
@@ -43,11 +35,17 @@ data class SearchOptions(
         }
 
         if (startYear > startYearDefault || endYear < endYearDefault) {
-            optionsBuilder.add("field=year&search=${getYearRange()}")
+            optionsBuilder.add("field=year&search=${startYear.toInt()}-${endYear.toInt()}")
         }
 
         if (startPopularity > startPopularityDefault || endPopularity < endPopularityDefault) {
-            optionsBuilder.add("field=rating.kp&search=${getPopularityRange()}")
+            optionsBuilder.add(
+                "field=rating.kp&search=${startPopularity.toInt()}-${endPopularity.toInt()}"
+            )
+        }
+
+        if (optionsBuilder.isNotEmpty()) {
+            optionsBuilder.add(0, "")
         }
 
         return optionsBuilder.joinToString(optionSeparator)

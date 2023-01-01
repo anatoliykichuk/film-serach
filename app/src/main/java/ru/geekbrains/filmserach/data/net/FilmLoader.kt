@@ -1,5 +1,6 @@
 package ru.geekbrains.filmserach.data.net
 
+import ru.geekbrains.filmserach.data.END_POINT
 import ru.geekbrains.filmserach.data.FilmConverter
 import ru.geekbrains.filmserach.data.TOKEN
 import ru.geekbrains.filmserach.data.getAllGenres
@@ -35,20 +36,10 @@ class FilmLoader {
     fun loadFilmsBySearchOptions(searchOptions: SearchOptions): List<Film> {
         val filmsLoaded = mutableListOf<Film>()
         val filmApi = RetrofitClient.getClient().create(FilmApi::class.java)
+        val url = "$END_POINT?token=$TOKEN${searchOptions.toString()}"
 
-        filmApi.getBySearchOptions(
-                token = TOKEN,
-                nameKey = "name",
-                nameValue = searchOptions.name,
-                genreKey = "genres.name",
-                genreValue = searchOptions.genre,
-                countryKey = "premiere.country",
-                countryValue = searchOptions.country,
-                yearKey = "year",
-                yearValue = searchOptions.getYearRange(),
-                popularityKey = "rating.kp",
-                popularityValue = searchOptions.getPopularityRange()
-            ).execute().let {
+        filmApi.getBySearchOptions(url)
+            .execute().let {
 
                 if (it.isSuccessful) {
                     val filmsDto = it.body()?.films

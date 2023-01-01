@@ -4,6 +4,7 @@ import com.example.example.FilmsDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Url
 import ru.geekbrains.filmserach.data.END_POINT
 
 interface FilmApi {
@@ -14,18 +15,8 @@ interface FilmApi {
         @Query("search") genreValue: String
     ): Call<FilmsDto>
 
-    @GET(END_POINT)
+    @GET
     fun getBySearchOptions(
-        @Query("token") token: String,
-        @Query("field") nameKey: String,
-        @Query("search") nameValue: String,
-        @Query("field") genreKey: String,
-        @Query("search") genreValue: String,
-        @Query("field") countryKey: String,
-        @Query("search") countryValue: String,
-        @Query("field") yearKey: String,
-        @Query("search") yearValue: String,
-        @Query("field") popularityKey: String,
-        @Query("search") popularityValue: String
+        @Url url: String
     ): Call<FilmsDto>
 }
