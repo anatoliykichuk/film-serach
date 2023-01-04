@@ -17,6 +17,8 @@ class FilmListViewModel(
     fun getLiveData(): LiveData<AppState> = liveData
 
     fun getFavorites() {
+        liveData.value = AppState.Loading
+
         Thread {
             liveData.postValue(
                 AppState.SuccessGettingFavoritesFilms(
@@ -27,6 +29,8 @@ class FilmListViewModel(
     }
 
     fun getFound(searchOptions: SearchOptions) {
+        liveData.value = AppState.Loading
+
         Thread {
             liveData.postValue(
                 AppState.SuccessGettingFavoritesFilms(

@@ -7,4 +7,5 @@ import ru.geekbrains.filmserach.ui.main.MainViewModel
 val appModule = module {
     // View models
     viewModel { MainViewModel() }
+
 }

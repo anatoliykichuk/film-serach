@@ -10,7 +10,6 @@ import android.widget.AutoCompleteTextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.slider.RangeSlider
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.*
 import ru.geekbrains.filmserach.databinding.FragmentSearchOptionsBinding
@@ -19,7 +18,6 @@ import java.time.LocalDate
 
 class SearchOptionsFragment : Fragment() {
 
-    private val viewModel: SearchOptionsViewModel by viewModel()
     private var _binding: FragmentSearchOptionsBinding?  = null
     private val binding
         get() = _binding!!
