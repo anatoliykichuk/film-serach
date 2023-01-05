@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.data.SELECTED_FILM
@@ -16,9 +16,7 @@ import java.util.stream.Collectors
 
 class FilmFragment: Fragment() {
 
-    private val viewModel: FilmViewModel by viewModels {
-        FilmViewModelFactory(activity?.applicationContext)
-    }
+    private val viewModel by viewModel<FilmViewModel>()
 
     private var _binding: FragmentFilmBinding? = null
     private val binding

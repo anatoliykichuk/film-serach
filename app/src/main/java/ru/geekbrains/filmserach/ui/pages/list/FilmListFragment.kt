@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.data.SEARCH_OPTIONS
 import ru.geekbrains.filmserach.databinding.FragmentFilmListBinding
 import ru.geekbrains.filmserach.domain.SearchOptions
@@ -17,9 +17,7 @@ import ru.geekbrains.filmserach.ui.adapters.FilmListAdapter
 
 class FilmListFragment : Fragment() {
 
-    private val viewModel: FilmListViewModel by viewModels {
-        FilmListViewModelFactory(activity?.applicationContext)
-    }
+    private val viewModel by viewModel<FilmListViewModel>()
 
     private lateinit var recyclerView: RecyclerView
     private var _binding: FragmentFilmListBinding? = null
