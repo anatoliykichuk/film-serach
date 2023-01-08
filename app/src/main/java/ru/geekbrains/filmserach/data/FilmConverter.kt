@@ -8,7 +8,7 @@ object FilmConverter {
 
     fun convertFromDto(filmDto: FilmDto, genre: String = ""): Film {
         return Film(
-            title = title(filmDto),
+            title = getTitle(filmDto),
             originalTitle = originalTitle(filmDto),
             genres = listOf(genre),
             releaseDate = releaseDate(filmDto),
@@ -85,7 +85,7 @@ object FilmConverter {
         )
     }
 
-    private fun title(filmDto: FilmDto): String {
+    private fun getTitle(filmDto: FilmDto): String {
         return filmDto.name ?: ""
     }
 

@@ -13,10 +13,11 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/genre_name"
-            android:layout_width="wrap_content"
+            style="@style/H3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/genre_name"
-            style="@style/H3"/>
+            android:background="@color/genre_title_background"
+            android:text="@string/genre_name" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/film_list"

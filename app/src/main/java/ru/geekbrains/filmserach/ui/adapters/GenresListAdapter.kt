@@ -21,7 +21,9 @@ class GenresListAdapter(
             (itemView.findViewById(R.id.genre_name) as TextView).text = genre
 
             filmListView.setHasFixedSize(true);
-            filmListView.adapter = filmsByGenres[genre]?.let { FilmListAdapter(it.toList()) }
+            filmListView.adapter = filmsByGenres[genre]?.let {
+                FilmListAdapter(it.toList())
+            }
         }
     }
 

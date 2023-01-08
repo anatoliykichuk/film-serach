@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.geekbrains.filmserach.data.FILMS_ON_ROW_COUNT
 import ru.geekbrains.filmserach.data.SEARCH_OPTIONS
 import ru.geekbrains.filmserach.databinding.FragmentFilmListBinding
 import ru.geekbrains.filmserach.domain.SearchOptions
@@ -75,7 +77,7 @@ class FilmListFragment : Fragment() {
 
                 recyclerView.setHasFixedSize(true)
                 recyclerView.layoutManager = GridLayoutManager(
-                    activity?.applicationContext, 3)
+                    activity?.applicationContext, FILMS_ON_ROW_COUNT)
 
                 recyclerView.adapter = FilmListAdapter(appState.films)
             }
