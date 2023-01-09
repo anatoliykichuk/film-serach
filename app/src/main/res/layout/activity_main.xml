@@ -6,11 +6,10 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
-
+    tools:context=".ui.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/main_navigation_view"
+        android:id="@+id/main_menu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
@@ -19,27 +18,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/main_menu"/>
 
-    <fragment
-        android:id="@+id/fragment_container"
-        android:name="ru.geekbrains.filmserach.view.MainFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@id/main_navigation_view"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/navigation"/>
-
-    <!--fragment
-        android:id="@+id/navigation_host"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@id/main_navigation_view"
+        app:layout_constraintBottom_toTopOf="@id/main_menu"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/navigation"/-->
+        app:navGraph="@navigation/nav_graph"
+        app:defaultNavHost = "true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

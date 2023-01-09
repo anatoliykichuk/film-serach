@@ -32,11 +32,29 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/poster"
                 android:layout_width="200dp"
                 android:layout_height="300dp"
                 android:src="@drawable/no_poster"/>
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/favorites_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/poster"
+                    android:layout_alignBottom="@id/poster"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/add_to_favorites_margin"
+                    android:src="@drawable/add_to_favorites"
+                    android:background="@null"/>
+
+            </RelativeLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
@@ -119,10 +137,10 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/description"
+            android:id="@+id/overview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/description_text"
+            android:text="@string/overview_text"
             style="@style/Text"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -3,6 +3,8 @@
     <string name="title_list">Каталог</string>
     <string name="title_favorites">Избранное</string>
     <string name="title_search">Поиск</string>
+    <string name="film_list">Каталог</string>
+    <string name="film_details">Описание фильма</string>
     <string name="title_text">Название</string>
     <string name="original_title_text">Оригинальное название</string>
     <string name="genre_text">Жанр</string>
@@ -10,9 +12,21 @@
     <string name="budget_text">Бюджет</string>
     <string name="revenue">Сборы</string>
     <string name="release_date">Дата релиза</string>
-    <string name="description_text">Описание</string>
+    <string name="overview_text">Обзор</string>
     <string name="director_text">Режисер</string>
     <string name="cast_text">В ролях</string>
     <string name="adult_date">Возрастной ценз</string>
-    <string name="category_name">Категория</string>
+    <string name="genre_name">Жанр</string>
+    <string name="selected_film">selected_film</string>
+    <string name="menu_title_add_to_favorites">Добавить к избранным</string>
+    <string name="menu_title_remove_from_favorites">Удалить из избранных</string>
+    <string name="favorites_film_list">Избранные фильмы</string>
+    <string name="search_option_years_name">Годы</string>
+    <string name="search_option_name">Название</string>
+    <string name="search_option_genre_name">Жанр</string>
+    <string name="search_option_country_name">Страна</string>
+    <string name="search_option_popularity_name">Рейтинг</string>
+    <string name="search_option_default_genre">все</string>
+    <string name="search_option_default_name">все</string>
+    <string name="search_options_start_searching">Найти</string>
 </resources>
