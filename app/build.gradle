@@ -24,13 +24,26 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildTypes.each {
+        Properties properties = new Properties()
+        properties.load(
+                project.rootProject.file("token.properties").newDataInputStream()
+        )
+
+        def token = properties.getProperty("token", "")
+        it.buildConfigField "String", "TOKEN", token
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     buildFeatures {
         viewBinding true
     }

@@ -1,12 +1,14 @@
 package ru.geekbrains.filmserach.ui.pages.search
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.slider.RangeSlider
@@ -26,6 +28,7 @@ class SearchOptionsFragment : Fragment() {
         fun newInstance() = SearchOptionsFragment()
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -78,6 +81,7 @@ class SearchOptionsFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun setYearsOptions() {
         val yearsView = binding.years as RangeSlider
         var endYear = LocalDate.now().year.toFloat()
