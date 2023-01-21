@@ -30,9 +30,7 @@ class App : Application() {
                 context,
                 FilmDatabase::class.java,
                 FILM_DATABASE
-            )
-                .allowMainThreadQueries()
-                .build()
+            ).build()
 
             return filmDatabase!!
         }
