@@ -49,6 +49,7 @@ class FilmFragment : Fragment() {
             viewLifecycleOwner,
             Observer<Boolean> {
                 setFavoritesTag(it)
+                showFilmData()
             }
         )
 
@@ -56,12 +57,8 @@ class FilmFragment : Fragment() {
 
         val favoritesTagButton: ImageButton = binding.favoritesTag
 
-        setFavoritesTagIcon(favoritesTagButton, film)
-        showFilmData()
-
         favoritesTagButton.setOnClickListener {
             viewModel.changeFavoritesTag(film)
-            setFavoritesTagIcon((it as ImageButton), film)
         }
     }
 
@@ -81,14 +78,17 @@ class FilmFragment : Fragment() {
         binding.overview.text = film.overview
 
         PosterLoader.load(binding.poster, film.posterPath)
+
+        val favoritesTagButton: ImageButton = binding.favoritesTag
+        setFavoritesTagIcon(favoritesTagButton, film.isFavorite)
     }
 
     private fun setFavoritesTag(isFavorite: Boolean) {
         film.isFavorite = isFavorite
     }
 
-    private fun setFavoritesTagIcon(favoritesTagButton: ImageButton, film: Film) {
-        if (film.isFavorite) {
+    private fun setFavoritesTagIcon(favoritesTagButton: ImageButton, isFavorite: Boolean) {
+        if (isFavorite) {
             favoritesTagButton.setImageResource(R.drawable.remove_from_favorites)
         } else {
             favoritesTagButton.setImageResource(R.drawable.add_to_favorites)

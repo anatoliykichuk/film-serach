@@ -9,7 +9,7 @@ import ru.geekbrains.filmserach.domain.Film
 
 class FilmViewModel(
     private val filmDatabase: FilmDatabase
-    ) : ViewModel() {
+) : ViewModel() {
 
     private val liveData: MutableLiveData<Boolean> = MutableLiveData()
 
@@ -25,7 +25,9 @@ class FilmViewModel(
 
     fun changeFavoritesTag(film: Film) {
         Thread {
-            Repository().changeFavoritesTag(filmDatabase, film)
+            liveData.postValue(
+                Repository().changeFavoritesTag(filmDatabase, film)
+            )
         }.start()
     }
 

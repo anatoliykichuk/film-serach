@@ -13,9 +13,18 @@ class FilmLoader {
         try {
             return loadFilmsByGenresSafety()
         } catch (e: Throwable) {
-
+            //TODO("handle the exception")
         }
         return mapOf<String, List<Film>>()
+    }
+
+    fun loadFilmsBySearchOptions(searchOptions: SearchOptions): List<Film> {
+        try {
+            return loadFilmsBySearchOptionsSafety(searchOptions)
+        } catch (e: Throwable) {
+            //TODO("handle the exception")
+        }
+        return listOf<Film>()
     }
 
     private fun loadFilmsByGenresSafety(): Map<String, List<Film>> {
@@ -38,15 +47,6 @@ class FilmLoader {
                 }
         }
         return filmsByGenresLoaded
-    }
-
-    fun loadFilmsBySearchOptions(searchOptions: SearchOptions): List<Film> {
-        try {
-            return loadFilmsBySearchOptionsSafety(searchOptions)
-        } catch (e: Throwable) {
-
-        }
-        return listOf<Film>()
     }
 
     private fun loadFilmsBySearchOptionsSafety(searchOptions: SearchOptions): List<Film> {
