@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.PosterLoader
@@ -14,7 +15,7 @@ import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
 import ru.geekbrains.filmserach.domain.Film
 import java.util.stream.Collectors
 
-class FilmFragment: Fragment() {
+class FilmFragment : Fragment() {
 
     private val viewModel by viewModel<FilmViewModel>()
 
@@ -43,16 +44,21 @@ class FilmFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         _film = arguments?.getParcelable<Film>(SELECTED_FILM)
-        film.isFavorite = viewModel.isFavorite(film)
+
+        viewModel.getLiveData().observe(
+            viewLifecycleOwner,
+            Observer<Boolean> {
+                setFavoritesTag(it)
+                showFilmData()
+            }
+        )
+
+        viewModel.isFavorite(film)
 
         val favoritesTagButton: ImageButton = binding.favoritesTag
 
-        setFavoritesTagIcon(favoritesTagButton, film)
-        showFilmData()
-
         favoritesTagButton.setOnClickListener {
             viewModel.changeFavoritesTag(film)
-            setFavoritesTagIcon((it as ImageButton), film)
         }
     }
 
@@ -72,10 +78,17 @@ class FilmFragment: Fragment() {
         binding.overview.text = film.overview
 
         PosterLoader.load(binding.poster, film.posterPath)
+
+        val favoritesTagButton: ImageButton = binding.favoritesTag
+        setFavoritesTagIcon(favoritesTagButton, film.isFavorite)
     }
 
-    private fun setFavoritesTagIcon(favoritesTagButton: ImageButton, film: Film) {
-        if (film.isFavorite) {
+    private fun setFavoritesTag(isFavorite: Boolean) {
+        film.isFavorite = isFavorite
+    }
+
+    private fun setFavoritesTagIcon(favoritesTagButton: ImageButton, isFavorite: Boolean) {
+        if (isFavorite) {
             favoritesTagButton.setImageResource(R.drawable.remove_from_favorites)
         } else {
             favoritesTagButton.setImageResource(R.drawable.add_to_favorites)

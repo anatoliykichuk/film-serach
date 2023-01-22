@@ -10,7 +10,7 @@ import ru.geekbrains.filmserach.ui.AppState
 
 class FilmListViewModel(
     private val filmDatabase: FilmDatabase
-    ) : ViewModel() {
+) : ViewModel() {
 
     private val liveData: MutableLiveData<AppState> = MutableLiveData()
 

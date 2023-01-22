@@ -10,7 +10,24 @@ import ru.geekbrains.filmserach.domain.SearchOptions
 class FilmLoader {
 
     fun loadFilmsByGenres(): Map<String, List<Film>> {
+        try {
+            return loadFilmsByGenresSafety()
+        } catch (e: Throwable) {
+            //TODO("handle the exception")
+        }
+        return mapOf<String, List<Film>>()
+    }
 
+    fun loadFilmsBySearchOptions(searchOptions: SearchOptions): List<Film> {
+        try {
+            return loadFilmsBySearchOptionsSafety(searchOptions)
+        } catch (e: Throwable) {
+            //TODO("handle the exception")
+        }
+        return listOf<Film>()
+    }
+
+    private fun loadFilmsByGenresSafety(): Map<String, List<Film>> {
         val filmsByGenresLoaded = mutableMapOf<String, List<Film>>()
         val filmApi = RetrofitClient.getClient().create(FilmApi::class.java)
         val field = "genres.name"
@@ -26,14 +43,13 @@ class FilmLoader {
                         val films = FilmConverter.convertListFromDto(filmsDto, genre)
 
                         filmsByGenresLoaded[genre] = films
+                    }
                 }
-            }
         }
-
         return filmsByGenresLoaded
     }
 
-    fun loadFilmsBySearchOptions(searchOptions: SearchOptions): List<Film> {
+    private fun loadFilmsBySearchOptionsSafety(searchOptions: SearchOptions): List<Film> {
         val filmsLoaded = mutableListOf<Film>()
         val filmApi = RetrofitClient.getClient().create(FilmApi::class.java)
         val url = "$END_POINT?token=${BuildConfig.TOKEN}${searchOptions.toString()}"
@@ -45,9 +61,8 @@ class FilmLoader {
                     val filmsDto = it.body()?.films
 
                     return FilmConverter.convertListFromDto(filmsDto)
+                }
             }
-
-            return filmsLoaded
-        }
+        return filmsLoaded
     }
 }

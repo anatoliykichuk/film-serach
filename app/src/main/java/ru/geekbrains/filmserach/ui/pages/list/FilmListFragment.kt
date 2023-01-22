@@ -59,7 +59,7 @@ class FilmListFragment : Fragment() {
             viewModel.getFavorites()
         }
         else {
-            viewModel.getFound(searchOptions) // TODO: подумать, как передать параметры поиска
+            viewModel.getFound(searchOptions)
         }
     }
 

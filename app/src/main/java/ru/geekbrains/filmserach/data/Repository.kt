@@ -13,7 +13,7 @@ class Repository() : Storable {
             .isFavorite(film.title, film.originalTitle, film.releaseDate)
     }
 
-    override fun changeFavoritesTag(filmDatabase: FilmDatabase, film: Film) {
+    override fun changeFavoritesTag(filmDatabase: FilmDatabase, film: Film): Boolean {
         film.isFavorite = !film.isFavorite
         val filmEntity = FilmConverter.convertToEntity(film)
 
@@ -22,6 +22,7 @@ class Repository() : Storable {
         } else {
             filmDatabase.filmDao().delete(filmEntity)
         }
+        return film.isFavorite
     }
 
     override fun getFavorites(filmDatabase: FilmDatabase): List<Film> {
