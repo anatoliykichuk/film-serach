@@ -1,6 +1,8 @@
 package ru.geekbrains.filmserach.di
 
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -17,7 +19,13 @@ val appModule = module {
             androidContext(),
             FilmDatabase::class.java,
             FILM_DATABASE
-        ).build()
+        )
+            .addMigrations(object : Migration(1, 2) {
+                override fun migrate(database: SupportSQLiteDatabase) {
+                    database.execSQL("ALTER TABLE films ADD COLUMN country TEXT")
+                }
+            })
+            .build()
     }
 
     viewModel {

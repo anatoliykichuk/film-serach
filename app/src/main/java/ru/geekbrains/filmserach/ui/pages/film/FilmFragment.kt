@@ -91,7 +91,7 @@ class FilmFragment : Fragment() {
         if (isFavorite) {
             favoritesTagButton.setImageResource(R.drawable.remove_from_favorites)
         } else {
-            favoritesTagButton.setImageResource(R.drawable.add_to_favorites)
+            favoritesTagButton.setImageResource(R.drawable.add_to_favorites_48)
         }
     }
 }

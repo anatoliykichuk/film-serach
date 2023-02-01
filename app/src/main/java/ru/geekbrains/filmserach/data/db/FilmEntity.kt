@@ -9,6 +9,7 @@ data class FilmEntity(
     val originalTitle: String = "",
     val originalLanguage: String = "",
     @TypeConverters(GenresConverter::class) val genres: List<String> = listOf<String>(),
+    val country: String = "",
     val releaseDate: String = "",
     val adult: Boolean = false,
     val overview: String = "",

@@ -8,6 +8,7 @@
     <string name="title_text">Название</string>
     <string name="original_title_text">Оригинальное название</string>
     <string name="genre_text">Жанр</string>
+    <string name="country_text">Страна</string>
     <string name="popularity_text">Рейтинг</string>
     <string name="budget_text">Бюджет</string>
     <string name="revenue">Сборы</string>
