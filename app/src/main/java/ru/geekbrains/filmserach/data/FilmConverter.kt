@@ -3,6 +3,7 @@ package ru.geekbrains.filmserach.data
 import com.example.example.FilmDto
 import ru.geekbrains.filmserach.data.db.FilmEntity
 import ru.geekbrains.filmserach.domain.Film
+import java.util.stream.Collectors
 
 object FilmConverter {
 
@@ -10,7 +11,8 @@ object FilmConverter {
         return Film(
             title = getTitle(filmDto),
             originalTitle = originalTitle(filmDto),
-            genres = listOf(genre),
+            genres = genres(filmDto),
+            countries = countries(filmDto),
             releaseDate = releaseDate(filmDto),
             adult = false,
             overview = overview(filmDto),
@@ -43,6 +45,7 @@ object FilmConverter {
             originalTitle = filmEntity.originalTitle,
             originalLanguage = filmEntity.originalLanguage,
             genres = filmEntity.genres,
+            countries = filmEntity.countries,
             releaseDate = filmEntity.releaseDate,
             adult = filmEntity.adult,
             overview = filmEntity.overview,
@@ -72,6 +75,7 @@ object FilmConverter {
             originalTitle = film.originalTitle,
             originalLanguage = film.originalLanguage,
             genres = film.genres,
+            countries = film.countries,
             releaseDate = film.releaseDate,
             adult = film.adult,
             overview = film.overview,
@@ -91,6 +95,26 @@ object FilmConverter {
 
     private fun originalTitle(filmDto: FilmDto): String {
         return filmDto.alternativeName ?: filmDto.enName ?: ""
+    }
+
+    private fun genres(filmDto: FilmDto): List<String> {
+        val genres = mutableListOf<String>()
+
+        for (genre in filmDto.genres) {
+            genre.name?.let { genres.add(it) }
+        }
+
+        return genres
+    }
+
+    private fun countries(filmDto: FilmDto): List<String> {
+        val countries = mutableListOf<String>()
+
+        for (country in filmDto.countries) {
+            country.name?.let { countries.add(it) }
+        }
+
+        return countries
     }
 
     private fun releaseDate(filmDto: FilmDto): String {

@@ -20,11 +20,17 @@ val appModule = module {
             FilmDatabase::class.java,
             FILM_DATABASE
         )
-            .addMigrations(object : Migration(1, 2) {
-                override fun migrate(database: SupportSQLiteDatabase) {
-                    database.execSQL("ALTER TABLE films ADD COLUMN country TEXT")
-                }
-            })
+//            .addMigrations(object : Migration(1, 2) {
+//                override fun migrate(database: SupportSQLiteDatabase) {
+//                    database.execSQL("ALTER TABLE films ADD COLUMN country TEXT")
+//                }
+//            })
+//            .addMigrations(object : Migration(2, 3) {
+//                override fun migrate(database: SupportSQLiteDatabase) {
+//                    database.execSQL("ALTER TABLE films RENAME COLUMN country TO countries")
+//                }
+//            })
+            .fallbackToDestructiveMigration()
             .build()
     }
 
