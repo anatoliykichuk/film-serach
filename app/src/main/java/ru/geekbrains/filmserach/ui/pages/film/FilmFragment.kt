@@ -89,7 +89,7 @@ class FilmFragment : Fragment() {
 
     private fun setFavoritesTagIcon(favoritesTagButton: ImageButton, isFavorite: Boolean) {
         if (isFavorite) {
-            favoritesTagButton.setImageResource(R.drawable.remove_from_favorites)
+            favoritesTagButton.setImageResource(R.drawable.remove_from_favorites_48)
         } else {
             favoritesTagButton.setImageResource(R.drawable.add_to_favorites_48)
         }

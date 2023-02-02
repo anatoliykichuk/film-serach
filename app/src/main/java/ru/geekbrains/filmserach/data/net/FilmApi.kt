@@ -12,7 +12,8 @@ interface FilmApi {
     fun getByGenre(
         @Query("token") token: String,
         @Query("field") genreKey: String,
-        @Query("search") genreValue: String
+        @Query("search") genreValue: String,
+        @Query("selectFields") selectFields: String
     ): Call<FilmsDto>
 
     @GET
