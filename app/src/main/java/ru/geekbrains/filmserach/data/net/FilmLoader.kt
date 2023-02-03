@@ -43,7 +43,7 @@ class FilmLoader {
 
                     if (it.isSuccessful) {
                         val filmsDto = it.body()?.films
-                        val films = FilmConverter.convertListFromDto(filmsDto, genre)
+                        val films = FilmConverter.convertListFromDto(filmsDto)
 
                         filmsByGenresLoaded[genre] = films
                     }

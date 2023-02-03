@@ -7,7 +7,7 @@ import java.util.stream.Collectors
 
 object FilmConverter {
 
-    fun convertFromDto(filmDto: FilmDto, genre: String = ""): Film {
+    fun convertFromDto(filmDto: FilmDto): Film {
         return Film(
             title = getTitle(filmDto),
             originalTitle = originalTitle(filmDto),
@@ -25,7 +25,7 @@ object FilmConverter {
         )
     }
 
-    fun convertListFromDto(filmsDto: List<FilmDto>?, genre: String = ""): List<Film> {
+    fun convertListFromDto(filmsDto: List<FilmDto>?): List<Film> {
         val films = mutableListOf<Film>()
 
         if (filmsDto == null) {
@@ -33,7 +33,7 @@ object FilmConverter {
         }
 
         for (filmDto in filmsDto) {
-            val film = convertFromDto(filmDto, genre)
+            val film = convertFromDto(filmDto)
             films.add(film)
         }
         return films
