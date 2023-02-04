@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
@@ -10,24 +9,24 @@
         android:id="@+id/film_list_by_genres"
         android:name="ru.geekbrains.filmserach.ui.main.MainFragment"
         android:label="@string/film_list"
-        tools:layout="@layout/fragment_main"/>
+        tools:layout="@layout/fragment_main" />
 
     <fragment
         android:id="@+id/film"
         android:name="ru.geekbrains.filmserach.ui.pages.film.FilmFragment"
         android:label="@string/film_details"
-        tools:layout="@layout/fragment_film"/>
+        tools:layout="@layout/fragment_film" />
 
     <fragment
         android:id="@+id/film_list"
         android:name="ru.geekbrains.filmserach.ui.pages.list.FilmListFragment"
         android:label="@string/favorites_film_list"
-        tools:layout="@layout/fragment_film_list"/>
+        tools:layout="@layout/fragment_film_list" />
 
     <fragment
         android:id="@+id/search_options"
         android:name="ru.geekbrains.filmserach.ui.pages.search.SearchOptionsFragment"
         android:label="@string/favorites_film_list"
-        tools:layout="@layout/fragment_search_options"/>
+        tools:layout="@layout/fragment_search_options" />
 
 </navigation>

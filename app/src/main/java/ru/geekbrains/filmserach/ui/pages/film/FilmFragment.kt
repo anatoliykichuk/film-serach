@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.data.SELECTED_FILM
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
 import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.ui.pages.map.MapsFragment
 import java.util.stream.Collectors
 
 class FilmFragment : Fragment() {
@@ -60,6 +63,12 @@ class FilmFragment : Fragment() {
         favoritesTagButton.setOnClickListener {
             viewModel.changeFavoritesTag(film)
         }
+
+        val mapMarkerButton: ImageButton = binding.mapMarker
+
+        mapMarkerButton.setOnClickListener {
+            showLocation(film.countries)
+        }
     }
 
     override fun onDestroyView() {
@@ -92,6 +101,20 @@ class FilmFragment : Fragment() {
             favoritesTagButton.setImageResource(R.drawable.remove_from_favorites_48)
         } else {
             favoritesTagButton.setImageResource(R.drawable.add_to_favorites_48)
+        }
+    }
+
+    private fun showLocation(countries: List<String>) {
+        if (countries.isEmpty()) {
+            return
+        }
+
+        val country = countries.first()
+
+        activity?.supportFragmentManager?.apply {
+            beginTransaction()
+                .replace(R.id.container, MapsFragment())
+                .commitNowAllowingStateLoss()
         }
     }
 }
