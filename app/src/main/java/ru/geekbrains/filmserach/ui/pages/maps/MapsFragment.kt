@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import ru.geekbrains.filmserach.R
+import ru.geekbrains.filmserach.data.LOCATION_NAME
 import ru.geekbrains.filmserach.databinding.FragmentMapsBinding
 import java.io.IOException
 
@@ -24,6 +25,10 @@ class MapsFragment : Fragment() {
     private var _binding: FragmentMapsBinding? = null
     private val binding
         get() = _binding!!
+
+    private var _locationName: String? = null
+    private val locationName
+        get() = _locationName!!
 
     private lateinit var map: GoogleMap
 
@@ -49,26 +54,25 @@ class MapsFragment : Fragment() {
 
         mapFragment?.getMapAsync(callback)
 
-        val locationName = "США"
+        _locationName = arguments?.getString(LOCATION_NAME)
 
         Thread {
-            searchByLocation(view, locationName)
+            searchByLocationName(view)
         }.start()
     }
 
-    private fun searchByLocation(view: View, locationName: String) {
-        val address = getAddress(locationName)
+    private fun searchByLocationName(view: View) {
+        val address = getAddress()
 
         if (address == null) {
             return
         }
 
         val location = LatLng(address.latitude, address.longitude)
-        val mapMarkerIcon = R.drawable.map_marker_48
         val zoom = 15f
 
         view.post {
-            setMarker(location, locationName, mapMarkerIcon)
+            setMarker(location)
 
             map.moveCamera(
                 CameraUpdateFactory.newLatLngZoom(location, zoom)
@@ -76,7 +80,7 @@ class MapsFragment : Fragment() {
         }
     }
 
-    private fun getAddress(locationName: String): Address? {
+    private fun getAddress(): Address? {
         val geoCoder = context?.let { Geocoder(it) }
 
         try {
@@ -94,12 +98,13 @@ class MapsFragment : Fragment() {
         return null
     }
 
-    private fun setMarker(
-        location: LatLng, locationName: String, mapMarkerIcon: Int
-    ): Marker? {
+    private fun setMarker(location: LatLng): Marker? {
+        val mapMarkerIcon = R.drawable.map_marker_48
 
         return map.addMarker(
-            MarkerOptions().position(location).title(locationName)
+            MarkerOptions()
+                .position(location)
+                .title(locationName)
                 .icon(BitmapDescriptorFactory.fromResource(mapMarkerIcon))
         )
     }

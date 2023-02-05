@@ -29,4 +29,14 @@
         android:label="@string/favorites_film_list"
         tools:layout="@layout/fragment_search_options" />
 
+    <fragment
+        android:id="@+id/maps"
+        android:name="ru.geekbrains.filmserach.ui.pages.maps.MapsFragment"
+        android:label="@string/maps"
+        tools:layout="@layout/fragment_maps">
+        <argument
+            android:name="${LOCATION_NAME}"
+            android:defaultValue="@string/default_location_name" />
+    </fragment>
+
 </navigation>

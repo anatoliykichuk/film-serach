@@ -3,7 +3,6 @@ package ru.geekbrains.filmserach.domain
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import ru.geekbrains.filmserach.data.getSelectFields
-import java.util.stream.Collectors
 
 @Parcelize
 data class SearchOptions(

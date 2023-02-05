@@ -10,6 +10,7 @@ const val FILM_DATABASE = "film_database"
 
 const val SELECTED_FILM = "selected_film"
 const val SEARCH_OPTIONS = "search_options"
+const val LOCATION_NAME = "location_name"
 
 const val FILMS_ON_ROW_COUNT = 3
 

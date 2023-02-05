@@ -7,7 +7,6 @@ import ru.geekbrains.filmserach.data.getAllGenres
 import ru.geekbrains.filmserach.data.getSelectFields
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.domain.SearchOptions
-import java.util.stream.Collectors
 
 class FilmLoader {
 

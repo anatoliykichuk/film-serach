@@ -31,4 +31,6 @@
     <string name="search_option_default_genre">все</string>
     <string name="search_option_default_name">все</string>
     <string name="search_options_start_searching">Найти</string>
+    <string name="maps">Карты</string>
+    <string name="default_location_name">США</string>
 </resources>

@@ -3,7 +3,6 @@ package ru.geekbrains.filmserach.data
 import com.example.example.FilmDto
 import ru.geekbrains.filmserach.data.db.FilmEntity
 import ru.geekbrains.filmserach.domain.Film
-import java.util.stream.Collectors
 
 object FilmConverter {
 
