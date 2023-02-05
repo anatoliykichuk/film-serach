@@ -31,5 +31,4 @@
     <string name="search_option_default_genre">все</string>
     <string name="search_option_default_name">все</string>
     <string name="search_options_start_searching">Найти</string>
-    <string name="google_maps_key">YOUR_KEY_HERE</string>
 </resources>
