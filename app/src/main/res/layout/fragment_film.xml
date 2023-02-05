@@ -146,7 +146,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="@dimen/image_button_margin"
                     android:background="@null"
-                    android:src="@drawable/map_marker_48" />
+                    android:src="@drawable/go_to_address_48" />
 
             </RelativeLayout>
 
