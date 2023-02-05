@@ -8,6 +8,7 @@ data class Film(
     val originalTitle: String = "",
     val originalLanguage: String = "",
     val genres: List<String> = listOf<String>(),
+    val countries: List<String> = listOf<String>(),
     val releaseDate: String = "",
     val adult: Boolean = false,
     val overview: String = "",
@@ -24,6 +25,7 @@ data class Film(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
+        parcel.createStringArrayList()!!,
         parcel.createStringArrayList()!!,
         parcel.readString().toString(),
         parcel.readByte() != 0.toByte(),
@@ -43,6 +45,7 @@ data class Film(
         parcel.writeString(originalTitle)
         parcel.writeString(originalLanguage)
         parcel.writeStringList(genres)
+        parcel.writeStringList(countries)
         parcel.writeString(releaseDate)
         parcel.writeByte(if (adult) 1 else 0)
         parcel.writeString(overview)

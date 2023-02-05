@@ -6,11 +6,12 @@ import ru.geekbrains.filmserach.domain.Film
 
 object FilmConverter {
 
-    fun convertFromDto(filmDto: FilmDto, genre: String = ""): Film {
+    fun convertFromDto(filmDto: FilmDto): Film {
         return Film(
             title = getTitle(filmDto),
             originalTitle = originalTitle(filmDto),
-            genres = listOf(genre),
+            genres = genres(filmDto),
+            countries = countries(filmDto),
             releaseDate = releaseDate(filmDto),
             adult = false,
             overview = overview(filmDto),
@@ -23,7 +24,7 @@ object FilmConverter {
         )
     }
 
-    fun convertListFromDto(filmsDto: List<FilmDto>?, genre: String = ""): List<Film> {
+    fun convertListFromDto(filmsDto: List<FilmDto>?): List<Film> {
         val films = mutableListOf<Film>()
 
         if (filmsDto == null) {
@@ -31,7 +32,7 @@ object FilmConverter {
         }
 
         for (filmDto in filmsDto) {
-            val film = convertFromDto(filmDto, genre)
+            val film = convertFromDto(filmDto)
             films.add(film)
         }
         return films
@@ -43,6 +44,7 @@ object FilmConverter {
             originalTitle = filmEntity.originalTitle,
             originalLanguage = filmEntity.originalLanguage,
             genres = filmEntity.genres,
+            countries = filmEntity.countries,
             releaseDate = filmEntity.releaseDate,
             adult = filmEntity.adult,
             overview = filmEntity.overview,
@@ -72,6 +74,7 @@ object FilmConverter {
             originalTitle = film.originalTitle,
             originalLanguage = film.originalLanguage,
             genres = film.genres,
+            countries = film.countries,
             releaseDate = film.releaseDate,
             adult = film.adult,
             overview = film.overview,
@@ -91,6 +94,26 @@ object FilmConverter {
 
     private fun originalTitle(filmDto: FilmDto): String {
         return filmDto.alternativeName ?: filmDto.enName ?: ""
+    }
+
+    private fun genres(filmDto: FilmDto): List<String> {
+        val genres = mutableListOf<String>()
+
+        for (genre in filmDto.genres) {
+            genre.name?.let { genres.add(it) }
+        }
+
+        return genres
+    }
+
+    private fun countries(filmDto: FilmDto): List<String> {
+        val countries = mutableListOf<String>()
+
+        for (country in filmDto.countries) {
+            country.name?.let { countries.add(it) }
+        }
+
+        return countries
     }
 
     private fun releaseDate(filmDto: FilmDto): String {

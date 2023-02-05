@@ -8,6 +8,7 @@
     <string name="title_text">Название</string>
     <string name="original_title_text">Оригинальное название</string>
     <string name="genre_text">Жанр</string>
+    <string name="country_text">Страна</string>
     <string name="popularity_text">Рейтинг</string>
     <string name="budget_text">Бюджет</string>
     <string name="revenue">Сборы</string>
@@ -21,6 +22,7 @@
     <string name="menu_title_add_to_favorites">Добавить к избранным</string>
     <string name="menu_title_remove_from_favorites">Удалить из избранных</string>
     <string name="favorites_film_list">Избранные фильмы</string>
+    <string name="google_maps">Карта</string>
     <string name="search_option_years_name">Годы</string>
     <string name="search_option_name">Название</string>
     <string name="search_option_genre_name">Жанр</string>
@@ -29,4 +31,6 @@
     <string name="search_option_default_genre">все</string>
     <string name="search_option_default_name">все</string>
     <string name="search_options_start_searching">Найти</string>
+    <string name="maps">Карты</string>
+    <string name="default_location_name">США</string>
 </resources>

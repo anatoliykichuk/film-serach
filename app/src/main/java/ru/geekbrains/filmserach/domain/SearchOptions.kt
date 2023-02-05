@@ -2,6 +2,7 @@ package ru.geekbrains.filmserach.domain
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import ru.geekbrains.filmserach.data.getSelectFields
 
 @Parcelize
 data class SearchOptions(
@@ -43,6 +44,10 @@ data class SearchOptions(
                 "field=rating.kp&search=${startPopularity.toInt()}-${endPopularity.toInt()}"
             )
         }
+
+        optionsBuilder.add(
+            "selectFields=${getSelectFields()}"
+        )
 
         if (optionsBuilder.isNotEmpty()) {
             optionsBuilder.add(0, "")

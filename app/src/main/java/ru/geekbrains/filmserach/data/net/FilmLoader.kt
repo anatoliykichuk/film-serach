@@ -4,6 +4,7 @@ import ru.geekbrains.filmserach.BuildConfig
 import ru.geekbrains.filmserach.data.END_POINT
 import ru.geekbrains.filmserach.data.FilmConverter
 import ru.geekbrains.filmserach.data.getAllGenres
+import ru.geekbrains.filmserach.data.getSelectFields
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.domain.SearchOptions
 
@@ -32,15 +33,16 @@ class FilmLoader {
         val filmApi = RetrofitClient.getClient().create(FilmApi::class.java)
         val field = "genres.name"
         val genres = getAllGenres()
+        val selectFields = getSelectFields()
 
         for (genre in genres) {
 
-            filmApi.getByGenre(BuildConfig.TOKEN, field, genre)
+            filmApi.getByGenre(BuildConfig.TOKEN, field, genre, selectFields)
                 .execute().let {
 
                     if (it.isSuccessful) {
                         val filmsDto = it.body()?.films
-                        val films = FilmConverter.convertListFromDto(filmsDto, genre)
+                        val films = FilmConverter.convertListFromDto(filmsDto)
 
                         filmsByGenresLoaded[genre] = films
                     }

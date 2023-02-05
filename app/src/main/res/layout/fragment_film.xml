@@ -1,147 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/list_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        style="@style/LayoutPadding"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        style="@style/LayoutPadding">
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
+            style="@style/H1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/title_text"
             android:gravity="start"
-            style="@style/H1"/>
+            android:text="@string/title_text" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/original_title"
+            style="@style/H2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/original_title_text"
             android:gravity="start"
-            style="@style/H2"/>
+            android:text="@string/original_title_text" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/poster"
                 android:layout_width="200dp"
                 android:layout_height="300dp"
-                android:src="@drawable/no_poster"/>
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/favorites_tag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/poster"
-                    android:layout_alignBottom="@id/poster"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="@dimen/add_to_favorites_margin"
-                    android:src="@drawable/add_to_favorites"
-                    android:background="@null"/>
-
-            </RelativeLayout>
+                android:src="@drawable/no_poster" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                style="@style/LayoutMarginStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                style="@style/LayoutMarginStart">
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    style="@style/Text">
+                    android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/popularity"
+                        style="@style/Text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/popularity_text"
-                        style="@style/Text"/>
+                        android:text="@string/popularity_text" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/popularity_16"
-                        android:layout_gravity="center_vertical"/>
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/popularity_16" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/genre"
+                    style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/genre_text"
-                    style="@style/Text"/>
+                    android:text="@string/genre_text" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/country"
+                    style="@style/Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/country_text" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/director"
+                    style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/director_text"
-                    style="@style/Text"/>
+                    android:text="@string/director_text" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/cast"
+                    style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cast_text"
-                    style="@style/Text"/>
+                    android:text="@string/cast_text" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/budget"
+                    style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/budget_text"
-                    style="@style/Text"/>
+                    android:text="@string/budget_text" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/revenue"
+                    style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/revenue"
-                    style="@style/Text"/>
+                    android:text="@string/revenue" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/release_date"
+                    style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/release_date"
-                    style="@style/Text"/>
+                    android:text="@string/release_date" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/adult"
+                    style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/adult_date"
-                    style="@style/Text"/>
+                    android:text="@string/adult_date" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    style="@style/LayoutMarginStart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/favorites_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/image_button_margin"
+                        android:background="@null"
+                        android:src="@drawable/add_to_favorites_48" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/map_marker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/image_button_margin"
+                        android:layout_marginLeft="@dimen/image_button_margin"
+                        android:background="@null"
+                        android:src="@drawable/go_to_address_48" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
+
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/overview"
+            style="@style/Text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/overview_text"
-            style="@style/Text"/>
+            android:text="@string/overview_text" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
