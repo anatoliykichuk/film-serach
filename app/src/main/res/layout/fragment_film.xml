@@ -121,34 +121,33 @@
                     android:layout_height="wrap_content"
                     android:text="@string/adult_date" />
 
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    style="@style/LayoutMarginStart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/favorites_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/image_button_margin"
+                        android:background="@null"
+                        android:src="@drawable/add_to_favorites_48" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/map_marker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/image_button_margin"
+                        android:layout_marginLeft="@dimen/image_button_margin"
+                        android:background="@null"
+                        android:src="@drawable/go_to_address_48" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <RelativeLayout
-                android:id="@+id/command_panel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true">
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/favorites_tag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:background="@null"
-                    android:src="@drawable/add_to_favorites_48" />
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/map_marker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/image_button_margin"
-                    android:background="@null"
-                    android:src="@drawable/go_to_address_48" />
-
-            </RelativeLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -13,7 +13,7 @@
     <dimen name="poster_height">150dp</dimen>
     <dimen name="film_command_panel_top_margin">5dp</dimen>
     <dimen name="film_command_panel_left_margin">20dp</dimen>
-    <dimen name="image_button_margin">55dp</dimen>
+    <dimen name="image_button_margin">5dp</dimen>
     <dimen name="search_options_marginBottom">10dp</dimen>
     <dimen name="search_options_title_width">100sp</dimen>
     <dimen name="search_options_margin">10dp</dimen>
