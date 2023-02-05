@@ -80,7 +80,8 @@ class FilmFragment : Fragment() {
         binding.title.text = film.title
         binding.originalTitle.text = film.originalTitle
         binding.popularity.text = film.popularity.toString()
-        binding.genre.text = film.genres.stream().collect(Collectors.joining(", "))
+        binding.genre.text = listToString(film.genres)
+        binding.country.text = listToString(film.countries)
         binding.releaseDate.text = film.releaseDate
         binding.adult.text = film.adult.toString()
         binding.overview.text = film.overview
@@ -89,6 +90,10 @@ class FilmFragment : Fragment() {
 
         val favoritesTagButton: ImageButton = binding.favoritesTag
         setFavoritesTagIcon(favoritesTagButton, film.isFavorite)
+    }
+
+    private fun listToString(list: List<String>): String {
+        return list.stream().collect(Collectors.joining(", "))
     }
 
     private fun setFavoritesTag(isFavorite: Boolean) {

@@ -6,7 +6,7 @@ import java.util.stream.Collectors
 class ListConverter {
     @TypeConverter
     fun fromCountries(list: List<String>): String {
-        return list.stream().collect(Collectors.joining(","))
+        return list.stream().collect(Collectors.joining(", "))
     }
 
     @TypeConverter

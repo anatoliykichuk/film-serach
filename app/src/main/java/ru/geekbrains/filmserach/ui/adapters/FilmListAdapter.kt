@@ -13,7 +13,7 @@ import ru.geekbrains.filmserach.ui.OnFilmClickListener
 
 class FilmListAdapter(
     private val films: List<Film>
-    ): RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder>() {
+) : RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder>() {
 
     class FilmListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(film: Film) {
