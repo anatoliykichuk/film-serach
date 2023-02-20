@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "245029670496",
+    "project_id": "filmserach",
+    "storage_bucket": "filmserach.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245029670496:android:0352f03eca968d997d7d05",
+        "android_client_info": {
+          "package_name": "ru.geekbrains.filmserach"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245029670496-tgg043lgp9mlmfbii6sv9l2uc1ef3k87.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF2tSfsPwRscBMP8ajM37s6qmud6SxGZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245029670496-tgg043lgp9mlmfbii6sv9l2uc1ef3k87.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
