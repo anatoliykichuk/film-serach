@@ -16,8 +16,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import ru.geekbrains.filmserach.R
-import ru.geekbrains.filmserach.data.LOCATION_NAME
 import ru.geekbrains.filmserach.databinding.FragmentMapsBinding
+import ru.geekbrains.filmserach.ui.pages.film.LOCATION_NAME
 import java.io.IOException
 
 class MapsFragment : Fragment() {

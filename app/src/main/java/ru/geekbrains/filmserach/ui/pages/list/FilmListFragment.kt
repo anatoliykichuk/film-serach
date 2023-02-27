@@ -9,12 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import ru.geekbrains.filmserach.data.FILMS_ON_ROW_COUNT
-import ru.geekbrains.filmserach.data.SEARCH_OPTIONS
+import ru.geekbrains.filmserach.data.net.SearchOptions
 import ru.geekbrains.filmserach.databinding.FragmentFilmListBinding
-import ru.geekbrains.filmserach.domain.SearchOptions
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.adapters.FilmListAdapter
+import ru.geekbrains.filmserach.ui.pages.search.SEARCH_OPTIONS
+
+const val FILMS_ON_ROW_COUNT = 3
 
 class FilmListFragment : Fragment() {
 

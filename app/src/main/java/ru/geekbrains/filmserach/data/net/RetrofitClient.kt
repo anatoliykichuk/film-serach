@@ -6,8 +6,9 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.geekbrains.filmserach.data.PATH
 import java.io.IOException
+
+const val PATH = "https://api.kinopoisk.dev"
 
 object RetrofitClient {
     private var retrofit: Retrofit? = null

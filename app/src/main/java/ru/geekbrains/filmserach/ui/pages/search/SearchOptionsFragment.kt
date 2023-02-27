@@ -14,9 +14,16 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.slider.RangeSlider
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.*
+import ru.geekbrains.filmserach.data.net.SearchOptions
 import ru.geekbrains.filmserach.databinding.FragmentSearchOptionsBinding
-import ru.geekbrains.filmserach.domain.SearchOptions
 import java.time.LocalDate
+
+const val SEARCH_OPTIONS = "search_options"
+const val YEARS_FOR_STEP = 10F
+const val START_YEAR = 1890F
+const val POPULARITY_FOR_STEP = 1F
+const val START_POPULARITY = 0F
+const val END_POPULARITY = 10F
 
 class SearchOptionsFragment : Fragment() {
 

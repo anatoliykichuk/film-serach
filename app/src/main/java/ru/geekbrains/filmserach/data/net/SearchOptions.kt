@@ -1,4 +1,4 @@
-package ru.geekbrains.filmserach.domain
+package ru.geekbrains.filmserach.data.net
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.geekbrains.filmserach.data.Repository
 import ru.geekbrains.filmserach.data.db.FilmDatabase
-import ru.geekbrains.filmserach.domain.SearchOptions
+import ru.geekbrains.filmserach.data.net.SearchOptions
 import ru.geekbrains.filmserach.ui.AppState
 
 class FilmListViewModel(

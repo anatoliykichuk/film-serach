@@ -10,12 +10,13 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
-import ru.geekbrains.filmserach.data.LOCATION_NAME
 import ru.geekbrains.filmserach.data.PosterLoader
-import ru.geekbrains.filmserach.data.SELECTED_FILM
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
 import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.ui.SELECTED_FILM
 import java.util.stream.Collectors
+
+const val LOCATION_NAME = "location_name"
 
 class FilmFragment : Fragment() {
 
