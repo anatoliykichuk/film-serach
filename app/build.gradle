@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -29,7 +30,7 @@ android {
     buildTypes.each {
         Properties properties = new Properties()
         properties.load(
-                project.rootProject.file("token.properties").newDataInputStream()
+                project.rootProject.file("api.properties").newDataInputStream()
         )
 
         def token = properties.getProperty("token", "")
@@ -58,7 +59,9 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.room:room-common:2.4.2'
     implementation 'androidx.room:room-ktx:2.4.2'
+
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.3'
 
     // Navigation (bottom)
     def navigation_version = "2.3.5"
