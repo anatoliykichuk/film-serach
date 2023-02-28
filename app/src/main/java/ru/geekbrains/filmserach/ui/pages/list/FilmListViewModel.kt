@@ -13,10 +13,16 @@ class FilmListViewModel(
 ) : ViewModel() {
 
     private val liveData: MutableLiveData<AppState> = MutableLiveData()
+    private var favoritesPosted: Boolean = false
+    private var foundPosted: Boolean = false
 
     fun getLiveData(): LiveData<AppState> = liveData
 
     fun getFavorites() {
+        if (favoritesPosted) {
+            return
+        }
+
         liveData.value = AppState.Loading
 
         Thread {
@@ -25,10 +31,15 @@ class FilmListViewModel(
                     Repository().getFavorites(filmDatabase)
                 )
             )
+            favoritesPosted = true
         }.start()
     }
 
     fun getFound(searchOptions: SearchOptions) {
+        if (foundPosted) {
+            return
+        }
+
         liveData.value = AppState.Loading
 
         Thread {
@@ -37,6 +48,7 @@ class FilmListViewModel(
                     Repository().getFilmsBySearchOptionsFromNet(searchOptions)
                 )
             )
+            foundPosted = true
         }.start()
     }
 }

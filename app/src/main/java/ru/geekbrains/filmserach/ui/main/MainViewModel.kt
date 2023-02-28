@@ -9,10 +9,15 @@ import ru.geekbrains.filmserach.ui.AppState
 class MainViewModel : ViewModel() {
 
     private val liveData: MutableLiveData<AppState> = MutableLiveData()
+    private var dataPosted: Boolean = false
 
     fun getLiveData(): LiveData<AppState> = liveData
 
     fun getFilmsByGenres() {
+        if (dataPosted) {
+            return
+        }
+
         liveData.value = AppState.Loading
 
         Thread {
@@ -21,6 +26,7 @@ class MainViewModel : ViewModel() {
                     Repository().getFilmsByGenresFromNet()
                 )
             )
+            dataPosted = true
         }.start()
     }
 }

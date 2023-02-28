@@ -52,14 +52,12 @@ class FilmListFragment : Fragment() {
         _searchOptions = arguments?.getParcelable(SEARCH_OPTIONS)
 
         viewModel.getLiveData().observe(
-            viewLifecycleOwner,
-            Observer { renderFilms(it) }
-        )
+            viewLifecycleOwner
+        ) { renderFilms(it) }
 
         if (_searchOptions == null) {
             viewModel.getFavorites()
-        }
-        else {
+        } else {
             viewModel.getFound(searchOptions)
         }
     }
@@ -71,13 +69,14 @@ class FilmListFragment : Fragment() {
     }
 
     private fun renderFilms(appState: AppState) {
-        when(appState) {
+        when (appState) {
             is AppState.SuccessGettingFavoritesFilms -> {
                 binding.loadingProcess.visibility = View.GONE
 
                 recyclerView.setHasFixedSize(true)
                 recyclerView.layoutManager = GridLayoutManager(
-                    activity?.applicationContext, FILMS_ON_ROW_COUNT)
+                    activity?.applicationContext, FILMS_ON_ROW_COUNT
+                )
 
                 recyclerView.adapter = FilmListAdapter(appState.films)
             }

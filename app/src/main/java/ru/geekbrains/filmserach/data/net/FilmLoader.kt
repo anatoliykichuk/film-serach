@@ -12,7 +12,7 @@ class FilmLoader {
         try {
             return loadFilmsByGenresSafety()
         } catch (e: Throwable) {
-            //TODO("handle the exception")
+            e.printStackTrace()
         }
         return mapOf<String, List<Film>>()
     }
@@ -21,7 +21,7 @@ class FilmLoader {
         try {
             return loadFilmsBySearchOptionsSafety(searchOptions)
         } catch (e: Throwable) {
-            //TODO("handle the exception")
+            e.printStackTrace()
         }
         return listOf<Film>()
     }
