@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.domain.Film
-import ru.geekbrains.filmserach.ui.OnFilmClickListener
 
 class FilmListAdapter(
     private val films: List<Film>
