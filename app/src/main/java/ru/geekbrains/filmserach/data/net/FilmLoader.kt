@@ -6,7 +6,7 @@ import ru.geekbrains.filmserach.data.getAllGenres
 import ru.geekbrains.filmserach.data.getSelectFields
 import ru.geekbrains.filmserach.domain.Film
 
-class FilmLoader {
+class FilmLoader(private val filmApi: FilmApi) {
 
     fun loadFilmsByGenres(): Map<String, List<Film>> {
         try {
@@ -28,7 +28,6 @@ class FilmLoader {
 
     private fun loadFilmsByGenresSafety(): Map<String, List<Film>> {
         val filmsByGenresLoaded = mutableMapOf<String, List<Film>>()
-        val filmApi = RetrofitClient.getClient().create(FilmApi::class.java)
         val field = "genres.name"
         val genres = getAllGenres()
         val selectFields = getSelectFields()
@@ -51,7 +50,6 @@ class FilmLoader {
 
     private fun loadFilmsBySearchOptionsSafety(searchOptions: SearchOptions): List<Film> {
         val filmsLoaded = mutableListOf<Film>()
-        val filmApi = RetrofitClient.getClient().create(FilmApi::class.java)
         val url = "${END_POINT}?token=${BuildConfig.TOKEN}${searchOptions.toString()}"
 
         filmApi.getBySearchOptions(url)
