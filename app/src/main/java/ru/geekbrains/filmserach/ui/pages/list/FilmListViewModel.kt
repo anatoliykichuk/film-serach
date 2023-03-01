@@ -3,6 +3,7 @@ package ru.geekbrains.filmserach.ui.pages.list
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import org.koin.java.KoinJavaComponent.inject
 import ru.geekbrains.filmserach.data.Repository
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.net.SearchOptions
@@ -13,6 +14,7 @@ class FilmListViewModel(
 ) : ViewModel() {
 
     private val liveData: MutableLiveData<AppState> = MutableLiveData()
+    private val repository: Repository by inject(Repository::class.java)
     private var favoritesPosted: Boolean = false
     private var foundPosted: Boolean = false
 
@@ -28,7 +30,7 @@ class FilmListViewModel(
         Thread {
             liveData.postValue(
                 AppState.SuccessGettingFavoritesFilms(
-                    Repository().getFavorites(filmDatabase)
+                    repository.getFavorites(filmDatabase)
                 )
             )
             favoritesPosted = true
@@ -45,7 +47,7 @@ class FilmListViewModel(
         Thread {
             liveData.postValue(
                 AppState.SuccessGettingFavoritesFilms(
-                    Repository().getFilmsBySearchOptionsFromNet(searchOptions)
+                    repository.getFilmsBySearchOptionsFromNet(searchOptions)
                 )
             )
             foundPosted = true

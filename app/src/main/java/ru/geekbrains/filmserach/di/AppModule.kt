@@ -6,6 +6,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+import ru.geekbrains.filmserach.data.Repository
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.net.FilmApi
 import ru.geekbrains.filmserach.data.net.FilmLoader
@@ -17,6 +18,10 @@ import ru.geekbrains.filmserach.ui.pages.list.FilmListViewModel
 const val FILM_DATABASE = "film_database"
 
 val appModule = module {
+
+    factory<Repository> {
+        Repository()
+    }
 
     single<FilmApi> {
         RetrofitClient.getClient().create(FilmApi::class.java)

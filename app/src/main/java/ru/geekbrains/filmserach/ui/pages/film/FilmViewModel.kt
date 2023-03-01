@@ -3,6 +3,7 @@ package ru.geekbrains.filmserach.ui.pages.film
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import org.koin.java.KoinJavaComponent.inject
 import ru.geekbrains.filmserach.data.Repository
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.domain.Film
@@ -12,6 +13,7 @@ class FilmViewModel(
 ) : ViewModel() {
 
     private val liveData: MutableLiveData<Boolean> = MutableLiveData()
+    private val repository: Repository by inject(Repository::class.java)
     private var tagPosted: Boolean = false
     private var tagChangePosted: Boolean = false
 
@@ -24,7 +26,7 @@ class FilmViewModel(
 
         Thread {
             liveData.postValue(
-                Repository().isFavorite(filmDatabase, film)
+                repository.isFavorite(filmDatabase, film)
             )
             tagPosted = true
         }.start()
@@ -37,7 +39,7 @@ class FilmViewModel(
 
         Thread {
             liveData.postValue(
-                Repository().changeFavoritesTag(filmDatabase, film)
+                repository.changeFavoritesTag(filmDatabase, film)
             )
             tagChangePosted = true
         }.start()
