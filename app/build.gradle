@@ -20,12 +20,29 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            storeFile file('keystore.jks')
+            storePassword 'Alexandru_21031947'
+            keyAlias 'anatoliykichuk'
+            keyPassword 'Alexandru_21031947'
         }
     }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            versionNameSuffix '-release'
+        }
+
+        debug {
+            versionNameSuffix '-debug'
+        }
+    }
+
+    flavorDimensions 'version'
 
     buildTypes.each {
         Properties properties = new Properties()
@@ -35,6 +52,13 @@ android {
 
         def token = properties.getProperty("token", "")
         it.buildConfigField "String", "TOKEN", token
+    }
+
+    productFlavors {
+        free {
+            dimension 'version'
+            versionNameSuffix '.free'
+        }
     }
 
     compileOptions {

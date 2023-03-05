@@ -2,9 +2,9 @@
 .gradle
 .idea
 .DS_Store
+.externalNativeBuild
+.cxx
 /local.properties
 /api.properties
 /build
 /captures
-.externalNativeBuild
-.cxx

@@ -60,7 +60,6 @@ class MainFragment : Fragment() {
             is AppState.SuccessGettingFilmsByGenre -> {
                 binding.loadingProcess.visibility = View.GONE
 
-                recyclerView.setHasFixedSize(true)
                 recyclerView.adapter = GenresListAdapter(appState.filmsByGenres)
             }
 

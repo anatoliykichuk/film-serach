@@ -20,7 +20,6 @@ class GenresListAdapter(
         fun bind(filmsByGenres: Map<String, List<Film>>, genre: String) {
             (itemView.findViewById(R.id.genre_name) as TextView).text = genre
 
-            filmListView.setHasFixedSize(true);
             filmListView.adapter = filmsByGenres[genre]?.let {
                 FilmListAdapter(it.toList())
             }
