@@ -20,12 +20,17 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    Properties properties = new Properties()
+    properties.load(
+            project.file("signing.properties").newDataInputStream()
+    )
+
     signingConfigs {
         release {
-            storeFile file('keystore.jks')
-            storePassword 'Alexandru_21031947'
-            keyAlias 'anatoliykichuk'
-            keyPassword 'Alexandru_21031947'
+            storeFile file("keystore.jks")
+            storePassword properties.getProperty("STORE_PASSWORD")
+            keyAlias properties.getProperty("KEY_ALIAS")
+            keyPassword properties.getProperty("KEY_PASSWORD")
         }
     }
 
@@ -35,30 +40,31 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             versionNameSuffix '-release'
+            buildConfigField "String", "TYPE", '"RELEASE"'
         }
 
         debug {
             versionNameSuffix '-debug'
+            buildConfigField "String", "TYPE", '"DEBUG"'
         }
     }
 
     flavorDimensions 'version'
-
-    buildTypes.each {
-        Properties properties = new Properties()
-        properties.load(
-                project.rootProject.file("api.properties").newDataInputStream()
-        )
-
-        def token = properties.getProperty("token", "")
-        it.buildConfigField "String", "TOKEN", token
-    }
 
     productFlavors {
         free {
             dimension 'version'
             versionNameSuffix '.free'
         }
+    }
+
+    buildTypes.each {
+        properties.load(
+                project.rootProject.file("api.properties").newDataInputStream()
+        )
+
+        def token = properties.getProperty("token", "")
+        it.buildConfigField "String", "TOKEN", token
     }
 
     compileOptions {

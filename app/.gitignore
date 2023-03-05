@@ -1,4 +1,5 @@
 /build
 /local.properties
-/token.propertie
+/api.properties
+/signing.properties
 /keystore.jks

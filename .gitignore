@@ -6,5 +6,6 @@
 .cxx
 /local.properties
 /api.properties
+/signing.properties
 /build
 /captures
