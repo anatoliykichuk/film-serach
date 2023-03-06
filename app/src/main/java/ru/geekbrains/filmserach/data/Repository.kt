@@ -1,12 +1,15 @@
 package ru.geekbrains.filmserach.data
 
+import org.koin.java.KoinJavaComponent.inject
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.db.FilmEntity
 import ru.geekbrains.filmserach.data.net.FilmLoader
+import ru.geekbrains.filmserach.data.net.SearchOptions
 import ru.geekbrains.filmserach.domain.Film
-import ru.geekbrains.filmserach.domain.SearchOptions
 
 class Repository() : Storable {
+
+    private val filmLoader: FilmLoader by inject(FilmLoader::class.java)
 
     override fun isFavorite(filmDatabase: FilmDatabase, film: Film): Boolean {
         return filmDatabase.filmDao()
@@ -31,10 +34,10 @@ class Repository() : Storable {
     }
 
     override fun getFilmsByGenresFromNet(): Map<String, List<Film>> {
-        return FilmLoader().loadFilmsByGenres()
+        return filmLoader.loadFilmsByGenres()
     }
 
     override fun getFilmsBySearchOptionsFromNet(searchOptions: SearchOptions): List<Film> {
-        return FilmLoader().loadFilmsBySearchOptions(searchOptions)
+        return filmLoader.loadFilmsBySearchOptions(searchOptions)
     }
 }

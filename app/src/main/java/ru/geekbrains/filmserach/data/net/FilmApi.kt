@@ -5,7 +5,8 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url
-import ru.geekbrains.filmserach.data.END_POINT
+
+const val END_POINT = "movie"
 
 interface FilmApi {
     @GET(END_POINT)

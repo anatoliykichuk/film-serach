@@ -6,9 +6,11 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.geekbrains.filmserach.R
-import ru.geekbrains.filmserach.data.SELECTED_FILM
 import ru.geekbrains.filmserach.databinding.ActivityMainBinding
 import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.ui.adapters.OnFilmClickListener
+
+const val SELECTED_FILM = "selected_film"
 
 class MainActivity : AppCompatActivity(), OnFilmClickListener {
 

@@ -1,27 +1,6 @@
 package ru.geekbrains.filmserach.data
 
-import ru.geekbrains.filmserach.R
 import java.util.stream.Collectors
-
-const val PATH = "https://api.kinopoisk.dev"
-const val END_POINT = "movie"
-
-const val FILM_DATABASE = "film_database"
-
-const val SELECTED_FILM = "selected_film"
-const val SEARCH_OPTIONS = "search_options"
-const val LOCATION_NAME = "location_name"
-
-const val FILMS_ON_ROW_COUNT = 3
-
-const val EMPTY_POSTER_PATH = R.drawable.no_poster
-
-const val YEARS_FOR_STEP = 10F
-const val START_YEAR = 1890F
-
-const val POPULARITY_FOR_STEP = 1F
-const val START_POPULARITY = 0F
-const val END_POPULARITY = 10F
 
 fun getSelectFields(): String {
     val selectFields = listOf<String>(

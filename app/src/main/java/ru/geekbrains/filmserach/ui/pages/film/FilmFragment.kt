@@ -6,16 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
-import ru.geekbrains.filmserach.data.LOCATION_NAME
 import ru.geekbrains.filmserach.data.PosterLoader
-import ru.geekbrains.filmserach.data.SELECTED_FILM
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
 import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.ui.SELECTED_FILM
 import java.util.stream.Collectors
+
+const val LOCATION_NAME = "location_name"
 
 class FilmFragment : Fragment() {
 
@@ -48,12 +48,11 @@ class FilmFragment : Fragment() {
         _film = arguments?.getParcelable<Film>(SELECTED_FILM)
 
         viewModel.getLiveData().observe(
-            viewLifecycleOwner,
-            Observer<Boolean> {
-                setFavoritesTag(it)
-                showFilmData()
-            }
-        )
+            viewLifecycleOwner
+        ) {
+            setFavoritesTag(it)
+            showFilmData()
+        }
 
         viewModel.isFavorite(film)
 

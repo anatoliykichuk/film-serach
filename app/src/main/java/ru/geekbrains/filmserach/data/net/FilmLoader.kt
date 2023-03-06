@@ -1,20 +1,18 @@
 package ru.geekbrains.filmserach.data.net
 
 import ru.geekbrains.filmserach.BuildConfig
-import ru.geekbrains.filmserach.data.END_POINT
 import ru.geekbrains.filmserach.data.FilmConverter
 import ru.geekbrains.filmserach.data.getAllGenres
 import ru.geekbrains.filmserach.data.getSelectFields
 import ru.geekbrains.filmserach.domain.Film
-import ru.geekbrains.filmserach.domain.SearchOptions
 
-class FilmLoader {
+class FilmLoader(private val filmApi: FilmApi) {
 
     fun loadFilmsByGenres(): Map<String, List<Film>> {
         try {
             return loadFilmsByGenresSafety()
         } catch (e: Throwable) {
-            //TODO("handle the exception")
+            e.printStackTrace()
         }
         return mapOf<String, List<Film>>()
     }
@@ -23,14 +21,13 @@ class FilmLoader {
         try {
             return loadFilmsBySearchOptionsSafety(searchOptions)
         } catch (e: Throwable) {
-            //TODO("handle the exception")
+            e.printStackTrace()
         }
         return listOf<Film>()
     }
 
     private fun loadFilmsByGenresSafety(): Map<String, List<Film>> {
         val filmsByGenresLoaded = mutableMapOf<String, List<Film>>()
-        val filmApi = RetrofitClient.getClient().create(FilmApi::class.java)
         val field = "genres.name"
         val genres = getAllGenres()
         val selectFields = getSelectFields()
@@ -53,8 +50,7 @@ class FilmLoader {
 
     private fun loadFilmsBySearchOptionsSafety(searchOptions: SearchOptions): List<Film> {
         val filmsLoaded = mutableListOf<Film>()
-        val filmApi = RetrofitClient.getClient().create(FilmApi::class.java)
-        val url = "$END_POINT?token=${BuildConfig.TOKEN}${searchOptions.toString()}"
+        val url = "${END_POINT}?token=${BuildConfig.TOKEN}${searchOptions.toString()}"
 
         filmApi.getBySearchOptions(url)
             .execute().let {

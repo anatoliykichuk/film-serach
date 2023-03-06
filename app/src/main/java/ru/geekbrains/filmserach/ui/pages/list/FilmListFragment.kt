@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import ru.geekbrains.filmserach.data.FILMS_ON_ROW_COUNT
-import ru.geekbrains.filmserach.data.SEARCH_OPTIONS
+import ru.geekbrains.filmserach.data.net.SearchOptions
 import ru.geekbrains.filmserach.databinding.FragmentFilmListBinding
-import ru.geekbrains.filmserach.domain.SearchOptions
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.adapters.FilmListAdapter
+import ru.geekbrains.filmserach.ui.pages.search.SEARCH_OPTIONS
+
+const val FILMS_ON_ROW_COUNT = 3
 
 class FilmListFragment : Fragment() {
 
@@ -51,14 +51,12 @@ class FilmListFragment : Fragment() {
         _searchOptions = arguments?.getParcelable(SEARCH_OPTIONS)
 
         viewModel.getLiveData().observe(
-            viewLifecycleOwner,
-            Observer { renderFilms(it) }
-        )
+            viewLifecycleOwner
+        ) { renderFilms(it) }
 
         if (_searchOptions == null) {
             viewModel.getFavorites()
-        }
-        else {
+        } else {
             viewModel.getFound(searchOptions)
         }
     }
@@ -70,13 +68,14 @@ class FilmListFragment : Fragment() {
     }
 
     private fun renderFilms(appState: AppState) {
-        when(appState) {
+        when (appState) {
             is AppState.SuccessGettingFavoritesFilms -> {
                 binding.loadingProcess.visibility = View.GONE
 
                 recyclerView.setHasFixedSize(true)
                 recyclerView.layoutManager = GridLayoutManager(
-                    activity?.applicationContext, FILMS_ON_ROW_COUNT)
+                    activity?.applicationContext, FILMS_ON_ROW_COUNT
+                )
 
                 recyclerView.adapter = FilmListAdapter(appState.films)
             }

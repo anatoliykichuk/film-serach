@@ -14,8 +14,6 @@ class MessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-
-        TODO("Отправить токен на сервер")
     }
 
     override fun onMessageReceived(message: RemoteMessage) {
