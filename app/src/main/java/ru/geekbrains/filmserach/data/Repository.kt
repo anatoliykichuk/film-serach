@@ -12,7 +12,7 @@ class Repository() : Storable {
     private val filmLoader: FilmLoader by inject(FilmLoader::class.java)
 
     override fun isFavorite(filmDatabase: FilmDatabase, film: Film): Boolean {
-        return filmDatabase.filmDao()
+        return filmDatabase.getFilmDao()
             .isFavorite(film.title, film.originalTitle, film.releaseDate)
     }
 
@@ -21,15 +21,15 @@ class Repository() : Storable {
         val filmEntity = FilmConverter.convertToEntity(film)
 
         if (film.isFavorite) {
-            filmDatabase.filmDao().insert(filmEntity)
+            filmDatabase.getFilmDao().insert(filmEntity)
         } else {
-            filmDatabase.filmDao().delete(filmEntity)
+            filmDatabase.getFilmDao().delete(filmEntity)
         }
         return film.isFavorite
     }
 
     override fun getFavorites(filmDatabase: FilmDatabase): List<Film> {
-        val filmsEntity: List<FilmEntity> = filmDatabase.filmDao().getFavorites()
+        val filmsEntity: List<FilmEntity> = filmDatabase.getFilmDao().getFavorites()
         return FilmConverter.convertListFromEntity(filmsEntity)
     }
 
