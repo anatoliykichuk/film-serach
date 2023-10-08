@@ -27,7 +27,7 @@ class FilmFragmentTest {
         scenario.close()
     }
 
-    fun fragment_AssertIsNotNull() {
+    fun fragment_IsNotNull() {
         scenario.onFragment {
             assertNotNull(it)
         }
