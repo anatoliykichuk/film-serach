@@ -16,7 +16,7 @@ import ru.geekbrains.filmserach.ui.pages.list.FilmListFragment
 @RunWith(AndroidJUnit4::class)
 class FilmListFragmentTest {
 
-    lateinit var scenario: FragmentScenario<FilmListFragment>
+    private lateinit var scenario: FragmentScenario<FilmListFragment>
 
     @Before
     fun setUp() {

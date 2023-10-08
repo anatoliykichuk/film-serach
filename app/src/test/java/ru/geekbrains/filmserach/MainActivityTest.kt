@@ -15,7 +15,7 @@ import ru.geekbrains.filmserach.ui.MainActivity
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
 
-    lateinit var scenario: ActivityScenario<MainActivity>
+    private lateinit var scenario: ActivityScenario<MainActivity>
 
     @Before
     fun setUp() {
