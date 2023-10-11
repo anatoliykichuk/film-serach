@@ -44,5 +44,4 @@ class FilmViewModel(
             tagChangePosted = true
         }.start()
     }
-
 }

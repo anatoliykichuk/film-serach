@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.Observer
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.runner.AndroidJUnit4
 import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
 import org.junit.After
@@ -17,19 +17,18 @@ import org.mockito.MockitoAnnotations
 import ru.geekbrains.filmserach.data.db.FilmDao
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.domain.Film
-import ru.geekbrains.filmserach.ui.AppState
-import ru.geekbrains.filmserach.ui.pages.list.FilmListViewModel
+import ru.geekbrains.filmserach.ui.pages.film.FilmViewModel
 
 @RunWith(AndroidJUnit4::class)
-class FilmListViewModelTest {
+class FilmViewModelTest {
 
-    private lateinit var viewModel: FilmListViewModel
+    private lateinit var viewModel: FilmViewModel
 
     private lateinit var filmDatabase: FilmDatabase
     private lateinit var filmDao: FilmDao
 
     @Mock
-    private lateinit var observer: Observer<AppState>
+    private lateinit var observer: Observer<Boolean>
 
     @Before
     fun setUp() {
@@ -42,7 +41,7 @@ class FilmListViewModelTest {
         ).build()
 
         filmDao = filmDatabase.getFilmDao()
-        viewModel = FilmListViewModel(filmDatabase)
+        viewModel = FilmViewModel(filmDatabase)
 
         viewModel.getLiveData().observeForever(observer)
     }
@@ -53,11 +52,12 @@ class FilmListViewModelTest {
     }
 
     @Test
-    fun getFavorites_IsSuccess() {
-        verify(viewModel, times(1)).getFavorites()
-
+    fun isFavorite_IsSuccess() {
         val film = Mockito.mock(Film::class.java)
-        val films = listOf<Film>(film)
-        verify(observer).onChanged(AppState.SuccessGettingFavoritesFilms(films))
+        verify(viewModel, times(1)).isFavorite(film)
+        verify(observer).onChanged(film.isFavorite)
+
+        verify(viewModel, times(1)).changeFavoritesTag(film)
+        verify(observer).onChanged(!film.isFavorite)
     }
 }
