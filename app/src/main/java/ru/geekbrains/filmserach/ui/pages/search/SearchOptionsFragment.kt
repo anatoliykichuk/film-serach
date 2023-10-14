@@ -130,6 +130,6 @@ class SearchOptionsFragment : Fragment() {
         val bundle = Bundle()
         bundle.putParcelable(SEARCH_OPTIONS, searchOptions)
 
-        findNavController().navigate(R.id.film_list, bundle)
+        findNavController().navigate(R.id.film_list_fragment, bundle)
     }
 }

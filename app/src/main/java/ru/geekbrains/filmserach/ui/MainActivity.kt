@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
     override fun onFilmClick(film: Film) {
         val bundle = Bundle()
         bundle.putParcelable(SELECTED_FILM, film)
-        navController.navigate(R.id.film, bundle)
+        navController.navigate(R.id.film_fragment, bundle)
     }
 
     override fun onDestroy() {
@@ -56,15 +56,15 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
         mainMenu.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_list -> {
-                    navController.navigate(R.id.film_list_by_genres)
+                    navController.navigate(R.id.film_list_by_genres_fragment)
                 }
 
                 R.id.menu_favorites -> {
-                    navController.navigate(R.id.film_list)
+                    navController.navigate(R.id.film_list_fragment)
                 }
 
                 R.id.menu_search -> {
-                    navController.navigate(R.id.search_options)
+                    navController.navigate(R.id.search_options_fragment)
                 }
             }
             true
