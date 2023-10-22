@@ -1,40 +1,69 @@
 package ru.geekbrains.filmserach
 
-import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import android.content.Context
+import android.content.Intent
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.junit.After
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
+import androidx.test.uiautomator.By
+import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.Until
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import ru.geekbrains.filmserach.ui.MainActivity
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityEspressoTest {
 
-    private lateinit var scenario: ActivityScenario<MainActivity>
+    private val uiDevice: UiDevice = UiDevice.getInstance(getInstrumentation())
+
+    private val context = ApplicationProvider.getApplicationContext<Context>()
+
+    private val packageName = context.packageName
 
     @Before
     fun setUp() {
-        scenario = ActivityScenario.launch(MainActivity::class.java)
-    }
+        uiDevice.pressHome()
 
-    @After
-    fun close() {
-        scenario.close()
-    }
+        val intent = context.packageManager.getLaunchIntentForPackage(packageName)
+        intent!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
 
-    @Test
-    fun containerView_isDisplayed() {
-        onView(withId(R.id.main_menu)).check(matches(isDisplayed()))
+        context.startActivity(intent)
+
+        uiDevice.wait(Until.hasObject(By.pkg(packageName).depth(0)), TIMEOUT)
     }
 
     @Test
-    fun activityTextView_IsCompletelyDisplayed() {
-        onView(withId(R.id.main_menu)).check(matches(isCompletelyDisplayed()))
+    fun activity_isStarted() {
+        val mainMenu = uiDevice.findObject(By.res(packageName, "main_menu"))
+        Assert.assertNotNull(mainMenu)
+    }
+
+    @Test
+    fun searchScreen_filmsByNameAreSearched() {
+        val searchButton = uiDevice.findObject(By.res(packageName, "menu_search"))
+        searchButton.clickAndWait(Until.newWindow(), TIMEOUT)
+
+        val filmNameView = uiDevice.findObject(By.res(packageName, "name"))
+        val filmName = "007"
+        filmNameView.text = filmName
+
+        val findButton = uiDevice.findObject(By.res(packageName, "start_searching"))
+        val filmListIsOpened = findButton.clickAndWait(Until.newWindow(), TIMEOUT)
+        Assert.assertNotNull(filmListIsOpened)
+    }
+
+    @Test
+    fun searchScreen_expectedNumberOfFilmsDisplayed() {
+        searchScreen_filmsByNameAreSearched()
+
+        val listView = uiDevice.findObject(By.res(packageName, "favorites_list"))
+        val itemsCount = 10
+        Assert.assertEquals(listView.childCount, itemsCount)
+    }
+
+    companion object {
+        private const val TIMEOUT = 5000L
     }
 }
