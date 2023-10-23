@@ -41,6 +41,46 @@ class MainActivityEspressoTest {
     }
 
     @Test
+    fun mainScreen_filmsByGenresAreDisplayed() {
+        val listButton = uiDevice.findObject(By.res(packageName, "menu_list"))
+        listButton.clickAndWait(Until.newWindow(), TIMEOUT)
+
+        val filmListIsOpened = uiDevice.findObject(
+            By.res(packageName, "film_list_fragment")
+        )
+        Assert.assertNotNull(filmListIsOpened)
+    }
+
+    @Test
+    fun searchScreen_expectedNumberOfFilmsByGenresDisplayed() {
+        mainScreen_filmsByGenresAreDisplayed()
+
+        val listView = uiDevice.findObject(By.res(packageName, "film_list_fragment"))
+        val itemsCount = 4
+        Assert.assertEquals(listView.childCount, itemsCount)
+    }
+
+    @Test
+    fun mainScreen_favoriteFilmsAreDisplayed() {
+        val listButton = uiDevice.findObject(By.res(packageName, "menu_favorites"))
+        listButton.clickAndWait(Until.newWindow(), TIMEOUT)
+
+        val filmListIsOpened = uiDevice.findObject(
+            By.res(packageName, "favorites_list")
+        )
+        Assert.assertNotNull(filmListIsOpened)
+    }
+
+    @Test
+    fun searchScreen_expectedNumberOfFavoritesFilmsDisplayed() {
+        mainScreen_favoriteFilmsAreDisplayed()
+
+        val listView = uiDevice.findObject(By.res(packageName, "favorites_list"))
+        val itemsCount = 8
+        Assert.assertEquals(listView.childCount, itemsCount)
+    }
+
+    @Test
     fun searchScreen_filmsByNameAreSearched() {
         val searchButton = uiDevice.findObject(By.res(packageName, "menu_search"))
         searchButton.clickAndWait(Until.newWindow(), TIMEOUT)
@@ -55,7 +95,7 @@ class MainActivityEspressoTest {
     }
 
     @Test
-    fun searchScreen_expectedNumberOfFilmsDisplayed() {
+    fun searchScreen_expectedNumberOfFoundFilmsDisplayed() {
         searchScreen_filmsByNameAreSearched()
 
         val listView = uiDevice.findObject(By.res(packageName, "favorites_list"))
