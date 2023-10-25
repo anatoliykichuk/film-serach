@@ -109,6 +109,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging-ktx:23.0.3'
     implementation 'androidx.test:core-ktx:1.5.0'
     implementation 'androidx.test.ext:junit-ktx:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.6.0-alpha01'
 
     // Navigation (bottom)
     def navigation_version = "2.3.5"
@@ -144,7 +145,7 @@ dependencies {
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'androidx.test.ext:junit:1.1.5'
+    testImplementation 'androidx.test.ext:junit:1.2.0-alpha01'
 
     testImplementation "org.mockito:mockito-core:5.5.0"
 
@@ -160,7 +161,7 @@ dependencies {
     testImplementation 'androidx.test:runner:1.5.2'
     testImplementation 'androidx.test.ext:truth:1.5.0'
 
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.0-alpha01'
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.1'
 
     // UI Automator
