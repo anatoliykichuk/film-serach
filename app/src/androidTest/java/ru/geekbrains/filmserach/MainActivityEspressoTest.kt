@@ -2,19 +2,29 @@ package ru.geekbrains.filmserach
 
 import android.content.Context
 import android.content.Intent
+import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
+import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import ru.geekbrains.filmserach.ui.MainActivity
+import ru.geekbrains.filmserach.ui.adapters.GenresListAdapter
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityEspressoTest {
+
+    private lateinit var scenario: ActivityScenario<MainActivity>
 
     private val uiDevice: UiDevice = UiDevice.getInstance(getInstrumentation())
 
@@ -24,6 +34,8 @@ class MainActivityEspressoTest {
 
     @Before
     fun setUp() {
+        scenario = ActivityScenario.launch(MainActivity::class.java)
+
         uiDevice.pressHome()
 
         val intent = context.packageManager.getLaunchIntentForPackage(packageName)
@@ -32,6 +44,11 @@ class MainActivityEspressoTest {
         context.startActivity(intent)
 
         uiDevice.wait(Until.hasObject(By.pkg(packageName).depth(0)), TIMEOUT)
+    }
+
+    @After
+    fun close() {
+        scenario.close()
     }
 
     @Test
@@ -49,6 +66,19 @@ class MainActivityEspressoTest {
             By.res(packageName, "film_list_fragment")
         )
         Assert.assertNotNull(filmListIsOpened)
+    }
+
+    @Test
+    fun mainScreen_recyclerView_scrollTo() {
+        mainScreen_filmsByGenresAreDisplayed()
+
+        scenario.onActivity {
+            onView(withId(R.id.genre_name)).perform(
+                RecyclerViewActions.scrollTo<GenresListAdapter.GenresListViewHolder>(
+                    ViewMatchers.hasDescendant(ViewMatchers.withText("фэнтези"))
+                )
+            )
+        }
     }
 
     @Test
