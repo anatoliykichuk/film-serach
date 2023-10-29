@@ -3,7 +3,7 @@ package ru.geekbrains.filmserach
 import android.view.View
 import android.widget.ImageButton
 import androidx.fragment.app.testing.FragmentScenario
-import androidx.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull
 import org.junit.After
@@ -20,11 +20,6 @@ class FilmFragmentTest {
     @Before
     fun setUp() {
         scenario = FragmentScenario.launch(FilmFragment::class.java)
-    }
-
-    @After
-    fun close() {
-        scenario.close()
     }
 
     fun fragment_IsNotNull() {

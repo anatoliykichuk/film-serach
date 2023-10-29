@@ -23,11 +23,6 @@ class FilmListFragmentTest {
         scenario = FragmentScenario.launch(FilmListFragment::class.java)
     }
 
-    @After
-    fun close() {
-        scenario.close()
-    }
-
     @Test
     fun fragment_InNotNull() {
         scenario.onFragment {

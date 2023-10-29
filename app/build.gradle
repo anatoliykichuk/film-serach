@@ -154,6 +154,8 @@ dependencies {
         exclude group: 'org.mockito'
     }
 
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+
     // Robolectric
     testImplementation 'org.robolectric:robolectric:4.5.1'
     testImplementation 'androidx.test:core:1.5.0'
