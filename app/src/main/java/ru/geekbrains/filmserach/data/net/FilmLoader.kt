@@ -46,7 +46,9 @@ class FilmLoader(private val filmApi: FilmApi) {
         return filmsByGenresLoaded
     }
 
-    private suspend fun loadFilmsBySearchOptionsSafety(searchOptions: SearchOptions): List<Film> {
+    private suspend fun loadFilmsBySearchOptionsSafety(
+        searchOptions: SearchOptions
+    ): List<Film> {
         val filmsLoaded = mutableListOf<Film>()
         val url = "${END_POINT}?token=${BuildConfig.TOKEN}${searchOptions.toString()}"
 

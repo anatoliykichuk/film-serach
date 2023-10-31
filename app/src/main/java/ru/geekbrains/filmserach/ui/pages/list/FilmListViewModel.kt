@@ -31,14 +31,14 @@ class FilmListViewModel(
 
         liveData.value = AppState.Loading
 
-        Thread {
-            liveData.postValue(
-                AppState.SuccessGettingFavoritesFilms(
-                    repository.getFavorites(filmDatabase)
-                )
+        CoroutineScope(
+            Dispatchers.Main + SupervisorJob()
+        ).launch {
+            liveData.value = AppState.SuccessGettingFavoritesFilms(
+                repository.getFavorites(filmDatabase)
             )
             favoritesPosted = true
-        }.start()
+        }
     }
 
     fun getFound(searchOptions: SearchOptions) {
