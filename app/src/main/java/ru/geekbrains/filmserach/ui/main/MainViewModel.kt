@@ -3,6 +3,10 @@ package ru.geekbrains.filmserach.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import org.koin.java.KoinJavaComponent.inject
 import ru.geekbrains.filmserach.data.Repository
 import ru.geekbrains.filmserach.ui.AppState
@@ -22,13 +26,13 @@ class MainViewModel : ViewModel() {
 
         liveData.value = AppState.Loading
 
-        Thread {
-            liveData.postValue(
-                AppState.SuccessGettingFilmsByGenre(
-                    repository.getFilmsByGenresFromNet()
-                )
+        CoroutineScope(
+            Dispatchers.Main + SupervisorJob()
+        ).launch {
+            liveData.value = AppState.SuccessGettingFilmsByGenre(
+                repository.getFilmsByGenresFromNet()
             )
             dataPosted = true
-        }.start()
+        }
     }
 }

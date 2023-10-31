@@ -2,7 +2,7 @@ package ru.geekbrains.filmserach.data
 
 import java.util.stream.Collectors
 
-fun getSelectFields(): String {
+fun getSelectedFields(): String {
     val selectFields = listOf<String>(
         "externalId",
         "id",

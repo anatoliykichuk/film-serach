@@ -33,11 +33,11 @@ class Repository() : Storable {
         return FilmConverter.convertListFromEntity(filmsEntity)
     }
 
-    override fun getFilmsByGenresFromNet(): Map<String, List<Film>> {
+    override suspend fun getFilmsByGenresFromNet(): Map<String, List<Film>> {
         return filmLoader.loadFilmsByGenres()
     }
 
-    override fun getFilmsBySearchOptionsFromNet(searchOptions: SearchOptions): List<Film> {
+    override suspend fun getFilmsBySearchOptionsFromNet(searchOptions: SearchOptions): List<Film> {
         return filmLoader.loadFilmsBySearchOptions(searchOptions)
     }
 }

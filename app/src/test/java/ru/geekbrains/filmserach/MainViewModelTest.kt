@@ -1,23 +1,15 @@
 package ru.geekbrains.filmserach
 
-import android.os.Build
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import androidx.lifecycle.liveData
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.nhaarman.mockito_kotlin.times
-import com.nhaarman.mockito_kotlin.verify
-import okio.IOException
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
-import org.robolectric.annotation.Config
-import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.main.MainViewModel
 

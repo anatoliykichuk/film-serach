@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.test.runner.AndroidJUnit4
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

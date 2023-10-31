@@ -1,7 +1,7 @@
 package ru.geekbrains.filmserach.data.net
 
 import com.example.example.FilmsDto
-import retrofit2.Call
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
@@ -16,10 +16,10 @@ interface FilmApi {
         @Query("field") genreKey: String,
         @Query("search") genreValue: String,
         @Query("selectFields") selectFields: String
-    ): Call<FilmsDto>
+    ): Deferred<FilmsDto>
 
     @GET
     fun getBySearchOptions(
         @Url url: String
-    ): Call<FilmsDto>
+    ): Deferred<FilmsDto>
 }
