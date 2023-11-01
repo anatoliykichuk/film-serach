@@ -12,8 +12,7 @@ class Repository() : Storable {
 
     override suspend fun isFavorite(filmDatabase: FilmDatabase, film: Film): Boolean {
         filmDatabase.getFilmDao()
-            .isFavorite(film.title, film.originalTitle, film.releaseDate)
-            .await().let {
+            .isFavorite(film.title, film.originalTitle, film.releaseDate).let {
                 return it
             }
     }
@@ -32,8 +31,7 @@ class Repository() : Storable {
 
     override suspend fun getFavorites(filmDatabase: FilmDatabase): List<Film> {
         filmDatabase.getFilmDao()
-            .getFavorites()
-            .await().let {
+            .getFavorites().let {
                 return FilmConverter.convertListFromEntity(it)
             }
     }

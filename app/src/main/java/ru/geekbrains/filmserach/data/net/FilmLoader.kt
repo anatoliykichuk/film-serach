@@ -49,13 +49,10 @@ class FilmLoader(private val filmApi: FilmApi) {
     private suspend fun loadFilmsBySearchOptionsSafety(
         searchOptions: SearchOptions
     ): List<Film> {
-        val filmsLoaded = mutableListOf<Film>()
         val url = "${END_POINT}?token=${BuildConfig.TOKEN}${searchOptions.toString()}"
 
         filmApi.getBySearchOptions(url).await().let {
-            val filmsDto = it.films
-            return FilmConverter.convertListFromDto(filmsDto)
+            return FilmConverter.convertListFromDto(it.films)
         }
-        return filmsLoaded
     }
 }

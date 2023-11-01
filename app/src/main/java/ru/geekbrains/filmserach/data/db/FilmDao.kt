@@ -1,12 +1,11 @@
 package ru.geekbrains.filmserach.data.db
 
 import androidx.room.*
-import kotlinx.coroutines.Deferred
 
 @Dao
 interface FilmDao {
     @Query("SELECT * FROM films")
-    suspend fun getAll(): Deferred<List<FilmEntity>>
+    suspend fun getAll(): List<FilmEntity>
 
     @Query(
         "SELECT * " +
@@ -17,10 +16,10 @@ interface FilmDao {
     )
     suspend fun getByKey(
         title: String, originalTitle: String, releaseDate: String
-    ): Deferred<FilmEntity>
+    ): FilmEntity
 
     @Query("SELECT * FROM films WHERE isFavorite")
-    suspend fun getFavorites(): Deferred<List<FilmEntity>>
+    suspend fun getFavorites(): List<FilmEntity>
 
     @Query(
         "SELECT isFavorite " +
@@ -31,7 +30,7 @@ interface FilmDao {
     )
     suspend fun isFavorite(
         title: String, originalTitle: String, releaseDate: String
-    ): Deferred<Boolean>
+    ): Boolean
 
     @Insert
     suspend fun insert(film: FilmEntity)

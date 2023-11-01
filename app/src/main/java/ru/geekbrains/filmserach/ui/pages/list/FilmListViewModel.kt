@@ -34,10 +34,14 @@ class FilmListViewModel(
         CoroutineScope(
             Dispatchers.Main + SupervisorJob()
         ).launch {
-            liveData.value = AppState.SuccessGettingFavoritesFilms(
-                repository.getFavorites(filmDatabase)
-            )
-            favoritesPosted = true
+            try {
+                liveData.value = AppState.SuccessGettingFavoritesFilms(
+                    repository.getFavorites(filmDatabase)
+                )
+                favoritesPosted = true
+            } catch (e: Throwable) {
+                e.printStackTrace()
+            }
         }
     }
 

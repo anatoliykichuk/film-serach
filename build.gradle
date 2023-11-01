@@ -16,6 +16,10 @@ buildscript {
     }
 }
 
+ext {
+    roomCoroutinesVersion = '2.1.0-alpha04'
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

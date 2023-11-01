@@ -31,8 +31,12 @@ class FilmViewModel(
         CoroutineScope(
             Dispatchers.Main + SupervisorJob()
         ).launch {
-            liveData.value = repository.isFavorite(filmDatabase, film)
-            tagPosted = true
+            try {
+                liveData.value = repository.isFavorite(filmDatabase, film)
+                tagPosted = true
+            } catch (e: Throwable) {
+                e.printStackTrace()
+            }
         }
     }
 
@@ -44,8 +48,12 @@ class FilmViewModel(
         CoroutineScope(
             Dispatchers.Main + SupervisorJob()
         ).launch {
-            liveData.value = repository.changeFavoritesTag(filmDatabase, film)
-            tagChangePosted = true
+            try {
+                liveData.value = repository.changeFavoritesTag(filmDatabase, film)
+                tagChangePosted = true
+            } catch (e: Throwable) {
+                e.printStackTrace()
+            }
         }
     }
 }
