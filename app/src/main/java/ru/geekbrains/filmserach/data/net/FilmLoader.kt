@@ -30,11 +30,11 @@ class FilmLoader(private val filmApi: FilmApi) {
         val filmsByGenresLoaded = mutableMapOf<String, List<Film>>()
         val field = "genres.name"
         val genres = getAllGenres()
-        val selectFields = getSelectedFields()
+        val selectedFields = getSelectedFields()
 
         for (genre in genres) {
             filmApi.getByGenre(
-                BuildConfig.TOKEN, field, genre, selectFields
+                BuildConfig.TOKEN, field, genre, selectedFields
             ).await().let {
 
                 val filmsDto = it.films
