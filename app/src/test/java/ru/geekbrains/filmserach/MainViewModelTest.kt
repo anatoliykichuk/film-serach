@@ -3,13 +3,14 @@ package ru.geekbrains.filmserach
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.junit.Assert
+import com.nhaarman.mockito_kotlin.times
+import com.nhaarman.mockito_kotlin.verify
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
+import org.mockito.Mockito
+import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.main.MainViewModel
 
@@ -19,37 +20,36 @@ class MainViewModelTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var viewModel: MainViewModel
+    @get:Rule
+    var testCoroutineRule = TestCoroutineRule()
 
-    @Mock
+    private lateinit var viewModel: MainViewModel
     private lateinit var observer: Observer<AppState>
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
-
         viewModel = MainViewModel()
     }
 
     @Test
     fun getFilmsByGenres_IsSuccess() {
-        val liveData = viewModel.getLiveData()
-        viewModel.getFilmsByGenres()
+        testCoroutineRule.runBlockingTest {
+            val liveData = viewModel.getLiveData()
 
-        try {
-            liveData.observeForever(observer)
+            try {
+                liveData.observeForever(observer)
 
-            //verify(viewModel, times(1)).getFilmsByGenres()
+                verify(viewModel, times(1)).getFilmsByGenres()
 
-            Assert.assertNotNull(liveData.value)
+                val genre = "фэнтези"
+                val film = Mockito.mock(Film::class.java)
+                val filmsByGenres = mapOf(genre to listOf<Film>(film))
 
-//            val genre = "фэнтези"
-//            val film = Mockito.mock(Film::class.java)
-//            val filmsByGenres = mapOf(genre to listOf<Film>(film))
-//
-//            verify(observer).onChanged(AppState.SuccessGettingFilmsByGenre(filmsByGenres))
-        } finally {
-            liveData.removeObserver(observer)
+                verify(observer).onChanged(AppState.SuccessGettingFilmsByGenre(filmsByGenres))
+
+            } finally {
+                liveData.removeObserver(observer)
+            }
         }
     }
 }

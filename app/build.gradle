@@ -85,15 +85,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-
-    sourceSets {
-        androidTest {
-            java.srcDirs += "src/commonTest/java"
-        }
-        test {
-            java.srcDirs += "src/commonTest/java"
-        }
-    }
 }
 
 dependencies {
@@ -171,6 +162,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.3.0'
     debugImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
+
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3'
 
     androidTestImplementation 'androidx.navigation:navigation-testing:2.6.0'
 

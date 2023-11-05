@@ -132,4 +132,8 @@ class MainActivityEspressoTest {
         val itemsCount = 10
         Assert.assertEquals(listView.childCount, itemsCount)
     }
+
+    companion object {
+        const val TIMEOUT = 500L
+    }
 }
