@@ -3,6 +3,10 @@ package ru.geekbrains.filmserach.ui.pages.film
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import org.koin.java.KoinJavaComponent.inject
 import ru.geekbrains.filmserach.data.Repository
 import ru.geekbrains.filmserach.data.db.FilmDatabase
@@ -24,12 +28,16 @@ class FilmViewModel(
             return
         }
 
-        Thread {
-            liveData.postValue(
-                repository.isFavorite(filmDatabase, film)
-            )
-            tagPosted = true
-        }.start()
+        CoroutineScope(
+            Dispatchers.Main + SupervisorJob()
+        ).launch {
+            try {
+                liveData.value = repository.isFavorite(filmDatabase, film)
+                tagPosted = true
+            } catch (e: Throwable) {
+                e.printStackTrace()
+            }
+        }
     }
 
     fun changeFavoritesTag(film: Film) {
@@ -37,11 +45,15 @@ class FilmViewModel(
             return
         }
 
-        Thread {
-            liveData.postValue(
-                repository.changeFavoritesTag(filmDatabase, film)
-            )
-            tagChangePosted = true
-        }.start()
+        CoroutineScope(
+            Dispatchers.Main + SupervisorJob()
+        ).launch {
+            try {
+                liveData.value = repository.changeFavoritesTag(filmDatabase, film)
+                tagChangePosted = true
+            } catch (e: Throwable) {
+                e.printStackTrace()
+            }
+        }
     }
 }

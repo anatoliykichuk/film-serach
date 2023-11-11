@@ -116,6 +116,6 @@ class FilmFragment : Fragment() {
         val bundle = Bundle()
 
         bundle.putString(LOCATION_NAME, country)
-        findNavController().navigate(R.id.maps, bundle)
+        findNavController().navigate(R.id.maps_fragment, bundle)
     }
 }

@@ -2,7 +2,7 @@ package ru.geekbrains.filmserach.data.net
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import ru.geekbrains.filmserach.data.getSelectFields
+import ru.geekbrains.filmserach.data.getSelectedFields
 
 @Parcelize
 data class SearchOptions(
@@ -46,7 +46,7 @@ data class SearchOptions(
         }
 
         optionsBuilder.add(
-            "selectFields=${getSelectFields()}"
+            "selectFields=${getSelectedFields()}"
         )
 
         if (optionsBuilder.isNotEmpty()) {

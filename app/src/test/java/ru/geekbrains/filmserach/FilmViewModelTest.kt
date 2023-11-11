@@ -1,14 +1,16 @@
 package ru.geekbrains.filmserach
 
 import android.content.Context
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
@@ -21,6 +23,12 @@ import ru.geekbrains.filmserach.ui.pages.film.FilmViewModel
 
 @RunWith(AndroidJUnit4::class)
 class FilmViewModelTest {
+
+    @get:Rule
+    var instantExecutorRule = InstantTaskExecutorRule()
+
+    @get:Rule
+    var testCoroutineRule = TestCoroutineRule()
 
     private lateinit var viewModel: FilmViewModel
 
@@ -42,8 +50,6 @@ class FilmViewModelTest {
 
         filmDao = filmDatabase.getFilmDao()
         viewModel = FilmViewModel(filmDatabase)
-
-        viewModel.getLiveData().observeForever(observer)
     }
 
     @After
@@ -53,11 +59,22 @@ class FilmViewModelTest {
 
     @Test
     fun isFavorite_IsSuccess() {
-        val film = Mockito.mock(Film::class.java)
-        verify(viewModel, times(1)).isFavorite(film)
-        verify(observer).onChanged(film.isFavorite)
+        testCoroutineRule.runBlockingTest {
+            val liveData = viewModel.getLiveData()
 
-        verify(viewModel, times(1)).changeFavoritesTag(film)
-        verify(observer).onChanged(!film.isFavorite)
+            try {
+                liveData.observeForever(observer)
+
+                val film = Mockito.mock(Film::class.java)
+                verify(viewModel, times(1)).isFavorite(film)
+                verify(observer).onChanged(film.isFavorite)
+
+                verify(viewModel, times(1)).changeFavoritesTag(film)
+                verify(observer).onChanged(!film.isFavorite)
+
+            } finally {
+                liveData.removeObserver(observer)
+            }
+        }
     }
 }

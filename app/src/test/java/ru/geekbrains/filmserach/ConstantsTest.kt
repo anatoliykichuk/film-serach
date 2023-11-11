@@ -6,14 +6,14 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import ru.geekbrains.filmserach.data.getAllCountries
 import ru.geekbrains.filmserach.data.getAllGenres
-import ru.geekbrains.filmserach.data.getSelectFields
+import ru.geekbrains.filmserach.data.getSelectedFields
 
 class ConstantsTest {
 
     @Test
     fun constants_CountOfAvailableFields_ResultTrue() {
         val expectedCountOfFields = 168
-        val selectFields = getSelectFields()
+        val selectFields = getSelectedFields()
 
         assertEquals(selectFields.length, expectedCountOfFields)
     }

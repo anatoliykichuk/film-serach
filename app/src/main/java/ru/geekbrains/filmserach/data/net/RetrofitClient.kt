@@ -1,5 +1,6 @@
 package ru.geekbrains.filmserach.data.net
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -19,6 +20,7 @@ object RetrofitClient {
             retrofit = Retrofit.Builder()
                 .baseUrl(PATH)
                 .client(client(FilmApiInterceptor()))
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }

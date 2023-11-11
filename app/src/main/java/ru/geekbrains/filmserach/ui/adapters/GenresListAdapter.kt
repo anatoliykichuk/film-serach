@@ -15,7 +15,7 @@ class GenresListAdapter(
     ): RecyclerView.Adapter<GenresListAdapter.GenresListViewHolder>() {
 
     class GenresListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val filmListView: RecyclerView = itemView.findViewById(R.id.film_list)
+        val filmListView: RecyclerView = itemView.findViewById(R.id.film_list_fragment)
 
         fun bind(filmsByGenres: Map<String, List<Film>>, genre: String) {
             (itemView.findViewById(R.id.genre_name) as TextView).text = genre
