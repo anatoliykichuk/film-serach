@@ -39,7 +39,10 @@ class MainActivityEspressoTest {
         uiDevice.pressHome()
 
         val intent = context.packageManager.getLaunchIntentForPackage(packageName)
-        intent!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+
+        intent?.let {
+            it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        }
 
         context.startActivity(intent)
 
