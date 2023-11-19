@@ -136,6 +136,15 @@
                         android:src="@drawable/add_to_favorites_48" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/trailer_play"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/image_button_margin"
+                        android:layout_marginLeft="@dimen/image_button_margin"
+                        android:background="@null"
+                        android:src="@drawable/ic_play_48" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/map_marker"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
