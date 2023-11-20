@@ -27,7 +27,7 @@ android {
     }
 
     Properties properties = new Properties()
-    properties.load(
+    /*properties.load(
             project.file("signing.properties").newDataInputStream()
     )
 
@@ -38,9 +38,9 @@ android {
             keyAlias properties.getProperty("KEY_ALIAS")
             keyPassword properties.getProperty("KEY_PASSWORD")
         }
-    }
+    }*/
 
-    buildTypes {
+    /*buildTypes {
         release {
             signingConfig signingConfigs.release
             minifyEnabled false
@@ -53,7 +53,7 @@ android {
             versionNameSuffix '-debug'
             buildConfigField "String", "TYPE", '"DEBUG"'
         }
-    }
+    }*/
 
     flavorDimensions 'version'
 
