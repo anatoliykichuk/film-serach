@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorPrimaryFS" format="color"/>
+    <attr name="colorPrimaryVariantFS" format="color"/>
+    <attr name="colorPrimaryDarkFS" format="color"/>
+    <attr name="navigationBarColorFS" format="color"/>
+
+    <attr name="colorControlActivatedFS" format="color"/>
+    <attr name="colorControlNormalFS" format="color"/>
+    <attr name="colorButtonNormalFS" format="color"/>
+
+    <attr name="textColorFS" format="color"/>
+    <attr name="textColorHintFS" format="color"/>
+    <attr name="textColorPrimaryFS" format="color"/>
+
+    <attr name="colorSurfaceFS" format="color"/>
+    <attr name="actionBarItemFS" format="color"/>
+
+</resources>
