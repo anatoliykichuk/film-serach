@@ -30,6 +30,12 @@
         tools:layout="@layout/fragment_search_options" />
 
     <fragment
+        android:id="@+id/settings_fragment"
+        android:name="ru.geekbrains.filmserach.ui.pages.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
         android:id="@+id/maps_fragment"
         android:name="ru.geekbrains.filmserach.ui.pages.maps.MapsFragment"
         android:label="@string/maps"

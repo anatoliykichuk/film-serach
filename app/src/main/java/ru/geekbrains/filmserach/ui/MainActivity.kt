@@ -66,6 +66,10 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
                 R.id.menu_search -> {
                     navController.navigate(R.id.search_options_fragment)
                 }
+
+                R.id.menu_settings -> {
+                    navController.navigate(R.id.settings_fragment)
+                }
             }
             true
         }
