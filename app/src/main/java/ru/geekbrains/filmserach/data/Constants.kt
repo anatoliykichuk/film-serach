@@ -1,9 +1,7 @@
 package ru.geekbrains.filmserach.data
 
-import java.util.stream.Collectors
-
-fun getSelectedFields(): String {
-    val selectFields = listOf<String>(
+fun getSelectedFields(): Array<String> {
+    return arrayOf(
         "externalId",
         "id",
         "name",
@@ -23,10 +21,9 @@ fun getSelectedFields(): String {
         "budget",
         "movieLength",
         "shortDescription",
-        "description"
+        "description",
+        "videos"
     )
-
-    return selectFields.stream().collect(Collectors.joining(" "))
 }
 
 fun getAllGenres(): List<String> {
