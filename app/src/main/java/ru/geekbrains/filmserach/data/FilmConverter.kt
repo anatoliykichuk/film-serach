@@ -55,6 +55,7 @@ object FilmConverter {
             voteAverage = filmEntity.voteAverage,
             posterPath = filmEntity.posterPath,
             backdropPath = filmEntity.backdropPath,
+            trailers = filmEntity.trailers,
             isFavorite = filmEntity.isFavorite
         )
     }
@@ -85,6 +86,7 @@ object FilmConverter {
             voteAverage = film.voteAverage,
             posterPath = film.posterPath,
             backdropPath = film.backdropPath,
+            trailers = film.trailers,
             isFavorite = film.isFavorite
         )
     }
@@ -140,7 +142,6 @@ object FilmConverter {
     private fun posterPath(filmDto: FilmDto): String {
         return filmDto.poster?.url ?: ""
     }
-
 
     private fun trailers(filmDto: FilmDto): List<String> {
         val trailers = mutableListOf<String>()
