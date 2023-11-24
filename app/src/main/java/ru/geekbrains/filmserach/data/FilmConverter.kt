@@ -20,7 +20,8 @@ object FilmConverter {
             voteCount = voteCount(filmDto),
             voteAverage = voteAverage(filmDto),
             posterPath = posterPath(filmDto),
-            backdropPath = ""
+            backdropPath = "",
+            trailers = trailers(filmDto)
         )
     }
 
@@ -138,5 +139,20 @@ object FilmConverter {
 
     private fun posterPath(filmDto: FilmDto): String {
         return filmDto.poster?.url ?: ""
+    }
+
+
+    private fun trailers(filmDto: FilmDto): List<String> {
+        val trailers = mutableListOf<String>()
+
+        filmDto.videos?.let { videos ->
+            for (trailer in videos.trailers) {
+                trailer.url?.let { url ->
+                    trailers.add(url)
+                }
+            }
+        }
+
+        return trailers
     }
 }
