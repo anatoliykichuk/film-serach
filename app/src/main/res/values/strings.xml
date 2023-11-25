@@ -4,6 +4,7 @@
     <string name="title_favorites">Избранное</string>
     <string name="title_search">Поиск</string>
     <string name="title_settings">Настройки</string>
+    <string name="title_player">Плеер</string>
     <string name="film_list">Каталог</string>
     <string name="film_details">Описание фильма</string>
     <string name="title_text">Название</string>

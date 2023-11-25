@@ -15,6 +15,8 @@ import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.SELECTED_FILM
 import java.util.stream.Collectors
 
+const val VIDEO_TITLE = "video_title"
+const val VIDEO_URL = "video_url"
 const val LOCATION_NAME = "location_name"
 
 class FilmFragment : Fragment() {
@@ -56,10 +58,26 @@ class FilmFragment : Fragment() {
 
         viewModel.isFavorite(film)
 
+        setOnClickListeners()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
+    }
+
+    private fun setOnClickListeners() {
         val favoritesTagButton: ImageButton = binding.favoritesTag
 
         favoritesTagButton.setOnClickListener {
             viewModel.changeFavoritesTag(film)
+        }
+
+        val playerButton: ImageButton = binding.player
+
+        playerButton.setOnClickListener {
+            showPlayer(film)
         }
 
         val mapMarkerButton: ImageButton = binding.mapMarker
@@ -67,12 +85,6 @@ class FilmFragment : Fragment() {
         mapMarkerButton.setOnClickListener {
             showLocation(film.countries)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        _binding = null
     }
 
     private fun showFilmData() {
@@ -107,15 +119,26 @@ class FilmFragment : Fragment() {
         }
     }
 
+    private fun showPlayer(film: Film) {
+        if (film.trailers.isEmpty()) {
+            return
+        }
+
+        val bundle = Bundle()
+        bundle.putString(VIDEO_TITLE, film.title)
+        bundle.putString(VIDEO_URL, film.trailers.first())
+
+        findNavController().navigate(R.id.player_fragment, bundle)
+    }
+
     private fun showLocation(countries: List<String>) {
         if (countries.isEmpty()) {
             return
         }
 
-        val country = countries.first()
         val bundle = Bundle()
+        bundle.putString(LOCATION_NAME, countries.first())
 
-        bundle.putString(LOCATION_NAME, country)
         findNavController().navigate(R.id.maps_fragment, bundle)
     }
 }
