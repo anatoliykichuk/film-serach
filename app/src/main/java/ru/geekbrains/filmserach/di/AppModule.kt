@@ -47,6 +47,11 @@ val appModule = module {
                     database.execSQL("ALTER TABLE films RENAME COLUMN country TO countries")
                 }
             })
+            .addMigrations(object : Migration(3, 4) {
+                override fun migrate(database: SupportSQLiteDatabase) {
+                    database.execSQL("ALTER TABLE films ADD COLUMN trailers TEXT")
+                }
+            })
             .build()
     }
 

@@ -22,6 +22,7 @@ data class FilmDto (
     @SerializedName("year"             ) var year             : Int?                 = null,
     @SerializedName("movieLength"      ) var movieLength      : String?              = null,
     @SerializedName("shortDescription" ) var shortDescription : String?              = null,
-    @SerializedName("description"      ) var description      : String?              = null
+    @SerializedName("description"      ) var description      : String?              = null,
+    @SerializedName("videos"           ) var videos           : Videos?              = Videos(),
 
 )

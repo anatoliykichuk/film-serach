@@ -34,6 +34,7 @@ class Repository() : Storable {
             .getFavorites().let {
                 return FilmConverter.convertListFromEntity(it)
             }
+        return listOf<Film>()
     }
 
     override suspend fun getFilmsByGenresFromNet(): Map<String, List<Film>> {

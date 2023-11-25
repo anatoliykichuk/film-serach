@@ -7,8 +7,8 @@ data class Film(
     val title: String = "",
     val originalTitle: String = "",
     val originalLanguage: String = "",
-    val genres: List<String> = listOf<String>(),
-    val countries: List<String> = listOf<String>(),
+    val genres: List<String> = listOf(),
+    val countries: List<String> = listOf(),
     val releaseDate: String = "",
     val adult: Boolean = false,
     val overview: String = "",
@@ -18,7 +18,8 @@ data class Film(
     val voteAverage: Int = 0,
     val posterPath: String? = "",
     val backdropPath: String? = "",
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false,
+    var trailers: List<String> = listOf()
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -36,7 +37,8 @@ data class Film(
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readByte() != 0.toByte()
+        parcel.readByte() != 0.toByte(),
+        parcel.createStringArrayList()!!
     ) {
     }
 
@@ -56,6 +58,7 @@ data class Film(
         parcel.writeString(posterPath)
         parcel.writeString(backdropPath)
         parcel.writeByte(if (isFavorite) 1 else 0)
+        parcel.writeStringList(trailers)
     }
 
     override fun describeContents(): Int {

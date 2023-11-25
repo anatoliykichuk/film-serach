@@ -19,6 +19,7 @@ data class FilmEntity(
     val voteAverage: Int = 0,
     val posterPath: String? = "",
     val backdropPath: String? = "",
+    @TypeConverters(ListConverter::class) val trailers: List<String> = listOf<String>(),
     val isFavorite: Boolean = false
 ) {
 
