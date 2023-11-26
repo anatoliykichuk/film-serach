@@ -36,12 +36,6 @@
         tools:layout="@layout/fragment_settings" />
 
     <fragment
-        android:id="@+id/player_fragment"
-        android:name="ru.geekbrains.filmserach.ui.pages.player.PlayerFragment"
-        android:label="@string/title_player"
-        tools:layout="@layout/fragment_player" />
-
-    <fragment
         android:id="@+id/maps_fragment"
         android:name="ru.geekbrains.filmserach.ui.pages.maps.MapsFragment"
         android:label="@string/maps"

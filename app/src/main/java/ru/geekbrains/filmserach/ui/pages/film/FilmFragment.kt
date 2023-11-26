@@ -1,5 +1,7 @@
 package ru.geekbrains.filmserach.ui.pages.film
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -124,11 +126,12 @@ class FilmFragment : Fragment() {
             return
         }
 
-        val bundle = Bundle()
-        bundle.putString(VIDEO_TITLE, film.title)
-        bundle.putString(VIDEO_URL, film.trailers.first())
+        val videoUrl = Uri.parse( film.trailers.first())
 
-        findNavController().navigate(R.id.player_fragment, bundle)
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setData(videoUrl)
+
+        startActivity(intent)
     }
 
     private fun showLocation(countries: List<String>) {
