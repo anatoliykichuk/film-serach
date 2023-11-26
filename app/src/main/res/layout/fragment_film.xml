@@ -133,7 +133,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/image_button_margin"
                         android:background="@null"
-                        android:src="@drawable/add_to_favorites_48" />
+                        android:src="@drawable/ic_favorite_add_48" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/player"
@@ -151,7 +151,7 @@
                         android:layout_marginTop="@dimen/image_button_margin"
                         android:layout_marginLeft="@dimen/image_button_margin"
                         android:background="@null"
-                        android:src="@drawable/go_to_address_48" />
+                        android:src="@drawable/ic_location_48" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 

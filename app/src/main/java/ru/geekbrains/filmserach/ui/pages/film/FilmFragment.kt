@@ -17,8 +17,6 @@ import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.SELECTED_FILM
 import java.util.stream.Collectors
 
-const val VIDEO_TITLE = "video_title"
-const val VIDEO_URL = "video_url"
 const val LOCATION_NAME = "location_name"
 
 class FilmFragment : Fragment() {
@@ -115,9 +113,9 @@ class FilmFragment : Fragment() {
 
     private fun setFavoritesTagIcon(favoritesTagButton: ImageButton, isFavorite: Boolean) {
         if (isFavorite) {
-            favoritesTagButton.setImageResource(R.drawable.remove_from_favorites_48)
+            favoritesTagButton.setImageResource(R.drawable.ic_favorite_remove_48)
         } else {
-            favoritesTagButton.setImageResource(R.drawable.add_to_favorites_48)
+            favoritesTagButton.setImageResource(R.drawable.ic_favorite_add_48)
         }
     }
 
