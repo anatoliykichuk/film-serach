@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/list_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -16,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="@string/title_text" />
+            android:text="@string/title_text"
+            android:textColor="?colorPrimaryDarkFS" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/original_title"
@@ -26,146 +28,212 @@
             android:gravity="start"
             android:text="@string/original_title_text" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/data"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/film_info"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:paddingTop="10dp">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/poster"
-                android:layout_width="200dp"
-                android:layout_height="300dp"
-                android:src="@drawable/no_poster" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                style="@style/LayoutMarginStart"
+            <FrameLayout
+                android:id="@+id/poster_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/poster"
+                    android:layout_width="@dimen/poster_large_width"
+                    android:layout_height="@dimen/poster_large_heigth"
+                    android:layout_gravity="center"
+                    android:src="@drawable/no_poster_40" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/popularity"
-                        style="@style/Text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/popularity_text" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/player"
+                    style="@style/filmButton"
+                    android:layout_height="42dp"
+                    android:layout_gravity="center"
+                    android:alpha="0.8"
+                    android:src="@drawable/ic_play_48"
+                    android:tint="?android:attr/colorBackground" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/popularity_16" />
+            </FrameLayout>
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/genre"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/genre_text" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/country"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/country_text" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                style="@style/popularityField"
+                android:background="@drawable/back"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@id/poster_frame"
+                app:layout_constraintTop_toTopOf="@id/poster_frame">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/director"
-                    style="@style/Text"
+                    android:id="@+id/popularity"
+                    style="@style/popularityField" />
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/director_text" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/cast"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cast_text" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/budget"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/budget_text" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/revenue"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/revenue" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/release_date"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/release_date" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/adult"
-                    style="@style/Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/adult_date" />
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    style="@style/LayoutMarginStart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/favorites_tag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/image_button_margin"
-                        android:background="@null"
-                        android:src="@drawable/add_to_favorites_48" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/player"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/image_button_margin"
-                        android:layout_marginLeft="@dimen/image_button_margin"
-                        android:background="@null"
-                        android:src="@drawable/ic_play_48" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/map_marker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/image_button_margin"
-                        android:layout_marginLeft="@dimen/image_button_margin"
-                        android:background="@null"
-                        android:src="@drawable/go_to_address_48" />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/popularity_16" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/adult"
+                style="@style/adultField"
+                android:layout_height="wrap_content"
+                android:text="@string/adult_empty"
+                android:background="@drawable/back"
+                android:paddingBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="@id/poster_frame"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/favorites_tag"
+                style="@style/filmButton"
+                android:src="@drawable/add_to_favorites_48"
+                app:layout_constraintTop_toTopOf="@id/poster_frame"
+                app:layout_constraintBottom_toBottomOf="@id/poster_frame"
+                app:layout_constraintStart_toEndOf="@id/poster_frame" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/overview"
-            style="@style/Text"
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/overview_text" />
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/signature"
+                style="@style/filmInfoField"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center">
+            </androidx.appcompat.widget.AppCompatTextView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/country"
+                style="@style/filmInfoField"
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/signature"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center">
+            </androidx.appcompat.widget.AppCompatTextView>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/map_marker"
+                style="@style/filmButton"
+                android:src="@drawable/go_to_address_48"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/country"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/director_title"
+                        style="@style/filmInfoFieldTitle"
+                        android:text="@string/director_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/director"
+                        style="@style/filmInfoField"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/field_texts_barrier"
+                        app:layout_constraintStart_toEndOf="@id/field_titles_barrier" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/cast_title"
+                        style="@style/filmInfoFieldTitle"
+                        android:text="@string/cast_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/director" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/cast"
+                        style="@style/filmInfoField"
+                        android:text="@string/empty_field"
+                        app:layout_constraintTop_toTopOf="@id/cast_title"
+                        app:layout_constraintEnd_toStartOf="@id/field_texts_barrier"
+                        app:layout_constraintStart_toEndOf="@id/field_titles_barrier" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/budget_title"
+                        style="@style/filmInfoFieldTitle"
+                        android:text="@string/budget_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cast" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/budget"
+                        style="@style/filmInfoField"
+                        app:layout_constraintTop_toTopOf="@id/budget_title"
+                        app:layout_constraintEnd_toStartOf="@id/field_texts_barrier"
+                        app:layout_constraintStart_toEndOf="@id/field_titles_barrier" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/revenue_title"
+                        style="@style/filmInfoFieldTitle"
+                        android:text="@string/revenue"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/budget" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/revenue"
+                        style="@style/filmInfoField"
+                        android:text="@string/empty_field"
+                        app:layout_constraintTop_toTopOf="@id/revenue_title"
+                        app:layout_constraintEnd_toStartOf="@id/field_texts_barrier"
+                        app:layout_constraintStart_toEndOf="@id/field_titles_barrier"/>
+
+                    <androidx.constraintlayout.widget.Barrier
+                        android:id="@+id/field_titles_barrier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:barrierDirection="end"
+                        app:constraint_referenced_ids="director_title,cast_title,revenue_title,budget_title"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"></androidx.constraintlayout.widget.Barrier>
+
+                    <androidx.constraintlayout.widget.Barrier
+                        android:id="@+id/field_texts_barrier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:barrierDirection="start"
+                        app:constraint_referenced_ids="director,cast,revenue,budget"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"></androidx.constraintlayout.widget.Barrier>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/overview"
+                    style="@style/filmInfoFieldTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/overview_text" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

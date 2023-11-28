@@ -10,12 +10,13 @@
         <item name="colorControlNormalFS">@color/material_blue_grey_100</item>
         <item name="colorButtonNormalFS">@color/material_blue_grey_50</item>
 
-        <item name="textColorFS">@color/material_blue_grey_700</item>
+        <item name="textColorFS">@color/material_blue_grey_600</item>
         <item name="textColorHintFS">@color/material_blue_grey_300</item>
         <item name="textColorPrimaryFS">@color/material_blue_grey_500</item>
 
         <item name="colorSurfaceFS">@color/material_amber_500</item>
         <item name="actionBarItemFS">@color/material_amber_800</item>
+        <item name="colorAccentFS">@color/material_amber_900</item>
     </style>
 
     <style name="limeTheme" parent="Base.Theme.FilmSerach">
@@ -34,5 +35,6 @@
 
         <item name="colorSurfaceFS">@color/material_deep_purple_500</item>
         <item name="actionBarItemFS">@color/material_deep_purple_800</item>
+        <item name="colorAccentFS">@color/material_deep_purple_900</item>
     </style>
 </resources>

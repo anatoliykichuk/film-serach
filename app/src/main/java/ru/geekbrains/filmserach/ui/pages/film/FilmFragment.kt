@@ -79,10 +79,11 @@ class FilmFragment : Fragment() {
         binding.title.text = film.title
         binding.originalTitle.text = film.originalTitle
         binding.popularity.text = film.popularity.toString()
-        binding.genre.text = listToString(film.genres)
+        binding.signature.text = listToString(film.genres) + " (" + film.releaseDate + ")"
         binding.country.text = listToString(film.countries)
-        binding.releaseDate.text = film.releaseDate
-        binding.adult.text = film.adult.toString()
+        if (film.adult) {
+            binding.adult.text = film.adult.toString()
+        }
         binding.overview.text = film.overview
 
         PosterLoader.load(binding.poster, film.posterPath)

@@ -15,5 +15,5 @@
 
     <attr name="colorSurfaceFS" format="color"/>
     <attr name="actionBarItemFS" format="color"/>
-
+    <attr name="colorAccentFS" format="color"/>
 </resources>
