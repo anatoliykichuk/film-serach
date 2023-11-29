@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -91,10 +92,11 @@ class FilmFragment : Fragment() {
         binding.title.text = film.title
         binding.originalTitle.text = film.originalTitle
         binding.popularity.text = film.popularity.toString()
-        binding.genre.text = listToString(film.genres)
+        binding.signature.text = listToString(film.genres + " (" + film.releaseDate + ")")
         binding.country.text = listToString(film.countries)
-        binding.releaseDate.text = film.releaseDate
-        binding.adult.text = film.adult.toString()
+        if (film.adult) {
+            binding.adult.text = film.adult.toString()
+        }
         binding.overview.text = film.overview
 
         PosterLoader.load(binding.poster, film.posterPath)
@@ -113,10 +115,9 @@ class FilmFragment : Fragment() {
 
     private fun setFavoritesTagIcon(favoritesTagButton: ImageButton, isFavorite: Boolean) {
         if (isFavorite) {
-            favoritesTagButton.setImageResource(R.drawable.ic_favorite_remove_48)
+          favoritesTagButton.setBackgroundResource(R.drawable.back_favorite)
         } else {
-            favoritesTagButton.setImageResource(R.drawable.ic_favorite_add_48)
-        }
+            favoritesTagButton.background = null
     }
 
     private fun showPlayer(film: Film) {

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="genreColorFS" format="color"/>
+    <attr name="playerColorFS" format="color"/>
+    <attr name="playerButtonColorFS" format="color"></attr>
+
     <attr name="colorPrimaryFS" format="color"/>
     <attr name="colorPrimaryVariantFS" format="color"/>
     <attr name="colorPrimaryDarkFS" format="color"/>
@@ -15,5 +19,5 @@
 
     <attr name="colorSurfaceFS" format="color"/>
     <attr name="actionBarItemFS" format="color"/>
-
+    <attr name="colorAccentFS" format="color"/>
 </resources>

@@ -17,9 +17,9 @@ class FilmListAdapter(
     class FilmListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(film: Film) {
             (itemView.findViewById(R.id.title) as TextView).text = film.title
-            (itemView.findViewById(R.id.original_title) as TextView).text = film.originalTitle
+
             (itemView.findViewById(R.id.release_date) as TextView).text = film.releaseDate
-            (itemView.findViewById(R.id.popularity) as TextView).text = film.popularity.toString()
+            (itemView.findViewById(R.id.popularity_small) as TextView).text = film.popularity.toString()
 
             val posterView: ImageView = itemView.findViewById(R.id.poster)
             PosterLoader.load(posterView, film.posterPath)

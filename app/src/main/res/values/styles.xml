@@ -29,10 +29,84 @@
         <item name="android:layout_marginStart">@dimen/layout_margin</item>
     </style>
     
-    <style name="LayoutPadding" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="LayoutPadding" >
         <item name="android:paddingStart">@dimen/padding_out</item>
         <item name="android:paddingEnd">@dimen/padding_out</item>
         <item name="android:paddingTop">@dimen/padding_out</item>
         <item name="android:paddingBottom">@dimen/padding_out</item>
     </style>
+
+    <style name="genreTitle">
+        <item name="android:paddingTop">@dimen/layout_margin</item>
+        <item name="android:textSize">@dimen/title_h3_text_size</item>
+        <item name="android:textColor">?genreColorFS</item>
+    </style>
+
+    <style name="filmItemPadding" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:padding">@dimen/padding_in</item>
+    </style>
+
+    <style name="filmInfoPadding" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:padding">@dimen/padding_out</item>
+    </style>
+
+    <style name="filmItemTitle" parent="filmItemField">
+
+    </style>
+
+    <style name="filmItemField">
+        <item name="android:gravity">start</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:maxHeight">@dimen/film_item_field_height</item>
+    </style>
+
+    <style name="popularityFilmItem" parent="popularityCommon" >
+        <item name="android:textSize">@dimen/title_h4_text_size</item>
+    </style>
+
+    <style name="popularityField" parent="popularityCommon">
+        <item name="android:textSize">@dimen/title_h2_text_size</item>
+    </style>
+
+    <style name="popularityCommon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:text">@string/popularity_text</item>
+        <item name="android:padding">2dp</item>
+    </style>
+
+    <style name="adultField" parent="filmInfoFieldTitle">
+        <item name="android:textSize">@dimen/title_h2_text_size</item>
+    </style>
+
+    <style name="filmInfoFieldTitle" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:layout_marginStart">@dimen/layout_margin</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/title_h3_text_size</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="filmInfoField" parent="filmInfoFieldTitle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textColor">?colorPrimaryDarkFS</item>
+        <item name="android:text">@string/empty_field</item>
+    </style>
+
+    <style name="playButton" parent="filmButton">
+        <item name="android:background">@drawable/back_button</item>
+        <item name="android:foreground">@drawable/back_ring</item>
+        <item name="android:tint">@color/black</item>
+    </style>
+
+    <style name="filmButton">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:alpha">0.8</item>
+    </style>
+
 </resources>

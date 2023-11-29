@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">FilmSerach</string>
+    <string name="app_name">FilmSearch</string>
     <string name="title_list">Каталог</string>
     <string name="title_favorites">Избранное</string>
     <string name="title_search">Поиск</string>
     <string name="title_settings">Настройки</string>
     <string name="film_list">Каталог</string>
+
     <string name="film_details">Описание фильма</string>
     <string name="title_text">Название</string>
     <string name="original_title_text">Оригинальное название</string>
@@ -15,10 +16,14 @@
     <string name="revenue">Сборы</string>
     <string name="release_date">Дата релиза</string>
     <string name="overview_text">Обзор</string>
-    <string name="director_text">Режисер</string>
+    <string name="director_text">Режисcёр</string>
     <string name="cast_text">В ролях</string>
     <string name="adult_date">Возрастной ценз</string>
+    <string name="adult_empty">0+</string>
     <string name="genre_name">Жанр</string>
+    <string name="test_long_text">spodfijo sdfjiij sdfjfopa jiijasdf sdfjop dsaf sdf  sdfa sasdf as  we se sdf sd fsdfsdfsdf dsf weew xcf sad fasef se f dsfsdf sd fsd fsd fs fsd sdfrggfhrvxcv cfvdfew"</string>
+    <string name="empty_field">-</string>
+
     <string name="selected_film">selected_film</string>
     <string name="menu_title_add_to_favorites">Добавить к избранным</string>
     <string name="menu_title_remove_from_favorites">Удалить из избранных</string>
