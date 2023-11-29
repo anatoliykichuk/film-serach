@@ -118,6 +118,7 @@ class FilmFragment : Fragment() {
           favoritesTagButton.setBackgroundResource(R.drawable.back_favorite)
         } else {
             favoritesTagButton.background = null
+        }
     }
 
     private fun showPlayer(film: Film) {
