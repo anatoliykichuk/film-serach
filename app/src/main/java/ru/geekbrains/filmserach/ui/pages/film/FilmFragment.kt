@@ -1,5 +1,7 @@
 package ru.geekbrains.filmserach.ui.pages.film
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -57,10 +59,26 @@ class FilmFragment : Fragment() {
 
         viewModel.isFavorite(film)
 
+        setOnClickListeners()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
+    }
+
+    private fun setOnClickListeners() {
         val favoritesTagButton: ImageButton = binding.favoritesTag
 
         favoritesTagButton.setOnClickListener {
             viewModel.changeFavoritesTag(film)
+        }
+
+        val playerButton: ImageButton = binding.player
+
+        playerButton.setOnClickListener {
+            showPlayer(film)
         }
 
         val mapMarkerButton: ImageButton = binding.mapMarker
@@ -68,12 +86,6 @@ class FilmFragment : Fragment() {
         mapMarkerButton.setOnClickListener {
             showLocation(film.countries)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        _binding = null
     }
 
     private fun showFilmData() {
@@ -103,10 +115,22 @@ class FilmFragment : Fragment() {
 
     private fun setFavoritesTagIcon(favoritesTagButton: ImageButton, isFavorite: Boolean) {
         if (isFavorite) {
-            favoritesTagButton.setBackgroundResource(R.drawable.back_favorite)
+          favoritesTagButton.setBackgroundResource(R.drawable.back_favorite)
         } else {
             favoritesTagButton.background = null
+    }
+
+    private fun showPlayer(film: Film) {
+        if (film.trailers.isEmpty()) {
+            return
         }
+
+        val videoUrl = Uri.parse( film.trailers.first())
+
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setData(videoUrl)
+
+        startActivity(intent)
     }
 
     private fun showLocation(countries: List<String>) {
@@ -114,10 +138,9 @@ class FilmFragment : Fragment() {
             return
         }
 
-        val country = countries.first()
         val bundle = Bundle()
+        bundle.putString(LOCATION_NAME, countries.first())
 
-        bundle.putString(LOCATION_NAME, country)
         findNavController().navigate(R.id.maps_fragment, bundle)
     }
 }

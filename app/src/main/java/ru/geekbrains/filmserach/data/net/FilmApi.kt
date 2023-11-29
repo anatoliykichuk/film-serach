@@ -7,8 +7,7 @@ import retrofit2.http.Header
 import retrofit2.http.Query
 import retrofit2.http.Url
 
-//const val END_POINT = "v1.4/movie"
-const val END_POINT = "v1/movie"
+const val END_POINT = "v1.4/movie"
 
 interface FilmApi {
     @GET(END_POINT)
@@ -16,7 +15,7 @@ interface FilmApi {
         @Header("X-API-KEY") token: String,
         @Query("field") genreKey: String,
         @Query("search") genreValue: String,
-        @Query("selectFields") selectFields: String
+        @Query("selectFields") selectFields: Array<String>
     ): Deferred<FilmsDto>
 
     @GET
