@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -79,7 +80,7 @@ class FilmFragment : Fragment() {
         binding.title.text = film.title
         binding.originalTitle.text = film.originalTitle
         binding.popularity.text = film.popularity.toString()
-        binding.signature.text = listToString(film.genres) + " (" + film.releaseDate + ")"
+        binding.signature.text = listToString(film.genres + " (" + film.releaseDate + ")")
         binding.country.text = listToString(film.countries)
         if (film.adult) {
             binding.adult.text = film.adult.toString()
@@ -102,9 +103,9 @@ class FilmFragment : Fragment() {
 
     private fun setFavoritesTagIcon(favoritesTagButton: ImageButton, isFavorite: Boolean) {
         if (isFavorite) {
-            favoritesTagButton.setImageResource(R.drawable.remove_from_favorites_48)
+            favoritesTagButton.setBackgroundResource(R.drawable.back_favorite)
         } else {
-            favoritesTagButton.setImageResource(R.drawable.add_to_favorites_48)
+            favoritesTagButton.background = null
         }
     }
 

@@ -1,0 +1,8 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval" >
+    <solid android:color="@color/material_amber_50" />
+    <gradient
+        android:type="radial"
+        android:gradientRadius="60%p"
+        android:startColor="@color/material_amber_50"
+        android:endColor="?playerButtonColorFS"/>
+</shape>

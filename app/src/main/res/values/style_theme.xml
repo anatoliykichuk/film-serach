@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="kinoPoiskTheme" parent="Base.Theme.FilmSerach">
+
         <item name="colorPrimaryFS">@color/material_light_blue_800</item>
         <item name="colorPrimaryVariantFS">@color/material_blue_grey_300</item>
         <item name="colorPrimaryDarkFS">@color/material_light_blue_900</item>
+
         <item name="navigationBarColorFS">@color/material_blue_grey_200</item>
+        <item name="colorSurfaceFS">@color/material_light_blue_50</item>
 
         <item name="colorControlActivatedFS">@color/material_light_blue_500</item>
         <item name="colorControlNormalFS">@color/material_blue_grey_100</item>
@@ -14,12 +17,17 @@
         <item name="textColorHintFS">@color/material_blue_grey_300</item>
         <item name="textColorPrimaryFS">@color/material_blue_grey_500</item>
 
-        <item name="colorSurfaceFS">@color/material_amber_500</item>
         <item name="actionBarItemFS">@color/material_amber_800</item>
         <item name="colorAccentFS">@color/material_amber_900</item>
+
+        <item name="genreColorFS">@color/material_deep_purple_900</item>
+        <item name="playerColorFS">@color/material_blue_grey_200</item>
+        <item name="playerButtonColorFS">?colorPrimaryVariantFS</item>
     </style>
 
     <style name="limeTheme" parent="Base.Theme.FilmSerach">
+        <item name="genreColorFS">@color/material_light_green_100</item>
+
         <item name="colorPrimaryFS">@color/material_lime_800</item>
         <item name="colorPrimaryVariantFS">@color/material_light_green_300</item>
         <item name="colorPrimaryDarkFS">@color/material_lime_900</item>

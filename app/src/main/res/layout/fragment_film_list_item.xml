@@ -1,90 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/film_list_item"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center_horizontal"
-        style="@style/LayoutPadding">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/poster_item_width"
+        android:layout_height="match_parent"
+        style="@style/filmItemPadding">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/poster"
-            android:layout_width="@dimen/poster_width"
-            android:layout_height="@dimen/poster_height"
-            android:src="@drawable/no_poster"/>
+            android:layout_width="@dimen/poster_item_width"
+            android:layout_height="@dimen/poster_item_height"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/no_poster_60"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            style="@style/popularityFilmItem"
+            android:background="@drawable/back_border"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="@id/poster"
+            app:layout_constraintEnd_toEndOf="@id/poster">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/title_text"
-                android:textSize="@dimen/title_text_size"
-                style="@style/H1"/>
+                android:id="@+id/popularity_small"
+                style="@style/popularityFilmItem" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/original_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/original_title_text"
-                android:gravity="start"
-                android:textSize="@dimen/title_small_text_size"
-                style="@style/Text"/>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/release_date"
-                        style="@style/Text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/release_date"
-                        android:textSize="@dimen/title_small_text_size" />
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:orientation="horizontal">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/popularity_ico"
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="bottom"
-                            android:src="@drawable/popularity_16" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/popularity"
-                            style="@style/Text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/popularity_text"
-                            android:textSize="@dimen/title_small_text_size" />
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                </RelativeLayout>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/popularity_16" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            app:layout_constraintStart_toStartOf="@id/poster"
+            app:layout_constraintTop_toBottomOf="@id/poster"
+            android:text="@string/title_text"
+            android:textColor="?colorPrimaryDarkFS"
+            style="@style/filmItemField"
+            android:textSize="@dimen/title_h4_text_size"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/release_date"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/poster"
+            app:layout_constraintTop_toBottomOf="@id/poster"
+            android:layout_marginTop="@dimen/film_item_field_height"
+            android:text="@string/release_date"
+            style="@style/filmItemField"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

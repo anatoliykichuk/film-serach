@@ -7,22 +7,28 @@
     <dimen name="title_text_size">10sp</dimen>
     <dimen name="title_small_text_size">8sp</dimen>
 
+    <dimen name="padding_in">5dp</dimen>
     <dimen name="padding_out">15dp</dimen>
     <dimen name="alignment_under_poster">45dp</dimen>
     <dimen name="layout_margin">5dp</dimen>
 
     <dimen name="poster_width">100dp</dimen>
     <dimen name="poster_height">150dp</dimen>
+    <dimen name="poster_item_width">120dp</dimen>
+    <dimen name="poster_item_height">180dp</dimen>
     <dimen name="poster_large_width">160dp</dimen>
     <dimen name="poster_large_heigth">240dp</dimen>
+
+    <dimen name="film_item_field_height">30dp</dimen>
+
     <dimen name="film_buttons_width">48dp</dimen>
     <dimen name="film_buttons_height">48dp</dimen>
 
     <dimen name="film_command_panel_top_margin">5dp</dimen>
     <dimen name="film_command_panel_left_margin">20dp</dimen>
     <dimen name="image_button_margin">5dp</dimen>
-    <dimen name="search_options_marginBottom">10dp</dimen>
 
+    <dimen name="search_options_marginBottom">10dp</dimen>
     <dimen name="search_options_title_width">100sp</dimen>
     <dimen name="search_options_margin">10dp</dimen>
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        style="@style/LayoutPadding"
+        style="@style/filmInfoPadding"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -30,15 +30,16 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/film_info"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp">
+            android:background="@drawable/film_window"
+            android:padding="4dp">
 
             <FrameLayout
                 android:id="@+id/poster_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -48,22 +49,19 @@
                     android:layout_width="@dimen/poster_large_width"
                     android:layout_height="@dimen/poster_large_heigth"
                     android:layout_gravity="center"
-                    android:src="@drawable/no_poster_40" />
+                    android:src="@drawable/no_poster_60" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/player"
-                    style="@style/filmButton"
-                    android:layout_height="42dp"
+                    style="@style/playButton"
                     android:layout_gravity="center"
-                    android:alpha="0.8"
-                    android:src="@drawable/ic_play_48"
-                    android:tint="?android:attr/colorBackground" />
+                    android:src="@drawable/ic_play_48" />
 
             </FrameLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 style="@style/popularityField"
-                android:background="@drawable/back"
+                android:background="@drawable/back_border"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="@id/poster_frame"
                 app:layout_constraintTop_toTopOf="@id/poster_frame">
@@ -85,18 +83,17 @@
                 style="@style/adultField"
                 android:layout_height="wrap_content"
                 android:text="@string/adult_empty"
-                android:background="@drawable/back"
-                android:paddingBottom="10dp"
+                android:background="@drawable/back_border"
                 app:layout_constraintBottom_toBottomOf="@id/poster_frame"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/favorites_tag"
                 style="@style/filmButton"
-                android:src="@drawable/add_to_favorites_48"
+                android:src="@drawable/add_to_favorites_48_transparent"
                 app:layout_constraintTop_toTopOf="@id/poster_frame"
                 app:layout_constraintBottom_toBottomOf="@id/poster_frame"
-                app:layout_constraintStart_toEndOf="@id/poster_frame" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -227,7 +224,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/overview"
-                    style="@style/filmInfoFieldTitle"
+                    style="@style/filmInfoField"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/overview_text" />
