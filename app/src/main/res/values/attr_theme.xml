@@ -2,7 +2,8 @@
 <resources>
     <attr name="genreColorFS" format="color"/>
     <attr name="playerColorFS" format="color"/>
-    <attr name="playerButtonColorFS" format="color"></attr>
+    <attr name="playerButtonColorFS" format="color" />
+    <attr name="playerButtonDarkColorFS" format="color"/>
 
     <attr name="colorPrimaryFS" format="color"/>
     <attr name="colorPrimaryVariantFS" format="color"/>

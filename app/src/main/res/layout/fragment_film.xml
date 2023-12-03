@@ -32,6 +32,7 @@
             android:id="@+id/film_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/film_info_top_margin"
             android:background="@drawable/film_window"
             android:padding="4dp">
 
@@ -61,27 +62,20 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 style="@style/popularityField"
-                android:background="@drawable/back_border"
-                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="@id/poster_frame"
                 app:layout_constraintTop_toTopOf="@id/poster_frame">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/popularity"
-                    style="@style/popularityField" />
+                    style="@style/popularityTextLarge" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/popularity_16" />
+                <androidx.appcompat.widget.AppCompatImageView style="@style/popularityImage" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/adult"
                 style="@style/adultField"
-                android:layout_height="wrap_content"
                 android:text="@string/adult_empty"
                 android:background="@drawable/back_border"
                 app:layout_constraintBottom_toBottomOf="@id/poster_frame"
@@ -90,7 +84,7 @@
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/favorites_tag"
                 style="@style/filmButton"
-                android:src="@drawable/add_to_favorites_48_transparent"
+                android:src="@drawable/baseline_favorite_border_24"
                 app:layout_constraintTop_toTopOf="@id/poster_frame"
                 app:layout_constraintBottom_toBottomOf="@id/poster_frame"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -107,8 +101,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:gravity="center">
-            </androidx.appcompat.widget.AppCompatTextView>
+                android:gravity="center"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/country"
@@ -117,15 +110,14 @@
                 app:layout_constraintTop_toBottomOf="@id/signature"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:gravity="center">
-            </androidx.appcompat.widget.AppCompatTextView>
+                android:gravity="center"/>
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/map_marker"
                 style="@style/filmButton"
                 android:src="@drawable/ic_location_48"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/country"/>
+                app:layout_constraintBottom_toBottomOf="@id/country" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -199,7 +191,7 @@
                         android:text="@string/empty_field"
                         app:layout_constraintTop_toTopOf="@id/revenue_title"
                         app:layout_constraintEnd_toStartOf="@id/field_texts_barrier"
-                        app:layout_constraintStart_toEndOf="@id/field_titles_barrier"/>
+                        app:layout_constraintStart_toEndOf="@id/field_titles_barrier" />
 
                     <androidx.constraintlayout.widget.Barrier
                         android:id="@+id/field_titles_barrier"
@@ -208,7 +200,7 @@
                         app:barrierDirection="end"
                         app:constraint_referenced_ids="director_title,cast_title,revenue_title,budget_title"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"></androidx.constraintlayout.widget.Barrier>
+                        app:layout_constraintTop_toTopOf="parent"/>
 
                     <androidx.constraintlayout.widget.Barrier
                         android:id="@+id/field_texts_barrier"
@@ -218,7 +210,7 @@
                         app:constraint_referenced_ids="director,cast,revenue,budget"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"></androidx.constraintlayout.widget.Barrier>
+                        app:layout_constraintTop_toTopOf="parent"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -227,6 +219,7 @@
                     style="@style/filmInfoField"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/film_field_top_margin"
                     android:text="@string/overview_text" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 

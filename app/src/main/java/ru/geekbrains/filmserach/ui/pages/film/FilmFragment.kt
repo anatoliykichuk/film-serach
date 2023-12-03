@@ -114,9 +114,9 @@ class FilmFragment : Fragment() {
 
     private fun setFavoritesTagIcon(favoritesTagButton: ImageButton, isFavorite: Boolean) {
         if (isFavorite) {
-          favoritesTagButton.setBackgroundResource(R.drawable.back_favorite)
+            favoritesTagButton.setBackgroundResource(R.drawable.baseline_favorite_border_24_color)
         } else {
-            favoritesTagButton.background = null
+            favoritesTagButton.setBackgroundResource(R.drawable.baseline_favorite_border_24)
         }
     }
 
