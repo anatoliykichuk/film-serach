@@ -1,43 +1,44 @@
 package ru.geekbrains.filmserach.ui.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.PosterLoader
+import ru.geekbrains.filmserach.databinding.FragmentFilmListItemBinding
 import ru.geekbrains.filmserach.domain.Film
 
 class FilmListAdapter(
     private val films: List<Film>
 ) : RecyclerView.Adapter<FilmListAdapter.FilmListViewHolder>() {
 
-    class FilmListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class FilmListViewHolder(
+        private val binding: FragmentFilmListItemBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(film: Film) {
-            (itemView.findViewById(R.id.title) as TextView).text = film.title
+            binding.title.text = film.title
+            binding.releaseDate.text = film.releaseDate
+            binding.popularitySmall.text = film.popularity.toString()
 
-            (itemView.findViewById(R.id.release_date) as TextView).text = film.releaseDate
-            (itemView.findViewById(R.id.popularity_small) as TextView).text = film.popularity.toString()
-
-            val posterView: ImageView = itemView.findViewById(R.id.poster)
+            val posterView: ImageView = binding.poster
             PosterLoader.load(posterView, film.posterPath)
 
-            itemView.setOnClickListener {
+            binding.root.setOnClickListener {
                 val activity = it.context as OnFilmClickListener
                 activity.onFilmClick(film)
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
-            FilmListViewHolder {
-        val view = LayoutInflater
-            .from(parent.context)
-            .inflate(R.layout.fragment_film_list_item, parent, false)
+    override fun onCreateViewHolder(
+        parent: ViewGroup, viewType: Int
+    ): FilmListViewHolder {
 
-        return FilmListViewHolder(view)
+        val binding = FragmentFilmListItemBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
+        return FilmListViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: FilmListViewHolder, position: Int) {
