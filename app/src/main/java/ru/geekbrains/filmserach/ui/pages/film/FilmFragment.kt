@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -115,9 +114,10 @@ class FilmFragment : Fragment() {
 
     private fun setFavoritesTagIcon(favoritesTagButton: ImageButton, isFavorite: Boolean) {
         if (isFavorite) {
-          favoritesTagButton.setBackgroundResource(R.drawable.back_favorite)
+            favoritesTagButton.setBackgroundResource(R.drawable.baseline_favorite_border_24_color)
         } else {
-            favoritesTagButton.background = null
+            favoritesTagButton.setBackgroundResource(R.drawable.baseline_favorite_border_24)
+        }
     }
 
     private fun showPlayer(film: Film) {

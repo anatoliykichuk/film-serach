@@ -22,7 +22,8 @@
 
         <item name="genreColorFS">@color/material_deep_purple_900</item>
         <item name="playerColorFS">@color/material_blue_grey_200</item>
-        <item name="playerButtonColorFS">?colorPrimaryVariantFS</item>
+        <item name="playerButtonColorFS">?textColorHintFS</item>
+        <item name="playerButtonDarkColorFS">?textColorFS</item>
     </style>
 
     <style name="limeTheme" parent="Base.Theme.FilmSerach">

@@ -8,7 +8,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/poster_item_width"
         android:layout_height="match_parent"
-        style="@style/filmItemPadding">
+        android:layout_margin="@dimen/film_item_margin"
+        android:paddingTop="@dimen/film_item_padding"
+        android:paddingBottom="@dimen/film_item_padding">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/poster"
@@ -21,21 +23,16 @@
             android:src="@drawable/no_poster_60"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            style="@style/popularityFilmItem"
-            android:background="@drawable/back_border"
-            android:orientation="horizontal"
+            style="@style/popularityField"
             app:layout_constraintTop_toTopOf="@id/poster"
             app:layout_constraintEnd_toEndOf="@id/poster">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/popularity_small"
-                style="@style/popularityFilmItem" />
+                style="@style/popularityText" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/popularity_16" />
+                style="@style/popularityImage" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -44,17 +41,17 @@
             app:layout_constraintStart_toStartOf="@id/poster"
             app:layout_constraintTop_toBottomOf="@id/poster"
             android:text="@string/title_text"
-            android:textColor="?colorPrimaryDarkFS"
-            style="@style/filmItemField"
+            android:gravity="center_vertical"
+            style="@style/filmItemTitle"
             android:textSize="@dimen/title_h4_text_size"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/release_date"
-            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/poster"
             app:layout_constraintTop_toBottomOf="@id/poster"
             android:layout_marginTop="@dimen/film_item_field_height"
             android:text="@string/release_date"
+            android:gravity="center"
             style="@style/filmItemField"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

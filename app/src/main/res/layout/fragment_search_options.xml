@@ -1,133 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".ui.pages.search.SearchOptionsFragment">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/search_options_fragment"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/search_options_margin"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/search_name_title"
+            style="@style/searchFieldTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/name"
+            app:layout_constraintBottom_toBottomOf="@id/name"
+            android:text="@string/search_option_name"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/name"
+            style="@style/searchField"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/search_titles_barrier"
+            app:layout_constraintEnd_toStartOf="@id/search_texts_barrier" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/search_genre_title"
+            style="@style/searchFieldTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            app:layout_constraintBottom_toBottomOf="@id/genre"
+            android:text="@string/search_option_genre_name"/>
+
+        <AutoCompleteTextView
+            android:id="@+id/genre"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_option_default_genre"
+            app:layout_constraintStart_toEndOf="@id/search_titles_barrier"
+            app:layout_constraintEnd_toStartOf="@id/search_texts_barrier"
+            app:layout_constraintTop_toBottomOf="@id/name"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/search_country_title"
+            style="@style/searchFieldTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/genre"
+            app:layout_constraintBottom_toBottomOf="@id/country"
+            android:text="@string/search_option_country_name" />
+
+        <AutoCompleteTextView
+            android:id="@+id/country"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_option_default_name"
+            app:layout_constraintStart_toEndOf="@id/search_titles_barrier"
+            app:layout_constraintEnd_toStartOf="@id/search_texts_barrier"
+            app:layout_constraintTop_toBottomOf="@id/genre"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/search_years_title"
+            style="@style/searchFieldTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/country"
+            app:layout_constraintBottom_toBottomOf="@id/years"
+            android:text="@string/search_option_years_name" />
+
+        <com.google.android.material.slider.RangeSlider
+            android:id="@+id/years"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/search_titles_barrier"
+            app:layout_constraintEnd_toStartOf="@id/search_texts_barrier"
+            app:layout_constraintTop_toBottomOf="@id/country"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/search_popularity_title"
+            style="@style/searchFieldTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/years"
+            app:layout_constraintBottom_toBottomOf="@id/popularity"
+            android:text="@string/search_option_popularity_name" />
+
+        <com.google.android.material.slider.RangeSlider
+            android:id="@+id/popularity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/search_option_years_name"
+            app:layout_constraintStart_toEndOf="@id/search_titles_barrier"
+            app:layout_constraintEnd_toStartOf="@id/search_texts_barrier"
+            app:layout_constraintTop_toBottomOf="@id/years"/>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/search_titles_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="search_name_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/search_texts_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="start"
+            app:constraint_referenced_ids="name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/search_options_padding"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/start_searching"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/search_options_marginBottom"
-            android:orientation="horizontal">
+            android:text="@string/search_options_start_searching" />
+    </FrameLayout>
 
-            <TextView
-                android:layout_width="@dimen/search_options_title_width"
-                android:layout_height="wrap_content"
-                android:text="@string/search_option_name" />
 
-            <AutoCompleteTextView
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/search_options_marginBottom"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="@dimen/search_options_title_width"
-                android:layout_height="wrap_content"
-                android:text="@string/search_option_genre_name" />
-
-            <AutoCompleteTextView
-                android:id="@+id/genre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/search_option_default_genre" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/search_options_marginBottom"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="@dimen/search_options_title_width"
-                android:layout_height="wrap_content"
-                android:text="@string/search_option_country_name" />
-
-            <AutoCompleteTextView
-                android:id="@+id/country"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/search_option_default_name" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/search_options_marginBottom"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="@dimen/search_options_title_width"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/search_option_years_name" />
-
-            <com.google.android.material.slider.RangeSlider
-                android:id="@+id/years"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="@dimen/search_options_title_width"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/search_option_popularity_name" />
-
-            <com.google.android.material.slider.RangeSlider
-                android:id="@+id/popularity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/search_option_years_name" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/search_options_fragment"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/start_searching"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/search_options_start_searching" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
