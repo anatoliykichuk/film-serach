@@ -1,12 +1,12 @@
 package ru.geekbrains.filmserach.di
 
 import androidx.room.Room
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
-import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import ru.geekbrains.filmserach.data.Repository
+import ru.geekbrains.filmserach.data.db.DatabaseMigration.MIGRATION_1_2
+import ru.geekbrains.filmserach.data.db.DatabaseMigration.MIGRATION_2_3
+import ru.geekbrains.filmserach.data.db.DatabaseMigration.MIGRATION_3_4
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.net.FilmApi
 import ru.geekbrains.filmserach.data.net.FilmLoader
@@ -32,26 +32,8 @@ val appModule = module {
     }
 
     single<FilmDatabase> {
-        Room.databaseBuilder(
-            androidContext(),
-            FilmDatabase::class.java,
-            FILM_DATABASE
-        )
-            .addMigrations(object : Migration(1, 2) {
-                override fun migrate(database: SupportSQLiteDatabase) {
-                    database.execSQL("ALTER TABLE films ADD COLUMN country TEXT")
-                }
-            })
-            .addMigrations(object : Migration(2, 3) {
-                override fun migrate(database: SupportSQLiteDatabase) {
-                    database.execSQL("ALTER TABLE films RENAME COLUMN country TO countries")
-                }
-            })
-            .addMigrations(object : Migration(3, 4) {
-                override fun migrate(database: SupportSQLiteDatabase) {
-                    database.execSQL("ALTER TABLE films ADD COLUMN trailers TEXT")
-                }
-            })
+        Room.databaseBuilder(get(), FilmDatabase::class.java, FILM_DATABASE)
+            .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
             .build()
     }
 
