@@ -1,12 +1,10 @@
 package ru.geekbrains.filmserach.ui.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.getAllGenres
+import ru.geekbrains.filmserach.databinding.FragmentFilmListByGenresBinding
 import ru.geekbrains.filmserach.domain.Film
 
 class GenresListAdapter(
@@ -14,11 +12,14 @@ class GenresListAdapter(
     private val genres: List<String> = getAllGenres()
     ): RecyclerView.Adapter<GenresListAdapter.GenresListViewHolder>() {
 
-    class GenresListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val filmListView: RecyclerView = itemView.findViewById(R.id.film_list_fragment)
+    class GenresListViewHolder(
+        private val binding: FragmentFilmListByGenresBinding
+    ): RecyclerView.ViewHolder(binding.root) {
+
+        val filmListView: RecyclerView = binding.filmListFragment
 
         fun bind(filmsByGenres: Map<String, List<Film>>, genre: String) {
-            (itemView.findViewById(R.id.genre_name) as TextView).text = genre
+            binding.genreName.text = genre
 
             filmListView.adapter = filmsByGenres[genre]?.let {
                 FilmListAdapter(it.toList())
@@ -27,11 +28,10 @@ class GenresListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenresListViewHolder {
-        val itemView = LayoutInflater
-            .from(parent.context)
-            .inflate(R.layout.fragment_film_list_by_genres, parent, false)
-
-        return GenresListViewHolder(itemView)
+        val binding = FragmentFilmListByGenresBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
+        return GenresListViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: GenresListViewHolder, position: Int) {
