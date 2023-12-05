@@ -12,7 +12,7 @@ import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.*
 import ru.geekbrains.filmserach.data.net.SearchOptions
 import ru.geekbrains.filmserach.databinding.FragmentSearchOptionsBinding
-import ru.geekbrains.filmserach.ui.BaseFragment
+import ru.geekbrains.filmserach.ui.base.BaseFragment
 import java.time.LocalDate
 
 const val SEARCH_OPTIONS = "search_options"

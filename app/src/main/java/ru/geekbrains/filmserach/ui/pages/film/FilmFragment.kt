@@ -5,18 +5,16 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.widget.ImageButton
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.AppState
-import ru.geekbrains.filmserach.ui.BaseFragment
 import ru.geekbrains.filmserach.ui.SELECTED_FILM
+import ru.geekbrains.filmserach.ui.base.BaseFragment
 import java.util.stream.Collectors
 
 const val LOCATION_NAME = "location_name"
@@ -38,24 +36,27 @@ class FilmFragment : BaseFragment<FragmentFilmBinding>() {
 
     override fun observeData() {
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { state
-            -> when (state) {
+            ->
+            when (state) {
                 is AppState.Success -> {
                     state.data.isFavorite?.let {
                         setFavoritesTag(it)
                         showFilmData()
                     }
                 }
-
                 else -> {}
             }
         })
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun initData() {
 
-        //_film = arguments?.getParcelable(SELECTED_FILM)deprecated
-        _film = arguments?.getParcelable(SELECTED_FILM, Film::class.java)
+        _film = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable(SELECTED_FILM, Film::class.java)
+        } else {
+            arguments?.getParcelable(SELECTED_FILM)
+        }
+
         viewModel.isFavorite(film)
 
         val favoritesTagButton: ImageButton = binding.favoritesTag

@@ -8,8 +8,8 @@ import kotlinx.coroutines.launch
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.net.SearchOptions
 import ru.geekbrains.filmserach.ui.AppState
-import ru.geekbrains.filmserach.ui.BaseViewModel
-import ru.geekbrains.filmserach.ui.ResponseData
+import ru.geekbrains.filmserach.ui.base.BaseViewModel
+import ru.geekbrains.filmserach.ui.base.ResponseData
 
 class FilmListViewModel(
     private val filmDatabase: FilmDatabase
@@ -30,7 +30,8 @@ class FilmListViewModel(
             try {
                 favoritesPosted = true
                 liveData.postValue(AppState.Success(
-                    ResponseData(films = repository.getFavorites(filmDatabase)))
+                    ResponseData(films = repository.getFavorites(filmDatabase))
+                )
                 )
             }
             catch (e: Throwable) {
@@ -55,7 +56,8 @@ class FilmListViewModel(
             try {
                 foundPosted = true
                 liveData.postValue(AppState.Success(
-                    ResponseData(films = repository.getFilmsBySearchOptionsFromNet(searchOptions)))
+                    ResponseData(films = repository.getFilmsBySearchOptionsFromNet(searchOptions))
+                )
                 )
             }
             catch (e: Throwable) {

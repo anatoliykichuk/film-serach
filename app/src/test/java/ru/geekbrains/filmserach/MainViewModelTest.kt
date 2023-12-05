@@ -12,7 +12,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mockito
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.AppState
-import ru.geekbrains.filmserach.ui.ResponseData
+import ru.geekbrains.filmserach.ui.base.ResponseData
 import ru.geekbrains.filmserach.ui.main.MainViewModel
 
 @RunWith(AndroidJUnit4::class)

@@ -6,8 +6,8 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 import ru.geekbrains.filmserach.ui.AppState
-import ru.geekbrains.filmserach.ui.BaseViewModel
-import ru.geekbrains.filmserach.ui.ResponseData
+import ru.geekbrains.filmserach.ui.base.BaseViewModel
+import ru.geekbrains.filmserach.ui.base.ResponseData
 
 class MainViewModel : BaseViewModel() {
 
@@ -25,7 +25,8 @@ class MainViewModel : BaseViewModel() {
             try {
                 dataPosted = true
                 liveData.postValue(AppState.Success(
-                    ResponseData(filmsByGenres = repository.getFilmsByGenresFromNet()))
+                    ResponseData(filmsByGenres = repository.getFilmsByGenresFromNet())
+                )
                 )
             }
             catch (e: Throwable) {
