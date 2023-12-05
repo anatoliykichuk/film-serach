@@ -29,17 +29,15 @@ class FilmListViewModel(
         ).launch {
             try {
                 favoritesPosted = true
-                liveData.postValue(AppState.Success(
-                    ResponseData(films = repository.getFavorites(filmDatabase))
+
+                liveData.postValue(
+                    AppState.Success(
+                        ResponseData(films = repository.getFavorites(filmDatabase))
+                    )
                 )
-                )
-            }
-            catch (e: Throwable) {
+            } catch (e: Throwable) {
                 liveData.postValue(AppState.Error(e))
                 e.printStackTrace()
-            }
-            finally {
-                favoritesPosted = false
             }
         }
     }
@@ -55,17 +53,18 @@ class FilmListViewModel(
         ).launch {
             try {
                 foundPosted = true
-                liveData.postValue(AppState.Success(
-                    ResponseData(films = repository.getFilmsBySearchOptionsFromNet(searchOptions))
+
+                liveData.postValue(
+                    AppState.Success(
+                        ResponseData(
+                            films = repository.getFilmsBySearchOptionsFromNet(searchOptions)
+                        )
+                    )
                 )
-                )
-            }
-            catch (e: Throwable) {
+
+            } catch (e: Throwable) {
                 liveData.postValue(AppState.Error(e))
                 e.printStackTrace()
-            }
-            finally {
-                foundPosted = false
             }
         }
     }
