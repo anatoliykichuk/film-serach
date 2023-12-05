@@ -12,19 +12,19 @@ import java.io.IOException
 const val PATH = "https://api.kinopoisk.dev"
 
 object RetrofitClient {
-    private var retrofit: Retrofit? = null
+    private var client: Retrofit? = null
 
     fun getClient(): Retrofit {
-        if (retrofit == null) {
+        if (client == null) {
 
-            retrofit = Retrofit.Builder()
+            client = Retrofit.Builder()
                 .baseUrl(PATH)
                 .client(client(FilmApiInterceptor()))
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
-        return retrofit!!
+        return client!!
     }
 
     private fun client(interceptor: Interceptor): OkHttpClient {
