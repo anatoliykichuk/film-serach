@@ -17,20 +17,24 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.databinding.FragmentMapsBinding
+import ru.geekbrains.filmserach.ui.BaseFragment
 import ru.geekbrains.filmserach.ui.pages.film.LOCATION_NAME
 import java.io.IOException
 
-class MapsFragment : Fragment() {
+class MapsFragment : BaseFragment<FragmentMapsBinding>() {
 
-    private var _binding: FragmentMapsBinding? = null
-    private val binding
-        get() = _binding!!
+    override fun getViewBinding() = FragmentMapsBinding.inflate(layoutInflater)
 
     private var _locationName: String? = null
     private val locationName
         get() = _locationName!!
 
     private lateinit var map: GoogleMap
+
+    override fun initView() {
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment?.getMapAsync(callback)
+    }
 
     private val callback = OnMapReadyCallback { googleMap ->
         map = googleMap
@@ -40,44 +44,25 @@ class MapsFragment : Fragment() {
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(defaultLocation))
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentMapsBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(callback)
-
+    override fun initData() {
         _locationName = arguments?.getString(LOCATION_NAME)
 
         Thread {
-            searchByLocationName(view)
+            view?.let {
+                getAddress()?.let { address ->
+                    val location = LatLng(address.latitude, address.longitude)
+                    val zoom = 15f
+
+                    it.post {
+                        setMarker(location)
+
+                        map.moveCamera(
+                            CameraUpdateFactory.newLatLngZoom(location, zoom)
+                        )
+                    }
+                }
+            }
         }.start()
-    }
-
-    private fun searchByLocationName(view: View) {
-        val address = getAddress()
-
-        if (address == null) {
-            return
-        }
-
-        val location = LatLng(address.latitude, address.longitude)
-        val zoom = 15f
-
-        view.post {
-            setMarker(location)
-
-            map.moveCamera(
-                CameraUpdateFactory.newLatLngZoom(location, zoom)
-            )
-        }
     }
 
     private fun getAddress(): Address? {

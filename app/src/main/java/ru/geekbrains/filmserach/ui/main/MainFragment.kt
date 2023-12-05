@@ -1,77 +1,54 @@
 package ru.geekbrains.filmserach.ui.main
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 import ru.geekbrains.filmserach.databinding.FragmentMainBinding
 import ru.geekbrains.filmserach.ui.AppState
+import ru.geekbrains.filmserach.ui.BaseFragment
 import ru.geekbrains.filmserach.ui.adapters.GenresListAdapter
 
-class MainFragment : Fragment() {
+class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     private val viewModel: MainViewModel by viewModel()
+
+    override fun getViewBinding() = FragmentMainBinding.inflate(layoutInflater)
+    override fun getBaseViewBinding() =  binding.mainBase
+
     private lateinit var recyclerView: RecyclerView
-    private var _binding: FragmentMainBinding? = null
-    private val binding
-        get() = _binding!!
 
     companion object {
         fun newInstance() = MainFragment()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+    override fun initView() {
         recyclerView = binding.genresList
-
-        return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        viewModel.getLiveData().observe(
-            viewLifecycleOwner
-        ) { renderFilms(it) }
-
-        viewModel.getFilmsByGenres()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        _binding = null
-    }
-
-    private fun renderFilms(appState: AppState) {
-        when (appState) {
-            is AppState.SuccessGettingFavoritesFilms -> {
-                binding.loadingProcess.visibility = View.VISIBLE
-            }
-
-            is AppState.SuccessGettingFilmsByGenre -> {
-                binding.loadingProcess.visibility = View.GONE
-
-                recyclerView.adapter = GenresListAdapter(appState.filmsByGenres)
-            }
-
-            is AppState.Error -> {
-                binding.loadingProcess.visibility = View.GONE
-
-                viewModel.getFilmsByGenres()
-            }
-
-            is AppState.Loading -> {
-                binding.loadingProcess.visibility = View.VISIBLE
+    override fun observeData() {
+        viewModel.getLiveData().observe(viewLifecycleOwner) {
+            when (it) {
+                is AppState.Success -> {
+                    showLoading(false)
+                    it.data.filmsByGenres?.let {
+                        recyclerView.adapter = GenresListAdapter(it)
+                    }
+                }
+                is AppState.Loading -> {
+                    showLoading(true)
+                }
+                is AppState.Error -> {
+                    showLoading(false)
+                    viewModel.getFilmsByGenres()
+                }
+                else -> {
+                    showLoading(false)
+                }
             }
         }
+    }
+
+    override fun initData() {
+        viewModel.getFilmsByGenres()
     }
 }

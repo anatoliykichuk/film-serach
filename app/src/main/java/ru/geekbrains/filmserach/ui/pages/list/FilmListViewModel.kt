@@ -1,46 +1,44 @@
 package ru.geekbrains.filmserach.ui.pages.list
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import org.koin.java.KoinJavaComponent.inject
-import ru.geekbrains.filmserach.data.Repository
+
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.net.SearchOptions
 import ru.geekbrains.filmserach.ui.AppState
+import ru.geekbrains.filmserach.ui.BaseViewModel
+import ru.geekbrains.filmserach.ui.ResponseData
 
 class FilmListViewModel(
     private val filmDatabase: FilmDatabase
-) : ViewModel() {
+) : BaseViewModel() {
 
-    private val liveData: MutableLiveData<AppState> = MutableLiveData()
-    private val repository: Repository by inject(Repository::class.java)
     private var favoritesPosted: Boolean = false
     private var foundPosted: Boolean = false
-
-    fun getLiveData(): LiveData<AppState> = liveData
 
     fun getFavorites() {
         if (favoritesPosted) {
             return
         }
-
-        liveData.value = AppState.Loading
+        liveData.postValue(AppState.Loading)
 
         CoroutineScope(
             Dispatchers.Main + SupervisorJob()
         ).launch {
             try {
-                liveData.value = AppState.SuccessGettingFavoritesFilms(
-                    repository.getFavorites(filmDatabase)
-                )
                 favoritesPosted = true
-            } catch (e: Throwable) {
+                liveData.postValue(AppState.Success(
+                    ResponseData(films = repository.getFavorites(filmDatabase)))
+                )
+            }
+            catch (e: Throwable) {
+                liveData.postValue(AppState.Error(e))
                 e.printStackTrace()
+            }
+            finally {
+                favoritesPosted = false
             }
         }
     }
@@ -49,16 +47,24 @@ class FilmListViewModel(
         if (foundPosted) {
             return
         }
-
-        liveData.value = AppState.Loading
+        liveData.postValue(AppState.Loading)
 
         CoroutineScope(
             Dispatchers.Main + SupervisorJob()
         ).launch {
-            liveData.value = AppState.SuccessGettingFavoritesFilms(
-                repository.getFilmsBySearchOptionsFromNet(searchOptions)
-            )
-            foundPosted = true
+            try {
+                foundPosted = true
+                liveData.postValue(AppState.Success(
+                    ResponseData(films = repository.getFilmsBySearchOptionsFromNet(searchOptions)))
+                )
+            }
+            catch (e: Throwable) {
+                liveData.postValue(AppState.Error(e))
+                e.printStackTrace()
+            }
+            finally {
+                foundPosted = false
+            }
         }
     }
 }

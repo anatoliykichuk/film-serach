@@ -22,7 +22,7 @@
     <style name="Text" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:layout_marginTop">@dimen/layout_margin</item>
         <item name="android:layout_marginEnd">@dimen/layout_margin</item>
-        <item name="android:textSize">@dimen/title_h3_text_size</item>
+        <item name="android:textSize">@dimen/title_h5_text_size</item>
     </style>
 
     <style name="LayoutMarginStart" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -38,7 +38,8 @@
 
     <style name="genreTitle">
         <item name="android:padding">@dimen/genre_title_padding</item>
-        <item name="android:textSize">@dimen/title_h3_text_size</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:textSize">@dimen/title_h4_text_size</item>
         <item name="android:textColor">?genreColorFS</item>
     </style>
 
@@ -48,6 +49,7 @@
 
     <style name="filmItemTitle" parent="filmItemField">
         <item name="android:textColor">?colorPrimaryDarkFS</item>
+        <item name="android:textSize">@dimen/title_h6_text_size</item>
         <item name="android:paddingStart">@dimen/film_item_title_padding</item>
     </style>
 
@@ -66,11 +68,11 @@
     </style>
 
     <style name="popularityTextLarge" parent="popularityText">
-        <item name="android:textSize">@dimen/title_h2_text_size</item>
+        <item name="android:textSize">@dimen/title_h4_text_size</item>
     </style>
 
     <style name="popularityText" parent="popularityCommon">
-        <item name="android:textSize">@dimen/title_h4_text_size</item>
+        <item name="android:textSize">@dimen/title_h6_text_size</item>
         <item name="android:text">@string/popularity_text</item>
         <item name="android:padding">2dp</item>
     </style>
@@ -87,14 +89,14 @@
 
     <style name="adultField" parent="filmInfoFieldTitle">
         <item name="background">@drawable/back_border</item>
-        <item name="android:textSize">@dimen/title_h2_text_size</item>
+        <item name="android:textSize">@dimen/title_h3_text_size</item>
         <item name="android:layout_marginBottom">@dimen/layout_margin</item>
     </style>
 
     <style name="fieldTitle" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/title_h3_text_size</item>
+        <item name="android:textSize">@dimen/title_h5_text_size</item>
     </style>
 
     <style name="filmInfoFieldTitle" parent="fieldTitle">

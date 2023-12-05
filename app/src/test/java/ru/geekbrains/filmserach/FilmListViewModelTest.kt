@@ -18,6 +18,7 @@ import ru.geekbrains.filmserach.data.db.FilmDao
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.AppState
+import ru.geekbrains.filmserach.ui.ResponseData
 import ru.geekbrains.filmserach.ui.pages.list.FilmListViewModel
 
 @RunWith(AndroidJUnit4::class)
@@ -65,7 +66,7 @@ class FilmListViewModelTest {
 
                 val film = Mockito.mock(Film::class.java)
                 val films = listOf<Film>(film)
-                verify(observer).onChanged(AppState.SuccessGettingFavoritesFilms(films))
+                verify(observer).onChanged(AppState.Success(ResponseData(films = films)))
 
             } finally {
                 liveData.removeObserver(observer)

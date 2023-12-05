@@ -84,7 +84,7 @@
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/favorites_tag"
                 style="@style/filmButton"
-                android:src="@drawable/baseline_favorite_border_24"
+                android:background="@drawable/baseline_favorite_border_24"
                 app:layout_constraintTop_toTopOf="@id/poster_frame"
                 app:layout_constraintBottom_toBottomOf="@id/poster_frame"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -226,5 +226,8 @@
         </androidx.core.widget.NestedScrollView>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <include layout="@layout/fragment_base"
+        android:id="@+id/film_base"/>
 
 </androidx.cardview.widget.CardView>

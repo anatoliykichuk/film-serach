@@ -1,21 +1,18 @@
 package ru.geekbrains.filmserach.ui.pages.search
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.slider.RangeSlider
+
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.*
 import ru.geekbrains.filmserach.data.net.SearchOptions
 import ru.geekbrains.filmserach.databinding.FragmentSearchOptionsBinding
+import ru.geekbrains.filmserach.ui.BaseFragment
 import java.time.LocalDate
 
 const val SEARCH_OPTIONS = "search_options"
@@ -25,66 +22,65 @@ const val POPULARITY_FOR_STEP = 1F
 const val START_POPULARITY = 0F
 const val END_POPULARITY = 10F
 
-class SearchOptionsFragment : Fragment() {
+class SearchOptionsFragment : BaseFragment<FragmentSearchOptionsBinding>() {
 
-    private var _binding: FragmentSearchOptionsBinding?  = null
-    private val binding
-        get() = _binding!!
+    override fun getViewBinding() = FragmentSearchOptionsBinding.inflate(layoutInflater)
 
     companion object {
         fun newInstance() = SearchOptionsFragment()
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        _binding = FragmentSearchOptionsBinding.inflate(inflater, container, false)
-
-        val context: Context = requireActivity().applicationContext
-
-        setGenresList(context)
-        setCountriesList(context)
-        setYearsOptions()
-        setPopularityOptions()
-
+    override fun initView() {
         binding.startSearching.setOnClickListener {
             StartSearching()
         }
-
-        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        _binding = null
+    override fun initData() {
+        setGenresList()
+        setCountriesList()
+        setYearsOptions()
+        setPopularityOptions()
     }
 
-    private fun setGenresList(context: Context) {
+    private fun StartSearching() {
+        val searchOptions = SearchOptions(
+            name = binding.name.text.toString(),
+            genre = binding.genre.text.toString(),
+            country = binding.country.text.toString(),
+            startYearDefault = binding.years.valueFrom,
+            startYear = binding.years.values[0],
+            endYearDefault = binding.years.valueTo,
+            endYear = binding.years.values[1],
+            startPopularityDefault = binding.popularity.valueFrom,
+            startPopularity = binding.popularity.values[0],
+            endPopularityDefault = binding.popularity.valueTo,
+            endPopularity = binding.popularity.values[1]
+        )
+        val bundle = Bundle()
+        bundle.putParcelable(SEARCH_OPTIONS, searchOptions)
+        findNavController().navigate(R.id.film_list_fragment, bundle)
+    }
+
+    private fun setGenresList() {
         val genres = getAllGenres().toTypedArray()
         val genreView = binding.genre as AutoCompleteTextView
         genreView.threshold = 1
 
-        ArrayAdapter<String>(
-            context, android.R.layout.simple_list_item_1, genres
+        ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, genres
         ).also {
             genreView.setAdapter(it)
         }
     }
 
-    private fun setCountriesList(context: Context) {
-        val counties = getAllCountries().values.toTypedArray()
-        val countiesView = binding.country as AutoCompleteTextView
-        countiesView.threshold = 1
+    private fun setCountriesList() {
+        val countries = getAllCountries().values.toTypedArray()
+        val countriesView = binding.country as AutoCompleteTextView
+        countriesView.threshold = 1
 
-        ArrayAdapter<String>(
-            context, android.R.layout.simple_list_item_1, counties
+        ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, countries
         ).also {
-            countiesView.setAdapter(it)
+            countriesView.setAdapter(it)
         }
     }
 
@@ -110,26 +106,5 @@ class SearchOptionsFragment : Fragment() {
         popularityView.valueFrom = START_POPULARITY
         popularityView.valueTo = END_POPULARITY
         popularityView.values = listOf<Float>(START_POPULARITY, END_POPULARITY)
-    }
-
-    private fun StartSearching() {
-        val searchOptions = SearchOptions(
-            name = binding.name.text.toString(),
-            genre = binding.genre.text.toString(),
-            country = binding.country.text.toString(),
-            startYearDefault = binding.years.valueFrom,
-            startYear = binding.years.values[0],
-            endYearDefault = binding.years.valueTo,
-            endYear = binding.years.values[1],
-            startPopularityDefault = binding.popularity.valueFrom,
-            startPopularity = binding.popularity.values[0],
-            endPopularityDefault = binding.popularity.valueTo,
-            endPopularity = binding.popularity.values[1]
-        )
-
-        val bundle = Bundle()
-        bundle.putParcelable(SEARCH_OPTIONS, searchOptions)
-
-        findNavController().navigate(R.id.film_list_fragment, bundle)
     }
 }
