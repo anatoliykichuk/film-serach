@@ -28,9 +28,9 @@ interface FilmDao {
                 "AND originalTitle = :originalTitle " +
                 "AND releaseDate = :releaseDate"
     )
-    suspend fun isFavorite(
+    suspend fun favoriteTags(
         title: String, originalTitle: String, releaseDate: String
-    ): Boolean
+    ): List<Boolean>
 
     @Insert
     suspend fun insert(film: FilmEntity)

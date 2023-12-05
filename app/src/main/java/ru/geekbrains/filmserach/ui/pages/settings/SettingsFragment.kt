@@ -1,22 +1,9 @@
 package ru.geekbrains.filmserach.ui.pages.settings
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import ru.geekbrains.filmserach.databinding.FragmentSettingsBinding
+import ru.geekbrains.filmserach.ui.BaseFragment
 
-class SettingsFragment : Fragment() {
-    private var _binding : FragmentSettingsBinding? = null
-    private val binding
-        get() = _binding!!
+class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
+    override fun getViewBinding() = FragmentSettingsBinding.inflate(layoutInflater)
 }

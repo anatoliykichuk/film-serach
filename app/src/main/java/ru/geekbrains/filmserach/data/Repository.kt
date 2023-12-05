@@ -11,10 +11,11 @@ class Repository() : Storable {
     private val filmLoader: FilmLoader by inject(FilmLoader::class.java)
 
     override suspend fun isFavorite(filmDatabase: FilmDatabase, film: Film): Boolean {
-        filmDatabase.getFilmDao()
-            .isFavorite(film.title, film.originalTitle, film.releaseDate).let {
-                return it
-            }
+
+        val favoriteTags = filmDatabase.getFilmDao().favoriteTags(film.title,
+            film.originalTitle, film.releaseDate)
+
+        return favoriteTags.isNotEmpty() && favoriteTags.get(0)
     }
 
     override suspend fun changeFavoritesTag(filmDatabase: FilmDatabase, film: Film): Boolean {

@@ -28,13 +28,12 @@ class FilmLoader(private val filmApi: FilmApi) {
 
     private suspend fun loadFilmsByGenresSafety(): Map<String, List<Film>> {
         val filmsByGenresLoaded = mutableMapOf<String, List<Film>>()
-        val field = "genres.name"
         val genres = getAllGenres()
         val selectedFields = getSelectedFields()
 
         for (genre in genres) {
             filmApi.getByGenre(
-                BuildConfig.TOKEN, field, genre, selectedFields
+                BuildConfig.TOKEN, genre, selectedFields
             ).await().let {
 
                 val filmsDto = it.films

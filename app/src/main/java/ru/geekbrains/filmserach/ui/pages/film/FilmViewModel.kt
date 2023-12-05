@@ -1,27 +1,22 @@
 package ru.geekbrains.filmserach.ui.pages.film
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import org.koin.java.KoinJavaComponent.inject
-import ru.geekbrains.filmserach.data.Repository
+
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.ui.AppState
+import ru.geekbrains.filmserach.ui.BaseViewModel
+import ru.geekbrains.filmserach.ui.ResponseData
 
 class FilmViewModel(
     private val filmDatabase: FilmDatabase
-) : ViewModel() {
+) : BaseViewModel() {
 
-    private val liveData: MutableLiveData<Boolean> = MutableLiveData()
-    private val repository: Repository by inject(Repository::class.java)
     private var tagPosted: Boolean = false
     private var tagChangePosted: Boolean = false
-
-    fun getLiveData(): LiveData<Boolean> = liveData
 
     fun isFavorite(film: Film) {
         if (tagPosted) {
@@ -32,10 +27,16 @@ class FilmViewModel(
             Dispatchers.Main + SupervisorJob()
         ).launch {
             try {
-                liveData.value = repository.isFavorite(filmDatabase, film)
                 tagPosted = true
-            } catch (e: Throwable) {
+                liveData.postValue(AppState.Success(
+                    ResponseData(isFavorite = repository.isFavorite(filmDatabase, film))))
+            }
+            catch (e: Throwable) {
+                liveData.postValue(AppState.Error(e))
                 e.printStackTrace()
+            }
+            finally {
+                tagPosted = false
             }
         }
     }
@@ -49,10 +50,15 @@ class FilmViewModel(
             Dispatchers.Main + SupervisorJob()
         ).launch {
             try {
-                liveData.value = repository.changeFavoritesTag(filmDatabase, film)
                 tagChangePosted = true
-            } catch (e: Throwable) {
+                liveData.postValue(AppState.Success(ResponseData(isFavorite = repository.changeFavoritesTag(filmDatabase, film))))
+            }
+            catch (e: Throwable) {
+                liveData.postValue(AppState.Error(e))
                 e.printStackTrace()
+            }
+            finally {
+                tagChangePosted = false
             }
         }
     }

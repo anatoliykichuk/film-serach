@@ -12,6 +12,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mockito
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.AppState
+import ru.geekbrains.filmserach.ui.ResponseData
 import ru.geekbrains.filmserach.ui.main.MainViewModel
 
 @RunWith(AndroidJUnit4::class)
@@ -45,7 +46,7 @@ class MainViewModelTest {
                 val film = Mockito.mock(Film::class.java)
                 val filmsByGenres = mapOf(genre to listOf<Film>(film))
 
-                verify(observer).onChanged(AppState.SuccessGettingFilmsByGenre(filmsByGenres))
+                verify(observer).onChanged(AppState.Success(ResponseData(filmsByGenres = filmsByGenres)))
 
             } finally {
                 liveData.removeObserver(observer)

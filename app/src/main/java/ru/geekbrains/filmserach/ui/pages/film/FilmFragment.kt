@@ -2,30 +2,31 @@ package ru.geekbrains.filmserach.ui.pages.film
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageButton
-import androidx.fragment.app.Fragment
+import androidx.annotation.RequiresApi
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.PosterLoader
 import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
 import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.ui.AppState
+import ru.geekbrains.filmserach.ui.BaseFragment
 import ru.geekbrains.filmserach.ui.SELECTED_FILM
 import java.util.stream.Collectors
 
 const val LOCATION_NAME = "location_name"
 
-class FilmFragment : Fragment() {
+class FilmFragment : BaseFragment<FragmentFilmBinding>() {
 
     private val viewModel by viewModel<FilmViewModel>()
 
-    private var _binding: FragmentFilmBinding? = null
-    private val binding
-        get() = _binding!!
+    override fun getViewBinding() = FragmentFilmBinding.inflate(layoutInflater)
+    override fun getBaseViewBinding() = binding.filmBase
 
     private var _film: Film? = null
     private val film
@@ -35,39 +36,28 @@ class FilmFragment : Fragment() {
         fun newInstance() = FilmFragment()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentFilmBinding.inflate(inflater, container, false)
+    override fun observeData() {
+        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { state
+            -> when (state) {
+                is AppState.Success -> {
+                    state.data.isFavorite?.let {
+                        setFavoritesTag(it)
+                        showFilmData()
+                    }
+                }
 
-        return binding.root
+                else -> {}
+            }
+        })
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    override fun initData() {
 
-        _film = arguments?.getParcelable<Film>(SELECTED_FILM)
-
-        viewModel.getLiveData().observe(
-            viewLifecycleOwner
-        ) {
-            setFavoritesTag(it)
-            showFilmData()
-        }
-
+        //_film = arguments?.getParcelable(SELECTED_FILM)deprecated
+        _film = arguments?.getParcelable(SELECTED_FILM, Film::class.java)
         viewModel.isFavorite(film)
 
-        setOnClickListeners()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        _binding = null
-    }
-
-    private fun setOnClickListeners() {
         val favoritesTagButton: ImageButton = binding.favoritesTag
 
         favoritesTagButton.setOnClickListener {
@@ -91,7 +81,7 @@ class FilmFragment : Fragment() {
         binding.title.text = film.title
         binding.originalTitle.text = film.originalTitle
         binding.popularity.text = film.popularity.toString()
-        binding.signature.text = listToString(film.genres + " (" + film.releaseDate + ")")
+        binding.signature.text = listToString(film.genres) + " (${film.releaseDate})"
         binding.country.text = listToString(film.countries)
         if (film.adult) {
             binding.adult.text = film.adult.toString()
@@ -105,7 +95,12 @@ class FilmFragment : Fragment() {
     }
 
     private fun listToString(list: List<String>): String {
-        return list.stream().collect(Collectors.joining(", "))
+        val strList = list.stream().collect(Collectors.joining(", "))
+        return if (list.count() > 1 && strList.length > 0) {
+            strList.dropLast(1)
+        } else {
+            strList
+        }
     }
 
     private fun setFavoritesTag(isFavorite: Boolean) {
@@ -114,9 +109,9 @@ class FilmFragment : Fragment() {
 
     private fun setFavoritesTagIcon(favoritesTagButton: ImageButton, isFavorite: Boolean) {
         if (isFavorite) {
-            favoritesTagButton.setBackgroundResource(R.drawable.baseline_favorite_border_24_color)
+            favoritesTagButton.setImageResource(R.drawable.baseline_favorite_border_24_color)
         } else {
-            favoritesTagButton.setBackgroundResource(R.drawable.baseline_favorite_border_24)
+            favoritesTagButton.setImageResource(R.drawable.baseline_favorite_border_24)
         }
     }
 
@@ -125,7 +120,7 @@ class FilmFragment : Fragment() {
             return
         }
 
-        val videoUrl = Uri.parse( film.trailers.first())
+        val videoUrl = Uri.parse(film.trailers.first())
 
         val intent = Intent(Intent.ACTION_VIEW)
         intent.setData(videoUrl)

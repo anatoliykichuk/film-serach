@@ -13,8 +13,7 @@ interface FilmApi {
     @GET(END_POINT)
     fun getByGenre(
         @Header("X-API-KEY") token: String,
-        @Query("field") genreKey: String,
-        @Query("search") genreValue: String,
+        @Query("genres.name") genreValue: String,
         @Query("selectFields") selectFields: Array<String>
     ): Deferred<FilmsDto>
 
