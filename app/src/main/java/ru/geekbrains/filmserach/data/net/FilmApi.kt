@@ -19,6 +19,7 @@ interface FilmApi {
 
     @GET
     fun getBySearchOptions(
+        @Header("X-API-KEY") token: String,
         @Url url: String
     ): Deferred<FilmsDto>
 }
