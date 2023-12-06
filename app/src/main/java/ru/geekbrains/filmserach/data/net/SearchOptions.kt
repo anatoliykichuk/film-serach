@@ -22,6 +22,7 @@ data class SearchOptions(
     override fun toString(): String {
         val optionsBuilder: MutableList<String> = mutableListOf()
         val optionSeparator = "&"
+        val selectFieldsSeparator = "&selectFields="
 
         if (name.isNotEmpty()) {
             optionsBuilder.add("field=name&search=$name")
@@ -46,7 +47,7 @@ data class SearchOptions(
         }
 
         optionsBuilder.add(
-            "selectFields=${getSelectedFields()}"
+            "selectFields=${getSelectedFields().joinToString(selectFieldsSeparator)}"
         )
 
         if (optionsBuilder.isNotEmpty()) {

@@ -8,8 +8,8 @@ import kotlinx.coroutines.launch
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.AppState
-import ru.geekbrains.filmserach.ui.BaseViewModel
-import ru.geekbrains.filmserach.ui.ResponseData
+import ru.geekbrains.filmserach.ui.base.BaseViewModel
+import ru.geekbrains.filmserach.ui.base.ResponseData
 
 class FilmViewModel(
     private val filmDatabase: FilmDatabase
@@ -29,7 +29,8 @@ class FilmViewModel(
             try {
                 tagPosted = true
                 liveData.postValue(AppState.Success(
-                    ResponseData(isFavorite = repository.isFavorite(filmDatabase, film))))
+                    ResponseData(isFavorite = repository.isFavorite(filmDatabase, film))
+                ))
             }
             catch (e: Throwable) {
                 liveData.postValue(AppState.Error(e))

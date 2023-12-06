@@ -1,6 +1,6 @@
 package ru.geekbrains.filmserach.ui
 
-import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.ui.base.ResponseData
 
 sealed class AppState {
 

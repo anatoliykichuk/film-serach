@@ -1,16 +1,12 @@
-package ru.geekbrains.filmserach.ui
+package ru.geekbrains.filmserach.ui.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import ru.geekbrains.filmserach.databinding.FragmentBaseBinding
-import ru.geekbrains.filmserach.databinding.FragmentFilmBinding
-import ru.geekbrains.filmserach.databinding.FragmentMapsBinding
 
 abstract class BaseFragment<VBinding : ViewBinding> : Fragment() {
 
