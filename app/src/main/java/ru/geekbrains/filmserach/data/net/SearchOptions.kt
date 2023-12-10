@@ -25,35 +25,36 @@ data class SearchOptions(
         val selectFieldsSeparator = "&selectFields="
 
         if (name.isNotEmpty()) {
-            optionsBuilder.add("field=name&search=$name")
-        }
-
-        if (genre.isNotEmpty()) {
-            optionsBuilder.add("field=genres.name&search=$genre")
-        }
-
-        if (country.isNotEmpty()) {
-            optionsBuilder.add("field=premiere.country&search=$country")
-        }
-
-        if (startYear > startYearDefault || endYear < endYearDefault) {
-            optionsBuilder.add("field=year&search=${startYear.toInt()}-${endYear.toInt()}")
-        }
-
-        if (startPopularity > startPopularityDefault || endPopularity < endPopularityDefault) {
-            optionsBuilder.add(
-                "field=rating.kp&search=${startPopularity.toInt()}-${endPopularity.toInt()}"
-            )
+            optionsBuilder.add("query=$name")
+        } else {
+            addUniversalSearchOptions(optionsBuilder)
         }
 
         optionsBuilder.add(
             "selectFields=${getSelectedFields().joinToString(selectFieldsSeparator)}"
         )
 
-        if (optionsBuilder.isNotEmpty()) {
-            optionsBuilder.add(0, "")
+        return optionsBuilder.joinToString(optionSeparator)
+    }
+
+    private fun addUniversalSearchOptions(optionsBuilder: MutableList<String>) {
+        if (genre.isNotEmpty()) {
+            optionsBuilder.add("genres.name=$genre")
         }
 
-        return optionsBuilder.joinToString(optionSeparator)
+        if (country.isNotEmpty()) {
+            optionsBuilder.add("countries.name=$country")
+        }
+
+        if (startYear > startYearDefault || endYear < endYearDefault) {
+            optionsBuilder.add("releaseYears.start=${startYear.toInt()}")
+            optionsBuilder.add("releaseYears.end=${endYear.toInt()}")
+        }
+
+        if (startPopularity > startPopularityDefault || endPopularity < endPopularityDefault) {
+            optionsBuilder.add(
+                "rating.imdb=${startPopularity.toInt()}-${endPopularity.toInt()}"
+            )
+        }
     }
 }

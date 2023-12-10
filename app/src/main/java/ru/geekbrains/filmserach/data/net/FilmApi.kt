@@ -8,6 +8,7 @@ import retrofit2.http.Query
 import retrofit2.http.Url
 
 const val END_POINT = "v1.4/movie"
+const val END_POINT_FOR_SEARCH_BY_NAME = "v1.4/movie/search"
 
 interface FilmApi {
     @GET(END_POINT)

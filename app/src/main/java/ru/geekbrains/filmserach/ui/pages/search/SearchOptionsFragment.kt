@@ -32,7 +32,7 @@ class SearchOptionsFragment : BaseFragment<FragmentSearchOptionsBinding>() {
 
     override fun initView() {
         binding.startSearching.setOnClickListener {
-            StartSearching()
+            startSearching()
         }
     }
 
@@ -43,7 +43,7 @@ class SearchOptionsFragment : BaseFragment<FragmentSearchOptionsBinding>() {
         setPopularityOptions()
     }
 
-    private fun StartSearching() {
+    private fun startSearching() {
         val searchOptions = SearchOptions(
             name = binding.name.text.toString(),
             genre = binding.genre.text.toString(),
