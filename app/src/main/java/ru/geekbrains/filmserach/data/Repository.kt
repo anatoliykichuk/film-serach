@@ -35,11 +35,10 @@ class Repository() : Storable {
             .getFavorites().let {
                 return FilmConverter.convertListFromEntity(it)
             }
-        return listOf<Film>()
     }
 
-    override suspend fun getFilmsByGenresFromNet(): Map<String, List<Film>> {
-        return filmLoader.loadFilmsByGenres()
+    override suspend fun getFilmsByGenresFromNet(genres: List<String>): Map<String, List<Film>> {
+        return filmLoader.loadFilmsByGenres(genres)
     }
 
     override suspend fun getFilmsBySearchOptionsFromNet(searchOptions: SearchOptions): List<Film> {

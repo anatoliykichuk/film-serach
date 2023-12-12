@@ -44,6 +44,14 @@
             android:layout_height="wrap_content"
             android:text="@string/search_option_years_name" />
 
+        <ListView
+            android:id="@+id/genre_types"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:listitem="@android:layout/simple_list_item_multiple_choice">
+
+        </ListView>
+
     </LinearLayout>
 
 </FrameLayout>

@@ -8,9 +8,9 @@ import ru.geekbrains.filmserach.domain.Film
 
 class FilmLoader(private val filmApi: FilmApi) {
 
-    suspend fun loadFilmsByGenres(): Map<String, List<Film>> {
+    suspend fun loadFilmsByGenres(genres: List<String>): Map<String, List<Film>> {
         try {
-            return loadFilmsByGenresSafety()
+            return loadFilmsByGenresSafety(genres)
         } catch (e: Throwable) {
             e.printStackTrace()
         }
@@ -26,12 +26,12 @@ class FilmLoader(private val filmApi: FilmApi) {
         return listOf<Film>()
     }
 
-    private suspend fun loadFilmsByGenresSafety(): Map<String, List<Film>> {
+    private suspend fun loadFilmsByGenresSafety(genres: List<String>): Map<String, List<Film>> {
         val filmsByGenresLoaded = mutableMapOf<String, List<Film>>()
-        val genres = getAllGenres()
+        val filmGenres = genres.ifEmpty { getAllGenres() }
         val selectedFields = getSelectedFields()
 
-        for (genre in genres) {
+        for (genre in filmGenres) {
             filmApi.getByGenre(
                 BuildConfig.TOKEN, genre, selectedFields
             ).await().let {
