@@ -30,7 +30,9 @@ class SettingsViewModel(val userPreferences: UserPreferences) : BaseViewModel() 
         }
         viewModelScope.launch(Dispatchers.IO) {
             preferencesJob.await().let {
-                liveData.postValue(AppState.Success(ResponseData(genres = checkedGenres)))
+                checkedGenres?.let {
+                    liveData.postValue(AppState.Success(ResponseData(genres = checkedGenres)))
+                }
             }
         }
     }

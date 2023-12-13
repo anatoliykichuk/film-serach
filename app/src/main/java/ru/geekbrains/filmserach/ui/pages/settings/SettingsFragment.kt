@@ -53,9 +53,11 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
                     state.data.genres?.let { genres ->
                         for (genre in genres) {
                             val iCheck = viewModel.allGenres.indexOf(genre)
-                            val txtCheck = binding.genreTypes.get(iCheck) as AppCompatCheckedTextView
-                            txtCheck.isChecked = true
-                            binding.genreTypes.checkedItemPositions.append(iCheck, true)
+                            if (iCheck != -1) {
+                                val txtCheck = binding.genreTypes.get(iCheck) as AppCompatCheckedTextView
+                                txtCheck.isChecked = true
+                                binding.genreTypes.checkedItemPositions.append(iCheck, true)
+                            }
                         }
                         binding.genreTypes.isEnabled = true
                     }
