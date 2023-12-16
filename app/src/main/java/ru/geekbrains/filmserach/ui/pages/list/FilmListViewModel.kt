@@ -4,7 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-
+import ru.geekbrains.filmserach.data.Storable
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.net.SearchOptions
 import ru.geekbrains.filmserach.ui.AppState
@@ -12,7 +12,7 @@ import ru.geekbrains.filmserach.ui.base.BaseViewModel
 import ru.geekbrains.filmserach.ui.base.ResponseData
 
 class FilmListViewModel(
-    private val filmDatabase: FilmDatabase
+    private val repository: Storable, private val filmDatabase: FilmDatabase
 ) : BaseViewModel() {
 
     private var favoritesPosted: Boolean = false

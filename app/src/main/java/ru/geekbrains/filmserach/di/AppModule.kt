@@ -5,7 +5,7 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import ru.geekbrains.filmserach.data.Repository
-import ru.geekbrains.filmserach.ui.UserPreferences
+import ru.geekbrains.filmserach.data.Storable
 import ru.geekbrains.filmserach.data.db.DatabaseMigration.MIGRATION_1_2
 import ru.geekbrains.filmserach.data.db.DatabaseMigration.MIGRATION_2_3
 import ru.geekbrains.filmserach.data.db.DatabaseMigration.MIGRATION_3_4
@@ -13,6 +13,7 @@ import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.net.FilmApi
 import ru.geekbrains.filmserach.data.net.FilmLoader
 import ru.geekbrains.filmserach.data.net.RetrofitClient
+import ru.geekbrains.filmserach.ui.UserPreferences
 import ru.geekbrains.filmserach.ui.main.MainViewModel
 import ru.geekbrains.filmserach.ui.pages.film.FilmViewModel
 import ru.geekbrains.filmserach.ui.pages.list.FilmListViewModel
@@ -22,7 +23,7 @@ const val FILM_DATABASE = "film_database"
 
 val appModule = module {
 
-    factory<Repository> {
+    factory<Storable> {
         Repository()
     }
 
@@ -41,15 +42,15 @@ val appModule = module {
     }
 
     viewModel<MainViewModel> {
-        MainViewModel(userPreferences = get())
+        MainViewModel(repository = get(), userPreferences = get())
     }
 
     viewModel<FilmViewModel> {
-        FilmViewModel(filmDatabase = get())
+        FilmViewModel(repository = get(), filmDatabase = get())
     }
 
     viewModel<FilmListViewModel> {
-        FilmListViewModel(filmDatabase = get())
+        FilmListViewModel(repository = get(), filmDatabase = get())
     }
 
     viewModel<SettingsViewModel> {
