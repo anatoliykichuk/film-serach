@@ -14,6 +14,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
+import ru.geekbrains.filmserach.data.Storable
 import ru.geekbrains.filmserach.data.db.FilmDao
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.domain.Film
@@ -32,6 +33,8 @@ class FilmListViewModelTest {
 
     private lateinit var viewModel: FilmListViewModel
 
+    private lateinit var repository: Storable
+
     private lateinit var filmDatabase: FilmDatabase
     private lateinit var filmDao: FilmDao
 
@@ -46,7 +49,7 @@ class FilmListViewModelTest {
         ).build()
 
         filmDao = filmDatabase.getFilmDao()
-        viewModel = FilmListViewModel(filmDatabase)
+        viewModel = FilmListViewModel(repository, filmDatabase)
     }
 
     @After

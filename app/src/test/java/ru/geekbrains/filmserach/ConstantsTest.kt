@@ -12,10 +12,10 @@ class ConstantsTest {
 
     @Test
     fun constants_CountOfAvailableFields_ResultTrue() {
-        val expectedCountOfFields = 168
+        val expectedCountOfFields = 21
         val selectFields = getSelectedFields()
 
-        assertEquals(selectFields.length, expectedCountOfFields)
+        assertEquals(selectFields.size, expectedCountOfFields)
     }
 
     @Test

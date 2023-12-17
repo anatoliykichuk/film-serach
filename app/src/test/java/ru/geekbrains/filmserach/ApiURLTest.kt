@@ -15,7 +15,7 @@ class ApiUrlTest {
 
     @Test
     fun apiUrl_EndPointCorrect_ResultTrue() {
-        val expectedEndPoint = "v1/movie"
+        val expectedEndPoint = "v1.4/movie"
         assertEquals(END_POINT, expectedEndPoint)
     }
 }

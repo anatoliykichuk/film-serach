@@ -12,6 +12,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import ru.geekbrains.filmserach.R.*
 import ru.geekbrains.filmserach.ui.adapters.GenresListAdapter
 import ru.geekbrains.filmserach.ui.pages.list.FilmListFragment
 

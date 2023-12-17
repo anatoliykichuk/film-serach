@@ -10,8 +10,11 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
+import org.mockito.MockitoAnnotations
+import ru.geekbrains.filmserach.data.Storable
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.AppState
+import ru.geekbrains.filmserach.ui.UserPreferences
 import ru.geekbrains.filmserach.ui.base.ResponseData
 import ru.geekbrains.filmserach.ui.main.MainViewModel
 
@@ -27,9 +30,14 @@ class MainViewModelTest {
     private lateinit var viewModel: MainViewModel
     private lateinit var observer: Observer<AppState>
 
+    private lateinit var repository: Storable
+    private lateinit var userPreferences: UserPreferences
+
     @Before
     fun setUp() {
-        viewModel = MainViewModel()
+        MockitoAnnotations.openMocks(this)
+
+        viewModel = MainViewModel(repository, userPreferences)
     }
 
     @Test
