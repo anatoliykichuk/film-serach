@@ -4,7 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-
+import ru.geekbrains.filmserach.data.Storable
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.AppState
@@ -12,7 +12,7 @@ import ru.geekbrains.filmserach.ui.base.BaseViewModel
 import ru.geekbrains.filmserach.ui.base.ResponseData
 
 class FilmViewModel(
-    private val filmDatabase: FilmDatabase
+    private val repository: Storable, private val filmDatabase: FilmDatabase
 ) : BaseViewModel() {
 
     private var tagPosted: Boolean = false
@@ -52,7 +52,9 @@ class FilmViewModel(
         ).launch {
             try {
                 tagChangePosted = true
-                liveData.postValue(AppState.Success(ResponseData(isFavorite = repository.changeFavoritesTag(filmDatabase, film))))
+                liveData.postValue(AppState.Success(
+                    ResponseData(isFavorite = repository.changeFavoritesTag(filmDatabase, film))
+                ))
             }
             catch (e: Throwable) {
                 liveData.postValue(AppState.Error(e))
