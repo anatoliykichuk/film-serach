@@ -2,7 +2,6 @@ package ru.geekbrains.filmserach.data.net
 
 import ru.geekbrains.filmserach.BuildConfig
 import ru.geekbrains.filmserach.data.FilmConverter
-import ru.geekbrains.filmserach.data.getAllGenres
 import ru.geekbrains.filmserach.data.getSelectedFields
 import ru.geekbrains.filmserach.domain.Film
 
@@ -28,10 +27,9 @@ class FilmLoader(private val filmApi: FilmApi) {
 
     private suspend fun loadFilmsByGenresSafety(genres: List<String>): Map<String, List<Film>> {
         val filmsByGenresLoaded = mutableMapOf<String, List<Film>>()
-        val filmGenres = genres.ifEmpty { getAllGenres() }
         val selectedFields = getSelectedFields()
 
-        for (genre in filmGenres) {
+        for (genre in genres) {
             filmApi.getByGenre(
                 BuildConfig.TOKEN, genre, selectedFields
             ).await().let {

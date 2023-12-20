@@ -1,7 +1,9 @@
 package ru.geekbrains.filmserach
 
+import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
@@ -12,8 +14,9 @@ import org.junit.runner.RunWith
 import org.mockito.Mockito
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.AppState
+import ru.geekbrains.filmserach.ui.UserPreferences
 import ru.geekbrains.filmserach.ui.base.ResponseData
-import ru.geekbrains.filmserach.ui.main.MainViewModel
+import ru.geekbrains.filmserach.ui.main.MainFragmentViewModel
 
 @RunWith(AndroidJUnit4::class)
 class MainViewModelTest {
@@ -24,12 +27,15 @@ class MainViewModelTest {
     @get:Rule
     var testCoroutineRule = TestCoroutineRule()
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: MainFragmentViewModel
     private lateinit var observer: Observer<AppState>
+    private lateinit var preferences: UserPreferences
 
     @Before
     fun setUp() {
-        viewModel = MainViewModel()
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        preferences = UserPreferences(context)
+        viewModel = MainFragmentViewModel(userPreferences = preferences)
     }
 
     @Test

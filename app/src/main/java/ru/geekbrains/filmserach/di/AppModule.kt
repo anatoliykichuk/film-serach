@@ -13,7 +13,8 @@ import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.net.FilmApi
 import ru.geekbrains.filmserach.data.net.FilmLoader
 import ru.geekbrains.filmserach.data.net.RetrofitClient
-import ru.geekbrains.filmserach.ui.main.MainViewModel
+import ru.geekbrains.filmserach.ui.MainViewModel
+import ru.geekbrains.filmserach.ui.main.MainFragmentViewModel
 import ru.geekbrains.filmserach.ui.pages.film.FilmViewModel
 import ru.geekbrains.filmserach.ui.pages.list.FilmListViewModel
 import ru.geekbrains.filmserach.ui.pages.settings.SettingsViewModel
@@ -42,6 +43,10 @@ val appModule = module {
 
     viewModel<MainViewModel> {
         MainViewModel(userPreferences = get())
+    }
+
+    viewModel<MainFragmentViewModel> {
+        MainFragmentViewModel(userPreferences = get())
     }
 
     viewModel<FilmViewModel> {

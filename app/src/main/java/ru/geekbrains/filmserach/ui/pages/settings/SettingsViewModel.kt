@@ -6,7 +6,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
 
 import kotlinx.coroutines.launch
-import ru.geekbrains.filmserach.data.getAllGenres
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.UserPreferences
 import ru.geekbrains.filmserach.ui.base.BaseViewModel
@@ -14,52 +13,43 @@ import ru.geekbrains.filmserach.ui.base.ResponseData
 
 class SettingsViewModel(val userPreferences: UserPreferences) : BaseViewModel() {
 
-    val allGenres = getAllGenres().toMutableList()
-
-    var checkedGenres : MutableList<String>? = null
+    private var savedGenres : List<String>? = null
 
     fun loadSavedGenres() {
+        savedGenres?.let {
+            liveData.postValue(AppState.Success(ResponseData(genres = savedGenres)))
+            return@let
+        }
         val preferencesJob = viewModelScope.async(Dispatchers.IO) {
             try {
-                checkedGenres = userPreferences.getSavedGenres().first().toMutableList()
+                savedGenres = userPreferences.getSavedGenres().first().toMutableList()
             }
             catch(ex : Exception) {
                 liveData.postValue(AppState.Error(ex))
                 ex.printStackTrace()
             }
         }
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             preferencesJob.await().let {
-                checkedGenres?.let {
-                    liveData.postValue(AppState.Success(ResponseData(genres = checkedGenres)))
+                savedGenres?.let {
+                    liveData.postValue(AppState.Success(ResponseData(genres = savedGenres)))
                 }
             }
         }
     }
 
-    fun addGenre(genre: String) {
-        checkedGenres?.let {
-            if (!it.contains(genre)) {
-                it.add(genre)
-            }
-            saveCheckedGenres()
-        }
-    }
-
-    fun removeGenre(genre: String) {
-        checkedGenres?.let {
-            if (it.contains(genre)) {
-                it.remove(genre)
-            }
-            saveCheckedGenres()
-        }
-    }
-
-    private fun saveCheckedGenres() {
+    fun saveCheckedGenres(checkedGenres: List<String>) {
         checkedGenres?.let {
             viewModelScope.launch(Dispatchers.IO) {
                 userPreferences.saveGenres(it.toSet())
+                savedGenres = checkedGenres
             }
+        }
+    }
+
+    fun saveTheme(keyTheme: Int) {
+        viewModelScope.launch {
+            userPreferences.saveTheme(keyTheme)
         }
     }
 }
