@@ -3,12 +3,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.pages.settings.SettingsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/genre_list_title"
+            style="@style/settingFieldTitle"
+            android:text="@string/genre_list_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/genre_types"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/genre_list_height"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_genre">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/theme"
+            style="@style/settingFieldTitle"
+            android:text="@string/theme_list_title" />
+
+        <RadioGroup
+            android:id="@+id/theme_groups"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back_border"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/kinoPoisk_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/settingField"
+                android:text="@string/kinoPoisk_theme_name">
+            </androidx.appcompat.widget.AppCompatRadioButton>
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/lime_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/settingField"
+                android:text="@string/lime_theme_name">
+            </androidx.appcompat.widget.AppCompatRadioButton>
+
+        </RadioGroup>
+
+
 
         <Button
             android:id="@+id/btn1"
@@ -43,14 +90,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/search_option_years_name" />
-
-        <ListView
-            android:id="@+id/genre_types"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:listitem="@android:layout/simple_list_item_multiple_choice">
-
-        </ListView>
 
     </LinearLayout>
 

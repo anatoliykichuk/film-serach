@@ -13,7 +13,7 @@ import ru.geekbrains.filmserach.ui.UserPreferences
 import ru.geekbrains.filmserach.ui.base.BaseViewModel
 import ru.geekbrains.filmserach.ui.base.ResponseData
 
-class MainViewModel(
+class MainFragmentViewModel(
     private val repository: Storable, private val userPreferences: UserPreferences
 ) : BaseViewModel() {
 

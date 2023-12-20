@@ -9,7 +9,7 @@ import ru.geekbrains.filmserach.ui.base.BaseFragment
 
 class MainFragment : BaseFragment<FragmentMainBinding>() {
 
-    private val viewModel: MainViewModel by viewModel()
+    private val viewModel: MainFragmentViewModel by viewModel()
 
     override fun getViewBinding() = FragmentMainBinding.inflate(layoutInflater)
     override fun getBaseViewBinding() =  binding.mainBase
@@ -30,7 +30,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 is AppState.Success -> {
                     showLoading(false)
                     it.data.filmsByGenres?.let {
-                        recyclerView.adapter = GenresListAdapter(it)
+                        recyclerView.adapter = GenresListAdapter(it, viewModel.searchGenres)
                     }
                 }
                 is AppState.Loading -> {
