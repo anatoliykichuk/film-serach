@@ -46,7 +46,12 @@ class FilmLoader(private val filmApi: FilmApi) {
     private suspend fun loadFilmsBySearchOptionsSafety(
         searchOptions: SearchOptions
     ): List<Film> {
-        val url = "${END_POINT}?${searchOptions.toString()}"
+        val currentEndPoint = if (searchOptions.name.isNotEmpty()) {
+            END_POINT_FOR_SEARCH_BY_NAME
+        } else {
+            END_POINT
+        }
+        val url = "${currentEndPoint}?${searchOptions.toString()}"
 
         filmApi.getBySearchOptions(BuildConfig.TOKEN, url).await().let {
             return FilmConverter.convertListFromDto(it.films)

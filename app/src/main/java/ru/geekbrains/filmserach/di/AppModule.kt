@@ -13,7 +13,6 @@ import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.net.FilmApi
 import ru.geekbrains.filmserach.data.net.FilmLoader
 import ru.geekbrains.filmserach.data.net.RetrofitClient
-import ru.geekbrains.filmserach.ui.MainViewModel
 import ru.geekbrains.filmserach.ui.main.MainFragmentViewModel
 import ru.geekbrains.filmserach.ui.pages.film.FilmViewModel
 import ru.geekbrains.filmserach.ui.pages.list.FilmListViewModel
@@ -46,15 +45,15 @@ val appModule = module {
     }
 
     viewModel<MainFragmentViewModel> {
-        MainFragmentViewModel(userPreferences = get())
+        MainFragmentViewModel(repository = get(), userPreferences = get())
     }
 
     viewModel<FilmViewModel> {
-        FilmViewModel(filmDatabase = get())
+        FilmViewModel(repository = get(), filmDatabase = get())
     }
 
     viewModel<FilmListViewModel> {
-        FilmListViewModel(filmDatabase = get())
+        FilmListViewModel(repository = get(), filmDatabase = get())
     }
 
     viewModel<SettingsViewModel> {

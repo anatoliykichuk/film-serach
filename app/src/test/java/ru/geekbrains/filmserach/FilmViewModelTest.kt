@@ -16,9 +16,12 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
+import ru.geekbrains.filmserach.data.Storable
 import ru.geekbrains.filmserach.data.db.FilmDao
 import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.domain.Film
+import ru.geekbrains.filmserach.ui.AppState
+import ru.geekbrains.filmserach.ui.base.ResponseData
 import ru.geekbrains.filmserach.ui.pages.film.FilmViewModel
 
 @RunWith(AndroidJUnit4::class)
@@ -32,11 +35,13 @@ class FilmViewModelTest {
 
     private lateinit var viewModel: FilmViewModel
 
+    private lateinit var repository: Storable
+
     private lateinit var filmDatabase: FilmDatabase
     private lateinit var filmDao: FilmDao
 
     @Mock
-    private lateinit var observer: Observer<Boolean>
+    private lateinit var observer: Observer<AppState>
 
     @Before
     fun setUp() {
@@ -49,7 +54,7 @@ class FilmViewModelTest {
         ).build()
 
         filmDao = filmDatabase.getFilmDao()
-        viewModel = FilmViewModel(filmDatabase)
+        viewModel = FilmViewModel(repository, filmDatabase)
     }
 
     @After
@@ -67,10 +72,18 @@ class FilmViewModelTest {
 
                 val film = Mockito.mock(Film::class.java)
                 verify(viewModel, times(1)).isFavorite(film)
-                verify(observer).onChanged(film.isFavorite)
+                verify(observer).onChanged(
+                    AppState.Success(
+                        ResponseData(isFavorite = !film.isFavorite)
+                    )
+                )
 
                 verify(viewModel, times(1)).changeFavoritesTag(film)
-                verify(observer).onChanged(!film.isFavorite)
+                verify(observer).onChanged(
+                    AppState.Success(
+                        ResponseData(isFavorite = !film.isFavorite)
+                    )
+                )
 
             } finally {
                 liveData.removeObserver(observer)

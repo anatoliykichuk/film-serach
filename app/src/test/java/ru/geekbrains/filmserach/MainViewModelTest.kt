@@ -12,6 +12,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
+import org.mockito.MockitoAnnotations
+import ru.geekbrains.filmserach.data.Storable
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.UserPreferences
@@ -31,11 +33,16 @@ class MainViewModelTest {
     private lateinit var observer: Observer<AppState>
     private lateinit var preferences: UserPreferences
 
+    private lateinit var repository: Storable
+    private lateinit var userPreferences: UserPreferences
+
     @Before
     fun setUp() {
+        MockitoAnnotations.openMocks(this)
+
         val context = ApplicationProvider.getApplicationContext<Context>()
         preferences = UserPreferences(context)
-        viewModel = MainFragmentViewModel(userPreferences = preferences)
+        viewModel = MainFragmentViewModel(repository, userPreferences = preferences)
     }
 
     @Test

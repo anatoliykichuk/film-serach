@@ -7,20 +7,17 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import ru.geekbrains.filmserach.data.getAllGenres
-
+import ru.geekbrains.filmserach.data.Storable
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.UserPreferences
 import ru.geekbrains.filmserach.ui.base.BaseViewModel
 import ru.geekbrains.filmserach.ui.base.ResponseData
 
-class MainFragmentViewModel(val userPreferences: UserPreferences) : BaseViewModel() {
+class MainViewModel(
+    private val repository: Storable, private val userPreferences: UserPreferences
+) : BaseViewModel() {
 
     private var dataPosted: Boolean = false
-
-    lateinit var searchGenres: List<String>
-
-    private lateinit var savedGenres : List<String>
 
     fun getFilmsByGenres() {
         if (dataPosted) {
@@ -28,22 +25,23 @@ class MainFragmentViewModel(val userPreferences: UserPreferences) : BaseViewMode
         }
         liveData.postValue(AppState.Loading)
 
+        var savedGenres: List<String> = emptyList()
         val preferencesJob = viewModelScope.async(Dispatchers.IO) {
             savedGenres = getSavedGenres()
         }
+
         CoroutineScope(
             Dispatchers.Main + SupervisorJob()
         ).launch {
             try {
                 dataPosted = true
                 preferencesJob.await().let {
-                    searchGenres = savedGenres.filter {
-                            x -> getAllGenres().contains(x)
-                    }
-                    searchGenres = searchGenres.ifEmpty { getAllGenres() }
                     liveData.postValue(
                         AppState.Success(
-                            ResponseData(filmsByGenres = repository.getFilmsByGenresFromNet(genres = searchGenres))
+                            ResponseData(
+                                filmsByGenres
+                                = repository.getFilmsByGenresFromNet(genres = savedGenres)
+                            )
                         )
                     )
                 }
@@ -56,7 +54,7 @@ class MainFragmentViewModel(val userPreferences: UserPreferences) : BaseViewMode
         }
     }
 
-    suspend fun getSavedGenres() : List<String> {
+    suspend fun getSavedGenres(): List<String> {
         try {
             return userPreferences.getSavedGenres().first().toList()
         } catch (ex: Exception) {
