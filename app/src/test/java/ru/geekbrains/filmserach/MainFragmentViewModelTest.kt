@@ -21,7 +21,7 @@ import ru.geekbrains.filmserach.ui.base.ResponseData
 import ru.geekbrains.filmserach.ui.main.MainFragmentViewModel
 
 @RunWith(AndroidJUnit4::class)
-class MainViewModelTest {
+class MainFragmentViewModelTest {
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
