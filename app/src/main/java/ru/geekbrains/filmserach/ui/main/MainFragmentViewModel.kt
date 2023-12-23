@@ -7,8 +7,8 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import ru.geekbrains.filmserach.data.getAllGenres
 import ru.geekbrains.filmserach.data.Storable
+import ru.geekbrains.filmserach.data.getAllGenres
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.UserPreferences
 import ru.geekbrains.filmserach.ui.base.BaseViewModel

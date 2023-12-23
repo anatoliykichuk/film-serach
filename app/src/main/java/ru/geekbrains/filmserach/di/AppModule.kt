@@ -6,7 +6,6 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import ru.geekbrains.filmserach.data.Repository
 import ru.geekbrains.filmserach.data.Storable
-import ru.geekbrains.filmserach.ui.UserPreferences
 import ru.geekbrains.filmserach.data.db.DatabaseMigration.MIGRATION_1_2
 import ru.geekbrains.filmserach.data.db.DatabaseMigration.MIGRATION_2_3
 import ru.geekbrains.filmserach.data.db.DatabaseMigration.MIGRATION_3_4
@@ -15,6 +14,7 @@ import ru.geekbrains.filmserach.data.net.FilmApi
 import ru.geekbrains.filmserach.data.net.FilmLoader
 import ru.geekbrains.filmserach.data.net.RetrofitClient
 import ru.geekbrains.filmserach.ui.MainViewModel
+import ru.geekbrains.filmserach.ui.UserPreferences
 import ru.geekbrains.filmserach.ui.main.MainFragmentViewModel
 import ru.geekbrains.filmserach.ui.pages.film.FilmViewModel
 import ru.geekbrains.filmserach.ui.pages.list.FilmListViewModel
