@@ -12,7 +12,6 @@
         android:layout_weight="1"
         android:layout_gravity="center_vertical|end"
         android:gravity="end"
-        style="@style/settingField"
         tools:text="@string/genre_name" />
 
     <CheckBox
