@@ -27,8 +27,18 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
     private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
+
+        try
+        {
+            _binding = ActivityMainBinding.inflate(layoutInflater)
+            val view = binding.getRoot()
+            setContentView(view)
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+        initializeNavController()
+        setOnItemMenuListener()
 
         val model: MainViewModel by inject()
         viewModel = model
@@ -39,15 +49,9 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
     private fun initView(state: AppState) {
         if (state is AppState.Success) {
             state.data.theme?.let {
-                setTheme(it.theme)
+                //setTheme(it.theme)
             }
         }
-        _binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.getRoot()
-        setContentView(view)
-
-        initializeNavController()
-        setOnItemMenuListener()
     }
 
     private fun initializeNavController() {

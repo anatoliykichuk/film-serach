@@ -30,7 +30,8 @@
 
         <activity
             android:name="ru.geekbrains.filmserach.ui.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/kinoPoiskTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

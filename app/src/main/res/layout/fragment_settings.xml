@@ -13,8 +13,9 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/genre_list_title"
-            style="@style/settingFieldTitle"
-            android:text="@string/genre_list_title" />
+            android:text="@string/genre_list_title"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/genre_types"
@@ -27,8 +28,9 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/theme"
-            style="@style/settingFieldTitle"
-            android:text="@string/theme_list_title" />
+            android:text="@string/theme_list_title"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
 
         <RadioGroup
             android:id="@+id/theme_groups"
@@ -41,7 +43,6 @@
                 android:id="@+id/kinoPoisk_theme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/settingField"
                 android:text="@string/kinoPoisk_theme_name">
             </androidx.appcompat.widget.AppCompatRadioButton>
 
@@ -49,7 +50,6 @@
                 android:id="@+id/lime_theme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/settingField"
                 android:text="@string/lime_theme_name">
             </androidx.appcompat.widget.AppCompatRadioButton>
 

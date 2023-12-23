@@ -27,6 +27,7 @@
     </style>
 
     <style name="limeTheme" parent="Base.Theme.FilmSerach">
+        <item name="genreColorFS">@color/material_light_green_100</item>
 
         <item name="colorPrimaryFS">@color/material_lime_800</item>
         <item name="colorPrimaryVariantFS">@color/material_light_green_300</item>
@@ -44,10 +45,5 @@
         <item name="colorSurfaceFS">@color/material_deep_purple_500</item>
         <item name="actionBarItemFS">@color/material_deep_purple_800</item>
         <item name="colorAccentFS">@color/material_deep_purple_900</item>
-
-        <item name="genreColorFS">@color/material_light_green_100</item>
-        <item name="playerColorFS">@color/material_blue_grey_200</item>
-        <item name="playerButtonColorFS">?textColorHintFS</item>
-        <item name="playerButtonDarkColorFS">?textColorFS</item>
     </style>
 </resources>
