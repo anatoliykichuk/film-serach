@@ -34,7 +34,7 @@
                     android:id="@+id/kinopoisk_theme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/kinoPoisk_theme_name" />
+                    android:text="@string/kinopoisk_theme_name" />
 
                 <androidx.appcompat.widget.AppCompatRadioButton
                     android:id="@+id/lime_theme"

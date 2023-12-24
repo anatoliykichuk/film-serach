@@ -40,7 +40,7 @@ class CheckedGenresAdapter(private var onCheckedGenreChanged: OnCheckedGenreChan
         fun bind(genre: String) {
             binding.genreName.text = genre
             binding.genreCheck.isChecked = checkedGenres.contains(genre)
-            //binding.genreCheck.setOnCheckedChangeListener - не использовать!!! работает криво
+
             binding.genreCheck.setOnClickListener {
                 val chb = it as CheckBox
                 if (chb.isChecked) {

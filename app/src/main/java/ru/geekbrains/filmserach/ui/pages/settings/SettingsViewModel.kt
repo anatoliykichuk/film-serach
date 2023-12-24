@@ -4,7 +4,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
-
 import kotlinx.coroutines.launch
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.UserPreferences
@@ -47,9 +46,9 @@ class SettingsViewModel(val userPreferences: UserPreferences) : BaseViewModel() 
         }
     }
 
-    fun saveTheme(keyTheme: Int) {
+    fun saveTheme(themeKey: Int) {
         viewModelScope.launch {
-            userPreferences.saveTheme(keyTheme)
+            userPreferences.saveTheme(themeKey)
         }
     }
 }

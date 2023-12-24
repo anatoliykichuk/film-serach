@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.databinding.ActivityMainBinding
 import ru.geekbrains.filmserach.domain.Film
@@ -24,32 +24,25 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
     private val binding
         get() = _binding!!
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        try
-        {
-            _binding = ActivityMainBinding.inflate(layoutInflater)
-            val view = binding.getRoot()
-            setContentView(view)
-        } catch (e: Throwable) {
-            e.printStackTrace()
-        }
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.getRoot())
+
         initializeNavController()
         setOnItemMenuListener()
 
-        val model: MainViewModel by inject()
-        viewModel = model
-        viewModel.getLiveData().observe(this, Observer { state -> initView(state) })
+        viewModel.getLiveData().observe(this, Observer { appState -> initView(appState) })
         viewModel.loadPreferences()
     }
 
-    private fun initView(state: AppState) {
-        if (state is AppState.Success) {
-            state.data.theme?.let {
-                //setTheme(it.theme)
+    private fun initView(appState: AppState) {
+        if (appState is AppState.Success) {
+            appState.data.theme?.let {
+                setTheme(it.key)
             }
         }
     }
@@ -62,9 +55,10 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
         navHostFragment.childFragmentManager.setFragmentResultListener(
             KEY_CLICK_SAVE_THEME, this
         ) { _, result ->
-            val keyTheme = result.getInt(ARG_CLICK_SAVE_THEME)
+            val themeKey = result.getInt(ARG_CLICK_SAVE_THEME)
             navHostFragment.childFragmentManager.clearFragmentResultListener(KEY_CLICK_SAVE_THEME)
 
+            setTheme(themeKey)
             recreate()
         }
     }

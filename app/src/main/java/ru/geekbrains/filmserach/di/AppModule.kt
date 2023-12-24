@@ -1,7 +1,6 @@
 package ru.geekbrains.filmserach.di
 
 import androidx.room.Room
-import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import ru.geekbrains.filmserach.data.Repository
@@ -63,6 +62,6 @@ val appModule = module {
     }
 
     single<UserPreferences> {
-        UserPreferences(context = androidApplication())
+        UserPreferences(context = get())
     }
 }
