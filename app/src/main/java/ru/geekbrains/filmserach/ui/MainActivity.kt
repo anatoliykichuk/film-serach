@@ -11,10 +11,11 @@ import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.databinding.ActivityMainBinding
 import ru.geekbrains.filmserach.domain.Film
 import ru.geekbrains.filmserach.ui.adapters.OnFilmClickListener
-import ru.geekbrains.filmserach.ui.pages.settings.ARG_CLICK_SAVE_THEME
-import ru.geekbrains.filmserach.ui.pages.settings.KEY_CLICK_SAVE_THEME
+import ru.geekbrains.filmserach.ui.pages.settings.FRAGMENT_RESULT_DATA_KEY
+import ru.geekbrains.filmserach.ui.pages.settings.SAVED_THEME_KEY
+import ru.geekbrains.filmserach.ui.pages.settings.SELECTED_THEME_KEY
 
-const val SELECTED_FILM = "selected_film"
+const val SELECTED_FILM = "SELECTED_FILM"
 
 class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
     private val viewModel: MainViewModel by viewModel()
 
+    private var savedTheme = DEFAULT_THEME
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,12 +39,13 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
         setOnItemMenuListener()
 
         viewModel.getLiveData().observe(this, Observer { appState -> initView(appState) })
-        viewModel.loadPreferences()
+        viewModel.loadSavedTheme()
     }
 
     private fun initView(appState: AppState) {
         if (appState is AppState.Success) {
             appState.data.theme?.let {
+                savedTheme = it
                 setTheme(it.key)
             }
         }
@@ -53,13 +57,18 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
         navController = navHostFragment.navController
 
         navHostFragment.childFragmentManager.setFragmentResultListener(
-            KEY_CLICK_SAVE_THEME, this
+            FRAGMENT_RESULT_DATA_KEY, this
         ) { _, result ->
-            val themeKey = result.getInt(ARG_CLICK_SAVE_THEME)
-            navHostFragment.childFragmentManager.clearFragmentResultListener(KEY_CLICK_SAVE_THEME)
+            val themeKey = result.getInt(SELECTED_THEME_KEY)
 
-            setTheme(themeKey)
-            recreate()
+            navHostFragment
+                .childFragmentManager
+                .clearFragmentResultListener(FRAGMENT_RESULT_DATA_KEY)
+
+            if (savedTheme.key != themeKey) {
+                setTheme(themeKey)
+                recreate()
+            }
         }
     }
 
@@ -71,6 +80,10 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
     private fun setOnItemMenuListener() {
         val mainMenu: BottomNavigationView = binding.mainMenu
+
+        val data: Bundle = Bundle().apply {
+            putInt(SAVED_THEME_KEY, savedTheme.key)
+        }
 
         mainMenu.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -87,7 +100,7 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
                 }
 
                 R.id.menu_settings -> {
-                    navController.navigate(R.id.settings_fragment)
+                    navController.navigate(R.id.settings_fragment, data)
                 }
             }
             true

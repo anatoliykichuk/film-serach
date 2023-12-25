@@ -45,7 +45,13 @@ class UserPreferences(val context: Context) {
     }
 
     fun getSavedTheme(): Theme {
-        val themeKey = getSavedThemeKey().toString().toInt()
+        var themeKey: Int = 0
+
+        try {
+            themeKey = getSavedThemeKey().toString().toInt()
+        } catch (e: Exception) {
+            return DEFAULT_THEME
+        }
 
         enumValues<Theme>().forEach { theme ->
             if (themeKey == theme.key) {

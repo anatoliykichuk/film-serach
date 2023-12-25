@@ -7,7 +7,7 @@ import ru.geekbrains.filmserach.ui.base.ResponseData
 
 class MainViewModel(val userPreferences: UserPreferences) : BaseViewModel() {
 
-    fun loadPreferences() {
+    fun loadSavedTheme() {
         viewModelScope.launch() {
             try {
                 liveData.postValue(

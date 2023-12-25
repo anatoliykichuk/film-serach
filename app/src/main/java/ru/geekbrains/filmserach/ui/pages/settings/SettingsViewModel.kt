@@ -37,7 +37,7 @@ class SettingsViewModel(val userPreferences: UserPreferences) : BaseViewModel() 
         }
     }
 
-    fun saveCheckedGenres(checkedGenres: List<String>) {
+    fun saveGenres(checkedGenres: List<String>) {
         checkedGenres?.let {
             viewModelScope.launch(Dispatchers.IO) {
                 userPreferences.saveGenres(it.toSet())

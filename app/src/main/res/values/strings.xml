@@ -44,7 +44,7 @@
     <string name="kinopoisk_theme_name">Кинопоиск</string>
     <string name="lime_theme_name">Лайм</string>
     <string name="genre_list_title">Жанры:</string>
-    <string name="theme_list_title">Темы приложения:</string>
+    <string name="theme_list_title">Темы:</string>
 
     <string name="maps">Карты</string>
     <string name="default_location_name">США</string>
