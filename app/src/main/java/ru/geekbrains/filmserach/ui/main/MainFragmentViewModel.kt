@@ -22,7 +22,7 @@ class MainFragmentViewModel(
 
     lateinit var searchGenres: List<String>
 
-    private lateinit var savedGenres : List<String>
+    private lateinit var savedGenres: List<String>
 
     fun getFilmsByGenres() {
         if (dataPosted) {
@@ -40,8 +40,8 @@ class MainFragmentViewModel(
             try {
                 dataPosted = true
                 preferencesJob.await().let {
-                    searchGenres = savedGenres.filter {
-                            x -> getAllGenres().contains(x)
+                    searchGenres = savedGenres.filter { genre ->
+                        getAllGenres().contains(genre)
                     }
                     searchGenres = searchGenres.ifEmpty { getAllGenres() }
                     liveData.postValue(
@@ -56,8 +56,6 @@ class MainFragmentViewModel(
             } catch (e: Throwable) {
                 liveData.postValue(AppState.Error(e))
                 e.printStackTrace()
-            } finally {
-                dataPosted = false
             }
         }
     }

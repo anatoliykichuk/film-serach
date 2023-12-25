@@ -14,6 +14,7 @@ import ru.geekbrains.filmserach.ui.adapters.OnFilmClickListener
 import ru.geekbrains.filmserach.ui.pages.settings.FRAGMENT_RESULT_DATA_KEY
 import ru.geekbrains.filmserach.ui.pages.settings.SAVED_THEME_KEY
 import ru.geekbrains.filmserach.ui.pages.settings.SELECTED_THEME_KEY
+import ru.geekbrains.filmserach.ui.pages.settings.Theme
 
 const val SELECTED_FILM = "SELECTED_FILM"
 
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
 
     private val viewModel: MainViewModel by viewModel()
 
-    private var savedTheme = DEFAULT_THEME
+    private var savedTheme: Theme = DEFAULT_THEME
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,10 +82,6 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
     private fun setOnItemMenuListener() {
         val mainMenu: BottomNavigationView = binding.mainMenu
 
-        val data: Bundle = Bundle().apply {
-            putInt(SAVED_THEME_KEY, savedTheme.key)
-        }
-
         mainMenu.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_list -> {
@@ -100,6 +97,9 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
                 }
 
                 R.id.menu_settings -> {
+                    val data: Bundle = Bundle().apply {
+                        putInt(SAVED_THEME_KEY, savedTheme.key)
+                    }
                     navController.navigate(R.id.settings_fragment, data)
                 }
             }
