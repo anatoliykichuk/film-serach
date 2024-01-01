@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.databinding.ActivityMainBinding
@@ -62,12 +62,7 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
         ) { _, result ->
             val themeKey = result.getInt(SELECTED_THEME_KEY)
 
-            navHostFragment
-                .childFragmentManager
-                .clearFragmentResultListener(FRAGMENT_RESULT_DATA_KEY)
-
-            if (savedTheme.key != themeKey) {
-                setTheme(themeKey)
+            if (themeKey.equals(savedTheme.key)) {
                 recreate()
             }
         }
@@ -80,10 +75,10 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
     }
 
     private fun setOnItemMenuListener() {
-        val mainMenu: BottomNavigationView = binding.mainMenu
+        val mainMenu: NavigationBarView = binding.mainMenu
 
-        mainMenu.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
+        mainMenu.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
                 R.id.menu_list -> {
                     navController.navigate(R.id.film_list_by_genres_fragment)
                 }

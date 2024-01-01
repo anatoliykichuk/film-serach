@@ -32,15 +32,16 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
 
     private val onCheckedChangeListener =
         RadioGroup.OnCheckedChangeListener { group, checkedId ->
-            val theme = if (checkedId == R.id.lime_theme) {
-                Theme.LIME_THEME
+            val themeKey = if (checkedId == R.id.lime_theme) {
+                Theme.LIME_THEME.key
             } else {
-                Theme.KINOPOISK_THEME
+                Theme.KINOPOISK_THEME.key
             }
-            viewModel.saveTheme(theme!!.key)
+
+            viewModel.saveTheme(themeKey)
 
             val data: Bundle = Bundle().apply {
-                putInt(SELECTED_THEME_KEY, theme.key)
+                putInt(SELECTED_THEME_KEY, themeKey)
             }
             parentFragmentManager.setFragmentResult(FRAGMENT_RESULT_DATA_KEY, data)
         }
