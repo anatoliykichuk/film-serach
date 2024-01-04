@@ -14,7 +14,6 @@ import ru.geekbrains.filmserach.ui.adapters.OnFilmClickListener
 import ru.geekbrains.filmserach.ui.pages.settings.FRAGMENT_RESULT_DATA_KEY
 import ru.geekbrains.filmserach.ui.pages.settings.SAVED_THEME_KEY
 import ru.geekbrains.filmserach.ui.pages.settings.SELECTED_THEME_KEY
-import ru.geekbrains.filmserach.ui.pages.settings.Theme
 
 const val SELECTED_FILM = "SELECTED_FILM"
 
@@ -27,8 +26,6 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
         get() = _binding!!
 
     private val viewModel: MainViewModel by viewModel()
-
-    private var savedTheme: Theme = DEFAULT_THEME
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +43,6 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
     private fun initView(appState: AppState) {
         if (appState is AppState.Success) {
             appState.data.theme?.let {
-                savedTheme = it
                 setTheme(it.key)
             }
         }
@@ -62,7 +58,7 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
         ) { _, result ->
             val themeKey = result.getInt(SELECTED_THEME_KEY)
 
-            if (themeKey.equals(savedTheme.key)) {
+            if (themeKey.equals(viewModel.getSavedTheme().key)) {
                 recreate()
             }
         }
@@ -78,23 +74,24 @@ class MainActivity : AppCompatActivity(), OnFilmClickListener {
         val mainMenu: NavigationBarView = binding.mainMenu
 
         mainMenu.setOnItemSelectedListener { menuItem ->
+            val data: Bundle = Bundle().apply {
+                putInt(SAVED_THEME_KEY, viewModel.getSavedTheme().key)
+            }
+
             when (menuItem.itemId) {
                 R.id.menu_list -> {
-                    navController.navigate(R.id.film_list_by_genres_fragment)
+                    navController.navigate(R.id.film_list_by_genres_fragment, data)
                 }
 
                 R.id.menu_favorites -> {
-                    navController.navigate(R.id.film_list_fragment)
+                    navController.navigate(R.id.film_list_fragment, data)
                 }
 
                 R.id.menu_search -> {
-                    navController.navigate(R.id.search_options_fragment)
+                    navController.navigate(R.id.search_options_fragment, data)
                 }
 
                 R.id.menu_settings -> {
-                    val data: Bundle = Bundle().apply {
-                        putInt(SAVED_THEME_KEY, savedTheme.key)
-                    }
                     navController.navigate(R.id.settings_fragment, data)
                 }
             }

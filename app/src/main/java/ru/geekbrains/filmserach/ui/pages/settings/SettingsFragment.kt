@@ -88,9 +88,13 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
             getThemeByKey(themeKey)
         }
 
-        val isLimeThemeChecked = (binding.limeTheme.id == theme.buttonId)
-        binding.limeTheme.isChecked = isLimeThemeChecked
-        binding.kinopoiskTheme.isChecked = !isLimeThemeChecked
+        binding.themeGroups.check(
+            if (binding.limeTheme.id == theme.buttonId) {
+                binding.limeTheme.id
+            } else {
+                binding.kinopoiskTheme.id
+            }
+        )
 
         binding.themeGroups.setOnCheckedChangeListener(onCheckedChangeListener)
     }
