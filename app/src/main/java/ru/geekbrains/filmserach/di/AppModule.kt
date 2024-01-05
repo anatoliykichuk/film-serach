@@ -12,7 +12,6 @@ import ru.geekbrains.filmserach.data.db.FilmDatabase
 import ru.geekbrains.filmserach.data.net.FilmApi
 import ru.geekbrains.filmserach.data.net.FilmLoader
 import ru.geekbrains.filmserach.data.net.RetrofitClient
-import ru.geekbrains.filmserach.ui.MainViewModel
 import ru.geekbrains.filmserach.ui.UserPreferences
 import ru.geekbrains.filmserach.ui.main.MainFragmentViewModel
 import ru.geekbrains.filmserach.ui.pages.film.FilmViewModel
@@ -39,10 +38,6 @@ val appModule = module {
         Room.databaseBuilder(get(), FilmDatabase::class.java, FILM_DATABASE)
             .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
             .build()
-    }
-
-    viewModel<MainViewModel> {
-        MainViewModel(userPreferences = get())
     }
 
     viewModel<MainFragmentViewModel> {

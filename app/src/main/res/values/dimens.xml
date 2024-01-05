@@ -42,6 +42,5 @@
 
     <dimen name="search_options_padding">10dp</dimen>
     <dimen name="settings_layout_padding">10dp</dimen>
-    <dimen name="genre_list_padding_top">20dp</dimen>
 
 </resources>

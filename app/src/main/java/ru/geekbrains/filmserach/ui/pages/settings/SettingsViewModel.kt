@@ -45,10 +45,4 @@ class SettingsViewModel(val userPreferences: UserPreferences) : BaseViewModel() 
             }
         }
     }
-
-    fun saveTheme(themeKey: Int) {
-        viewModelScope.launch {
-            userPreferences.saveTheme(themeKey)
-        }
-    }
 }
