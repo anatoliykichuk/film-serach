@@ -4,7 +4,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
-
 import kotlinx.coroutines.launch
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.UserPreferences
@@ -38,18 +37,12 @@ class SettingsViewModel(val userPreferences: UserPreferences) : BaseViewModel() 
         }
     }
 
-    fun saveCheckedGenres(checkedGenres: List<String>) {
+    fun saveGenres(checkedGenres: List<String>) {
         checkedGenres?.let {
             viewModelScope.launch(Dispatchers.IO) {
                 userPreferences.saveGenres(it.toSet())
                 savedGenres = checkedGenres
             }
-        }
-    }
-
-    fun saveTheme(keyTheme: Int) {
-        viewModelScope.launch {
-            userPreferences.saveTheme(keyTheme)
         }
     }
 }

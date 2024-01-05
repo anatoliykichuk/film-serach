@@ -1,18 +1,14 @@
 package ru.geekbrains.filmserach.ui.pages.settings
 
-import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import ru.geekbrains.filmserach.R
 import ru.geekbrains.filmserach.data.getAllGenres
 import ru.geekbrains.filmserach.databinding.FragmentSettingsBinding
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.base.BaseFragment
 
-const val KEY_CLICK_SAVE_THEME = "KEY_CLICK_SAVE_THEME"
-const val ARG_CLICK_SAVE_THEME = "ARG_CLICK_SAVE_THEME"
-const val ARG_THEME = "SettingThemeFragment.ARG_THEME"
+const val FRAGMENT_RESULT_DATA_KEY = "FRAGMENT_RESULT_DATA_KEY"
 
 class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
 
@@ -22,19 +18,9 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
 
     private lateinit var genresRecyclerView: RecyclerView
 
-    companion object {
-        fun newInstance(key: Int) = SettingsFragment().apply {
-            arguments.apply {
-                Bundle().apply {
-                    putInt(ARG_THEME, key)
-                }
-            }
-        }
-    }
-
     private val adapter = CheckedGenresAdapter(object : OnCheckedGenreChanged {
         override fun onCheckedGenresChanged(checkedGenres: List<String>) {
-            viewModel.saveCheckedGenres(checkedGenres)
+            viewModel.saveGenres(checkedGenres)
         }
     })
 
@@ -42,30 +28,20 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
         genresRecyclerView = binding.genreTypes
         binding.genreTypes.adapter = adapter
         binding.genreTypes.isEnabled = false
-
-        binding.themeGroups.setOnCheckedChangeListener { group, checkedId ->
-            val theme = if (checkedId == R.id.lime_theme) { Theme.LIME_THEME }
-                                else { Theme.KINOPOISK_THEME }
-            viewModel.saveTheme(theme.key)
-
-            val data: Bundle = Bundle().apply {
-                putInt(ARG_CLICK_SAVE_THEME, theme.key)
-            }
-            parentFragmentManager.setFragmentResult(KEY_CLICK_SAVE_THEME, data)
-        }
     }
 
     override fun observeData() {
-        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { state
-            ->
+        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { appState ->
             var savedGenres = listOf<String>()
-            when (state) {
+
+            when (appState) {
                 is AppState.Success -> {
-                    state.data.genres?.let {
-                        savedGenres = it.filter { x -> getAllGenres().contains(x) }
+                    appState.data.genres?.let {
+                        savedGenres = it.filter { genre -> getAllGenres().contains(genre) }
                     }
                 }
-                else -> { }
+
+                else -> {}
             }
             adapter.setGenres(getAllGenres(), savedGenres)
             binding.genreTypes.isEnabled = true
@@ -79,6 +55,10 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
     override fun onDestroyView() {
         super.onDestroyView()
         adapter.removeListener()
+    }
+
+    companion object {
+        fun newInstance() = SettingsFragment()
     }
 }
 

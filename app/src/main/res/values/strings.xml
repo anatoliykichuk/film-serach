@@ -41,10 +41,10 @@
     <string name="search_option_default_name">все</string>
     <string name="search_options_start_searching">Найти</string>
 
-    <string name="kinoPoisk_theme_name">Кинопоиск</string>
+    <string name="kinopoisk_theme_name">Кинопоиск</string>
     <string name="lime_theme_name">Лайм</string>
-    <string name="genre_list_title">Список жанров:</string>
-    <string name="theme_list_title">Выбор темы приложения:</string>
+    <string name="genre_list_title">Жанры:</string>
+    <string name="theme_list_title">Темы:</string>
 
     <string name="maps">Карты</string>
     <string name="default_location_name">США</string>
