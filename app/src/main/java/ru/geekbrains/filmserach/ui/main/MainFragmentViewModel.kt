@@ -7,8 +7,8 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import ru.geekbrains.filmserach.data.getAllGenres
 import ru.geekbrains.filmserach.data.Storable
+import ru.geekbrains.filmserach.data.getAllGenres
 import ru.geekbrains.filmserach.ui.AppState
 import ru.geekbrains.filmserach.ui.UserPreferences
 import ru.geekbrains.filmserach.ui.base.BaseViewModel
@@ -22,7 +22,7 @@ class MainFragmentViewModel(
 
     lateinit var searchGenres: List<String>
 
-    private lateinit var savedGenres : List<String>
+    private lateinit var savedGenres: List<String>
 
     fun getFilmsByGenres() {
         if (dataPosted) {
@@ -40,8 +40,8 @@ class MainFragmentViewModel(
             try {
                 dataPosted = true
                 preferencesJob.await().let {
-                    searchGenres = savedGenres.filter {
-                            x -> getAllGenres().contains(x)
+                    searchGenres = savedGenres.filter { genre ->
+                        getAllGenres().contains(genre)
                     }
                     searchGenres = searchGenres.ifEmpty { getAllGenres() }
                     liveData.postValue(
@@ -56,8 +56,6 @@ class MainFragmentViewModel(
             } catch (e: Throwable) {
                 liveData.postValue(AppState.Error(e))
                 e.printStackTrace()
-            } finally {
-                dataPosted = false
             }
         }
     }

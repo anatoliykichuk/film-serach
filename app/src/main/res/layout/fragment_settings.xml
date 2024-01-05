@@ -1,95 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.pages.settings.SettingsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/settings_layout_padding">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/genre_list_title"
-            android:text="@string/genre_list_title"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/genre_types"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/genre_list_height"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_genre">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/theme"
-            android:text="@string/theme_list_title"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
-
-        <RadioGroup
-            android:id="@+id/theme_groups"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/back_border"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/kinoPoisk_theme"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/genre_list_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/kinoPoisk_theme_name">
-            </androidx.appcompat.widget.AppCompatRadioButton>
+                android:text="@string/genre_list_title" />
 
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/lime_theme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lime_theme_name">
-            </androidx.appcompat.widget.AppCompatRadioButton>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/genre_types"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_genre">
 
-        </RadioGroup>
+            </androidx.recyclerview.widget.RecyclerView>
 
-
-
-        <Button
-            android:id="@+id/btn1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
-        <Button
-            android:id="@+id/btn2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="Button" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="AppCompatButton">
-        </androidx.appcompat.widget.AppCompatButton>
-
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/search_option_default_name" />
-
-        <TextView
-            android:layout_width="328dp"
-            android:layout_height="39dp"
-            android:text="TextView Текстовое поле" />
-
-        <com.google.android.material.slider.RangeSlider
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/search_option_years_name" />
+        </LinearLayout>
 
     </LinearLayout>
 
